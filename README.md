@@ -2,9 +2,9 @@
 
 # Mordern Discord Bot Dashboard
 
-> This project is a Rewrite of [discord-bot-dashboard](https://github.com/SonMooSans/discord-bot-dashboard)
+> This project is still in development
 
-Using typescript, vite 3, react 18 and chakra ui 2.0
+Using typescript, Next.js 13, react 18 and chakra ui 2.0
 
 - Support Light/Dark theme
 - Multi languages support (i18n)
@@ -49,9 +49,9 @@ As a template, you need to customize a few things in order to get it work
    | `npm install` | `pnpm install` | `yarn install` |
 
 3. **Customize following files**
-   - [src/views/dashboard](./src/views/dashboard/DashboardView.tsx) **User Dashboard** - Some states about the user
-   - [src/views/home](./src/views/home/HomeView.tsx) **Home page** - introduce your bot
-   - [src/views/guild](./src/views/guild/GuildView.tsx) **Guild Dashboard** - The place to customize guild (ex: features, actions)
+   - [src/pages/user/home](./src/pages/user/home.tsx) **User Dashboard** - Some states about the user
+   - [src/components/HomeView](./src/components/HomeView.tsx) **Home page** - introduce your bot
+   - [src/pages/guilds/[guild]](./src/pages/guilds/[guild]/index.tsx) **Guild Dashboard** - The place to customize guild (ex: features, actions)
 4. **Define Features**
    <br>
    The dashboard has built-in support for configuring features
