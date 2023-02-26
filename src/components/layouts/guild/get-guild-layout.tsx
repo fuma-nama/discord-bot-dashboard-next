@@ -1,5 +1,5 @@
 import { Box, Center } from '@chakra-ui/layout';
-import AppLayout from 'layouts/app/AppLayout';
+import AppLayout from '../app';
 import { ReactNode } from 'react';
 import GuildNavbar from './navbar';
 import { InGuildSidebar } from './sidebar';

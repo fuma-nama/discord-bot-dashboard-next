@@ -8,12 +8,12 @@ import { FaRobot } from 'react-icons/fa';
 import { useGuildInfoQuery } from 'stores';
 import { useColors } from '@/theme';
 import { useRouter } from 'next/router';
-import { getFeatures } from 'config/utils';
-import { Banner } from 'components/Banner';
+import { getFeatures } from '@/config/utils';
+import { Banner } from '@/components/Banner';
 import { FeatureItem } from '@/components/feature/FeatureItem';
 import type { CustomGuildInfo } from '@/config/types/custom-types';
 import { NextPageWithLayout } from 'pages/_app';
-import getGuildLayout from 'layouts/guild/get-guild-layout';
+import getGuildLayout from '@/components/layouts/guild/get-guild-layout';
 
 const GuildPage: NextPageWithLayout = () => {
   const t = view.useTranslations();
@@ -72,5 +72,6 @@ function NotJoined() {
   );
 }
 
+GuildPage.auth = true;
 GuildPage.getLayout = (c) => getGuildLayout({ children: c });
 export default GuildPage;

@@ -4,20 +4,9 @@ import { useColors } from '@/theme';
 import { config } from 'config/common';
 import { ThemeSwitch } from 'components/ThemeSwitch';
 import { ReactNode } from 'react';
-import Router from 'next/router';
-import { useLoginQuery } from 'stores';
-import useMounted from 'hooks/use-mounted';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   const { cardBg, textColorPrimary } = useColors();
-
-  const login = useLoginQuery();
-  const mounted = useMounted();
-
-  if (mounted && login.isSuccess && login.data != null) {
-    Router.replace('/home');
-    return <></>;
-  }
 
   return (
     <Flex direction="column" h="full">

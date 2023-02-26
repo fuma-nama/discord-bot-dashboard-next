@@ -20,7 +20,7 @@ import { IoLogOut } from 'react-icons/io5';
 import { useLogoutMutation, useSettingsStore, useSelfUser } from 'stores';
 import { useColors } from '@/theme';
 import { NextPageWithLayout } from 'pages/_app';
-import AppLayout from 'layouts/app/AppLayout';
+import AppLayout from '@/components/layouts/app';
 
 /**
  * User info and general settings here
@@ -121,6 +121,7 @@ function Content() {
   return <></>;
 }
 
+ProfilePage.auth = true;
 ProfilePage.getLayout = (p) => <AppLayout>{p}</AppLayout>;
 
 export default ProfilePage;

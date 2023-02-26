@@ -11,7 +11,7 @@ import { UpdateFeaturePanel } from '@/components/feature/UpdateFeaturePanel';
 import { feature as view } from 'config/translations/feature';
 import { useRouter } from 'next/router';
 import { NextPageWithLayout } from 'pages/_app';
-import getGuildLayout from 'layouts/guild/get-guild-layout';
+import getGuildLayout from '@/components/layouts/guild/get-guild-layout';
 
 export type Params = {
   guild: string;
@@ -70,5 +70,6 @@ function NotFound() {
   );
 }
 
+FeaturePage.auth = true;
 FeaturePage.getLayout = (c) => getGuildLayout({ children: c, back: true });
 export default FeaturePage;

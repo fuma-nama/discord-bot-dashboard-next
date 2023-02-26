@@ -2,7 +2,7 @@ import { Flex, Heading, SimpleGrid, Text } from '@chakra-ui/layout';
 import { ChannelSelect } from 'config/example/ChannelSelect';
 import { RolesSelect } from 'config/example/RolesSelect';
 import { useFormRender } from 'hooks/forms/useForm';
-import getGuildLayout from 'layouts/guild/get-guild-layout';
+import getGuildLayout from '@/components/layouts/guild/get-guild-layout';
 import { NextPageWithLayout } from 'pages/_app';
 
 /**
@@ -85,5 +85,6 @@ const GuildSettingsPage: NextPageWithLayout = () => {
   );
 };
 
+GuildSettingsPage.auth = true;
 GuildSettingsPage.getLayout = (c) => getGuildLayout({ children: c, back: true });
 export default GuildSettingsPage;

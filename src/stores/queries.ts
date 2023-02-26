@@ -1,3 +1,4 @@
+import useMounted from '@/hooks/use-mounted';
 import { CustomFeatures, CustomGuildInfo } from '../config/types';
 import { useAPIStore } from './apiStore';
 import { QueryClient, useMutation, useQuery } from '@tanstack/react-query';
@@ -70,7 +71,9 @@ export function useLogoutMutation() {
  * Then Store the token into api store
  */
 export function useLoginQuery() {
+  const mounted = useMounted();
   return useQuery(Keys.login, () => auth(), {
+    enabled: mounted,
     onSuccess(token) {
       useAPIStore.setState({
         accessToken: token ?? undefined,

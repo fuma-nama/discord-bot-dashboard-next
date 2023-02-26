@@ -6,9 +6,9 @@ import { ReactNode } from 'react';
 import { useColors } from '@/theme';
 import { HomeView } from '@/components/HomeView';
 import { bot } from 'api/bot';
-import { auth } from 'config/translations/auth';
+import { auth } from '@/config/translations/auth';
 import { NextPageWithLayout } from 'pages/_app';
-import AuthLayout from 'layouts/auth/AuthLayout';
+import AuthLayout from '@/components/layouts/auth';
 
 const LoginPage: NextPageWithLayout = () => {
   const t = auth.useTranslations();
@@ -59,5 +59,6 @@ function Container({ children }: { children: ReactNode }) {
   );
 }
 
+LoginPage.auth = false;
 LoginPage.getLayout = (c) => <AuthLayout>{c}</AuthLayout>;
 export default LoginPage;

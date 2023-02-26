@@ -14,7 +14,6 @@ export default function CallbackPage() {
       client.invalidateQueries(Keys.login);
     }
 
-    client.invalidateQueries(Keys.login);
     Router.replace('/user/home');
   }, []);
 
