@@ -1,5 +1,5 @@
 import { initLanguages, initI18n } from '@/utils/i18n';
-import { useSettingsStore } from 'stores';
+import { useSettingsStore } from '@/stores';
 
 /**
  * Supported languages

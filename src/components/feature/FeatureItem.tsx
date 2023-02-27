@@ -1,10 +1,10 @@
 import { Center, Flex, Text } from '@chakra-ui/layout';
 import { Button, ButtonGroup, Card, CardBody, CardFooter, Switch } from '@chakra-ui/react';
-import { IdFeature } from 'config/utils';
+import { IdFeature } from '@/config/utils';
 import { IoOpen, IoOptions } from 'react-icons/io5';
-import { useEnableFeatureMutation } from 'stores';
+import { useEnableFeatureMutation } from '@/stores';
 import { useColors } from '@/theme';
-import { guild as view } from 'config/translations/guild';
+import { guild as view } from '@/config/translations/guild';
 import Router from 'next/router';
 
 export function FeatureItem({
@@ -57,7 +57,7 @@ export function FeatureItem({
                 rounded: '2xl',
                 leftIcon: <IoOptions />,
                 onClick: () => Router.push(`/guilds/${guild}/features/${feature.id}`),
-                children: t.bn['config feature'],
+                children: t.bn['@/config feature'],
               }
             : {
                 leftIcon: <IoOpen />,

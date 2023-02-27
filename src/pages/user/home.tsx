@@ -11,13 +11,13 @@ import {
   Icon,
 } from '@chakra-ui/react';
 import { config } from '@/config/common';
-import { dashboard } from 'config/translations/dashboard';
+import { dashboard } from '@/config/translations/dashboard';
 import { FaRobot } from 'react-icons/fa';
 import { IoOpen } from 'react-icons/io5';
 import { useSelfUser } from '@/stores';
 import { useColors } from '@/theme';
 import { ExampleDashboardView } from '@/components/example';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '@/pages/_app';
 import AppLayout from '@/components/layouts/app';
 
 const HomePage: NextPageWithLayout = () => {

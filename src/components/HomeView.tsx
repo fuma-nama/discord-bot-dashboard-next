@@ -1,16 +1,16 @@
 import { Center, Flex, Heading, HStack, SimpleGrid, Text } from '@chakra-ui/layout';
 import { Card, CardBody, CardFooter, CardHeader, Icon, Image } from '@chakra-ui/react';
-import { config } from 'config/common';
+import { config } from '@/config/common';
 import { BsEmojiAngryFill, BsPeopleFill, BsSafe } from 'react-icons/bs';
 import { IoEarth, IoPeopleCircle } from 'react-icons/io5';
 import { MdMusicNote } from 'react-icons/md';
 import { useColorsExtend } from '@/theme';
-import { useSettingsStore } from 'stores';
-import { languages, names } from 'config/translations/provider';
-import { SelectField } from 'components/forms/SelectField';
+import { useSettingsStore } from '@/stores';
+import { languages, names } from '@/config/translations/provider';
+import { SelectField } from '@/components/forms/SelectField';
 import { TranslationofConfig } from '@/utils/i18n';
-import { common } from 'config/translations/common';
-import { home } from 'config/translations/home';
+import { common } from '@/config/translations/common';
+import { home } from '@/config/translations/home';
 
 import WorldSvg from '@public/World.svg';
 import NextImage from 'next/image';

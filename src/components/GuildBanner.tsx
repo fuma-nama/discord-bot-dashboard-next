@@ -2,7 +2,7 @@ import { FiSettings as SettingsIcon } from 'react-icons/fi';
 import { Flex, Heading, Text } from '@chakra-ui/layout';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { useColors } from '@/theme';
-import { guild as view } from 'config/translations/guild';
+import { guild as view } from '@/config/translations/guild';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 

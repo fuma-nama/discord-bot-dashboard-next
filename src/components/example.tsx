@@ -20,11 +20,11 @@ import {
   Image,
   Progress,
 } from '@chakra-ui/react';
-import { config } from 'config/common';
+import { config } from '@/config/common';
 import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi';
 import { useColors } from '@/theme';
 import { StyledChart } from '@/components/chart/StyledChart';
-import { dashboard } from 'config/translations/dashboard';
+import { dashboard } from '@/config/translations/dashboard';
 
 import {
   BsMusicNoteBeamed,

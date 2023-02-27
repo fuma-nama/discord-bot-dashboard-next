@@ -11,17 +11,17 @@ import {
   useColorMode,
   Box,
 } from '@chakra-ui/react';
-import { avatarUrl, bannerUrl } from 'api/discord';
-import { SelectField } from 'components/forms/SelectField';
-import { SwitchField } from 'components/forms/SwitchField';
-import { languages, names } from 'config/translations/provider';
-import { profile } from 'config/translations/profile';
+import { avatarUrl, bannerUrl } from '@/api/discord';
+import { SelectField } from '@/components/forms/SelectField';
+import { SwitchField } from '@/components/forms/SwitchField';
+import { languages, names } from '@/config/translations/provider';
+import { profile } from '@/config/translations/profile';
 import { IoLogOut } from 'react-icons/io5';
-import { useSettingsStore, useSelfUser } from 'stores';
+import { useSettingsStore, useSelfUser } from '@/stores';
 import { useColors } from '@/theme';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '@/pages/_app';
 import AppLayout from '@/components/layouts/app';
-import { useLogoutMutation } from 'utils/auth/hooks';
+import { useLogoutMutation } from '@/utils/auth/hooks';
 
 /**
  * User info and general settings here

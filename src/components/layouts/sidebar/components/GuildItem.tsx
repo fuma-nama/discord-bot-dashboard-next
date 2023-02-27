@@ -1,5 +1,5 @@
 import { Avatar, Card, CardBody, Flex, Text } from '@chakra-ui/react';
-import { Guild, iconUrl } from 'api/discord';
+import { Guild, iconUrl } from '@/api/discord';
 import { useColors } from '@/theme';
 
 export function GuildItem({

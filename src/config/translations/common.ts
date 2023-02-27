@@ -8,7 +8,7 @@ export const common = createI18n(provider, {
     'select lang': 'Select your language',
     dashboard: 'Dashboard',
     profile: 'Profile',
-    pages: 'Pages',
+    pages: '@/pages',
     logout: 'Logout',
   },
   cn: {

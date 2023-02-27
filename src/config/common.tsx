@@ -1,5 +1,5 @@
 import { createIcon } from '@chakra-ui/react';
-import { PermissionFlags } from 'api/discord';
+import { PermissionFlags } from '@/api/discord';
 import { AppConfig } from './types';
 
 const OmagizeIcon = createIcon({

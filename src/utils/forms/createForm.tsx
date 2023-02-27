@@ -1,12 +1,12 @@
 import { ComponentProps, DependencyList, Fragment, ReactElement } from 'react';
-import { ColorPickerForm, SmallColorPickerForm } from 'components/forms/ColorPicker';
-import { DatePickerForm, SmallDatePickerForm } from 'components/forms/DatePicker';
-import { FilePickerForm } from 'components/forms/FilePicker';
-import { FormComponentProps, FormControlCard } from 'components/forms/Form';
+import { ColorPickerForm, SmallColorPickerForm } from '@/components/forms/ColorPicker';
+import { DatePickerForm, SmallDatePickerForm } from '@/components/forms/DatePicker';
+import { FilePickerForm } from '@/components/forms/FilePicker';
+import { FormComponentProps, FormControlCard } from '@/components/forms/Form';
 import { Memoize } from '@/utils/memorize';
-import { InputForm } from 'components/forms/InputForm';
-import { SwitchForm } from 'components/forms/SwitchField';
-import { TextAreaForm } from 'components/forms/TextAreaForm';
+import { InputForm } from '@/components/forms/InputForm';
+import { SwitchForm } from '@/components/forms/SwitchField';
+import { TextAreaForm } from '@/components/forms/TextAreaForm';
 
 export type FormInput = (
   | Input

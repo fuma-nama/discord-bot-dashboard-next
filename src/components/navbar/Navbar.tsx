@@ -11,12 +11,12 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
-import { useActiveSidebarItem } from 'utils/routeUtils';
+import { useActiveSidebarItem } from '@/utils/routeUtils';
 import { NavbarDefaultItems, NavbarLinksBox } from './NavbarItems';
 import { IoHome } from 'react-icons/io5';
 import { FaChevronRight as ChevronRightIcon } from 'react-icons/fa';
 import { show, useColorsExtend } from '@/theme';
-import { common } from 'config/translations/common';
+import { common } from '@/config/translations/common';
 import Link from 'next/link';
 
 export function DefaultNavbar({ children }: { children?: ReactNode }) {

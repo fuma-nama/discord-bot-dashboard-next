@@ -1,6 +1,6 @@
-import { AccessToken } from 'utils/auth/server';
-import { bot } from 'api/bot';
-import { discord } from 'api/discord';
+import { AccessToken } from '@/utils/auth/server';
+import { bot } from '@/api/bot';
+import { discord } from '@/api/discord';
 import { Options } from './core';
 
 export function withAPI<T extends Options>(init?: T): T {

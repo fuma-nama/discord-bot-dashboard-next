@@ -1,9 +1,9 @@
 import { Box, Flex } from '@chakra-ui/react';
-import items from 'config/sidebar';
-import { QueryStatus } from 'components/panel/QueryPanel';
-import { useSelfUserQuery } from 'stores';
-import { LoadingPanel } from 'components/panel/LoadingPanel';
-import { DefaultNavbar } from 'components/navbar/Navbar';
+import items from '@/config/sidebar';
+import { QueryStatus } from '@/components/panel/QueryPanel';
+import { useSelfUserQuery } from '@/stores';
+import { LoadingPanel } from '@/components/panel/LoadingPanel';
+import { DefaultNavbar } from '@/components/navbar/Navbar';
 import { Sidebar, SidebarResponsive } from './sidebar/Sidebar';
 import { show } from '@/theme';
 import { ReactNode } from 'react';

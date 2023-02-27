@@ -107,7 +107,7 @@ Create the provider
 
 ```typescript
 import { initLanguages, initI18n } from '@/utils/i18n';
-import { useSettingsStore } from 'stores';
+import { useSettingsStore } from '@/stores';
 
 // Supported languages
 export const { languages, names } = initLanguages<'en' | 'cn'>({
@@ -146,7 +146,7 @@ Use it in any places
 > component.tsx
 
 ```tsx
-import {test} from 'config/translations/test'
+import {test} from '@/config/translations/test'
 
 export function YourComponent() {
   const t = test.useTranslations();

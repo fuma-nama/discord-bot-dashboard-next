@@ -1,4 +1,4 @@
-import { Languages } from 'config/translations/provider';
+import { Languages } from '@/config/translations/provider';
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
 

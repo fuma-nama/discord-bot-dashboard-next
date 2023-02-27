@@ -1,15 +1,15 @@
 import { FaChevronLeft as ChevronLeftIcon } from 'react-icons/fa';
 import { Flex, HStack, StackProps, Text, VStack } from '@chakra-ui/layout';
 import { Icon, IconButton } from '@chakra-ui/react';
-import { HSeparator } from 'components/layout/Separator';
-import { getFeatures, IdFeature } from 'config/utils';
+import { HSeparator } from '@/components/layout/Separator';
+import { getFeatures, IdFeature } from '@/config/utils';
 import { IoSettings } from 'react-icons/io5';
-import { useGuildPreview, useSelectedGuild } from 'stores';
+import { useGuildPreview, useSelectedGuild } from '@/stores';
 import { show, useColors } from '@/theme';
-import { guild as view } from 'config/translations/guild';
+import { guild as view } from '@/config/translations/guild';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Params } from 'pages/guilds/[guild]/features/[feature]';
+import { Params } from '@/pages/guilds/[guild]/features/[feature]';
 
 export function InGuildSidebar() {
   const { selected } = useSelectedGuild();

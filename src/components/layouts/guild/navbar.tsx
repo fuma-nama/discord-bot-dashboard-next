@@ -1,10 +1,10 @@
 import { FaChevronLeft as ChevronLeftIcon } from 'react-icons/fa';
 import { HStack, Text } from '@chakra-ui/layout';
 import { Avatar, Icon, IconButton, SkeletonCircle } from '@chakra-ui/react';
-import { iconUrl } from 'api/discord';
-import { NavbarBox } from 'components/navbar/Navbar';
-import { NavbarDefaultItems, NavbarLinksBox } from 'components/navbar/NavbarItems';
-import { useGuildPreview, useSelectedGuild } from 'stores';
+import { iconUrl } from '@/api/discord';
+import { NavbarBox } from '@/components/navbar/Navbar';
+import { NavbarDefaultItems, NavbarLinksBox } from '@/components/navbar/NavbarItems';
+import { useGuildPreview, useSelectedGuild } from '@/stores';
 import { motion } from 'framer-motion';
 import { ReactElement } from 'react';
 import { show } from '@/theme';

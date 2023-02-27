@@ -1,7 +1,7 @@
 import { SimpleGrid } from '@chakra-ui/layout';
-import { FormControlCard } from 'components/forms/Form';
-import { TextAreaForm } from 'components/forms/TextAreaForm';
-import { WelcomeMessageFeature } from 'config/types';
+import { FormControlCard } from '@/components/forms/Form';
+import { TextAreaForm } from '@/components/forms/TextAreaForm';
+import { WelcomeMessageFeature } from '@/config/types';
 import { useForm } from '@/utils/forms/useForm';
 import { ChannelSelect } from './ChannelSelect';
 

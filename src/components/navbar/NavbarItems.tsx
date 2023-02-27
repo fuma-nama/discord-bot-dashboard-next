@@ -1,8 +1,8 @@
 // Chakra Imports
 import { Flex, FlexProps } from '@chakra-ui/react';
-import { UserMenu } from 'components/menu/UserMenu';
-import { SidebarTrigger } from 'components/SidebarTrigger';
-import { ThemeSwitch } from 'components/ThemeSwitch';
+import { UserMenu } from '@/components/menu/UserMenu';
+import { SidebarTrigger } from '@/components/SidebarTrigger';
+import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { useColorsExtend } from '@/theme';
 
 export function NavbarDefaultItems() {

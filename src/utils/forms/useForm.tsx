@@ -1,4 +1,4 @@
-import { FormRender } from 'config/types';
+import { FormRender } from '@/config/types';
 import { Dispatch, SetStateAction, ReactElement, useState, useMemo } from 'react';
 import { createForm, FormInput, FormOptions } from './createForm';
 import { converter } from './useFormValue';

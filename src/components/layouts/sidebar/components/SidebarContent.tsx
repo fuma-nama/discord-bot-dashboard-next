@@ -14,13 +14,13 @@ import {
   VStack,
 } from '@chakra-ui/react';
 //   Custom components
-import { useActiveSidebarItem, SidebarItemInfo } from 'utils/routeUtils';
-import { useGuilds, useSelectedGuild, useSelfUserQuery } from 'stores';
-import { SearchBar } from 'components/forms/SearchBar';
+import { useActiveSidebarItem, SidebarItemInfo } from '@/utils/routeUtils';
+import { useGuilds, useSelectedGuild, useSelfUserQuery } from '@/stores';
+import { SearchBar } from '@/components/forms/SearchBar';
 import { useMemo, useState } from 'react';
-import { config } from 'config/common';
+import { config } from '@/config/common';
 import { FiSettings as SettingsIcon } from 'react-icons/fi';
-import { avatarUrl } from 'api/discord';
+import { avatarUrl } from '@/api/discord';
 import { GuildItem } from './GuildItem';
 import { SidebarItem } from './SidebarItem';
 import Link from 'next/link';

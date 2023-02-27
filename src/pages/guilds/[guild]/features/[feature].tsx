@@ -1,16 +1,16 @@
 import { Icon } from '@chakra-ui/react';
 import { Center, Heading, Text } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/react';
-import { LoadingPanel } from 'components/panel/LoadingPanel';
+import { LoadingPanel } from '@/components/panel/LoadingPanel';
 import { features } from '@/config/features';
-import { CustomFeatures, FeatureConfig } from 'config/types';
+import { CustomFeatures, FeatureConfig } from '@/config/types';
 import { BsSearch } from 'react-icons/bs';
-import { useEnableFeatureMutation, useFeatureQuery } from 'stores';
+import { useEnableFeatureMutation, useFeatureQuery } from '@/stores';
 import { useColors } from '@/theme';
 import { UpdateFeaturePanel } from '@/components/feature/UpdateFeaturePanel';
-import { feature as view } from 'config/translations/feature';
+import { feature as view } from '@/config/translations/feature';
 import { useRouter } from 'next/router';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '@/pages/_app';
 import getGuildLayout from '@/components/layouts/guild/get-guild-layout';
 
 export type Params = {

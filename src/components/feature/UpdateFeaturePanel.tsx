@@ -2,12 +2,12 @@ import { RiErrorWarningFill as WarningIcon } from 'react-icons/ri';
 import { Flex, Heading, HStack, Spacer, Text } from '@chakra-ui/layout';
 import { ButtonGroup, Button, Icon } from '@chakra-ui/react';
 import { SlideFade } from '@chakra-ui/react';
-import { FeatureConfig, FormRender, CustomFeatures } from 'config/types';
+import { FeatureConfig, FormRender, CustomFeatures } from '@/config/types';
 import { IoSave } from 'react-icons/io5';
-import { useUpdateFeatureMutation } from 'stores';
+import { useUpdateFeatureMutation } from '@/stores';
 import { useColors } from '@/theme';
 import { Params } from '../../pages/guilds/[guild]/features/[feature]';
-import { feature as view } from 'config/translations/feature';
+import { feature as view } from '@/config/translations/feature';
 import { useRouter } from 'next/router';
 
 export function UpdateFeaturePanel<K extends keyof CustomFeatures>({

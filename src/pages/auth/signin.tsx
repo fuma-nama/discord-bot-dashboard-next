@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 import { useColors } from '@/theme';
 import { HomeView } from '@/components/HomeView';
 import { auth } from '@/config/translations/auth';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '@/pages/_app';
 import AuthLayout from '@/components/layouts/auth';
 
 const LoginPage: NextPageWithLayout = () => {

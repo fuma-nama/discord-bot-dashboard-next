@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { CLIENT_ID } from 'utils/auth/server';
-import { APP_URL } from 'utils/get-absolute-url';
+import { CLIENT_ID } from '@/utils/auth/server';
+import { APP_URL } from '@/utils/get-absolute-url';
 
 export default function handler(_: NextApiRequest, res: NextApiResponse) {
   const url =

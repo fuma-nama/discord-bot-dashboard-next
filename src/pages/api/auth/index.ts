@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession } from 'utils/auth/server';
+import { getServerSession } from '@/utils/auth/server';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = getServerSession(req, res);

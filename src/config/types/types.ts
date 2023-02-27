@@ -1,5 +1,5 @@
 import { CustomFeatures } from './custom-types';
-import { Guild } from 'api/discord';
+import { Guild } from '@/api/discord';
 import { ReactElement, ReactNode } from 'react';
 
 export type AppConfig = {
@@ -29,7 +29,7 @@ export type GuildConfig = {
    *
    * ex: to allow only if user permissions include ADMINISTRATOR
    * ```
-   * import { PermissionFlags } from 'api/discord';
+   * import { PermissionFlags } from '@/api/discord';
    * (Number(guild.permissions) & PermissionFlags.ADMINISTRATOR) !== 0
    * ```
    */

@@ -1,8 +1,8 @@
 // Chakra imports
 import { Box, Flex, HStack, Icon, Spacer, Text } from '@chakra-ui/react';
 import { useColors } from '@/theme';
-import { config } from 'config/common';
-import { ThemeSwitch } from 'components/ThemeSwitch';
+import { config } from '@/config/common';
+import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { ReactNode } from 'react';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {

@@ -2,17 +2,17 @@ import { Center, Flex, Heading, Link, SimpleGrid, Text, Button, Icon } from '@ch
 import { LoadingPanel } from '@/components/panel/LoadingPanel';
 import { QueryStatus } from '@/components/panel/QueryPanel';
 import { config } from '@/config/common';
-import { guild as view } from 'config/translations/guild';
+import { guild as view } from '@/config/translations/guild';
 import { BsMailbox } from 'react-icons/bs';
 import { FaRobot } from 'react-icons/fa';
-import { useGuildInfoQuery } from 'stores';
+import { useGuildInfoQuery } from '@/stores';
 import { useColors } from '@/theme';
 import { useRouter } from 'next/router';
 import { getFeatures } from '@/config/utils';
-import { Banner } from '@/components/Banner';
+import { Banner } from '@/components/GuildBanner';
 import { FeatureItem } from '@/components/feature/FeatureItem';
 import type { CustomGuildInfo } from '@/config/types/custom-types';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '@/pages/_app';
 import getGuildLayout from '@/components/layouts/guild/get-guild-layout';
 
 const GuildPage: NextPageWithLayout = () => {

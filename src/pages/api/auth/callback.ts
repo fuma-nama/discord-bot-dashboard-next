@@ -5,8 +5,8 @@ import {
   CLIENT_ID,
   CLIENT_SECRET,
   setServerSession,
-} from 'utils/auth/server';
-import { APP_URL } from 'utils/get-absolute-url';
+} from '@/utils/auth/server';
+import { APP_URL } from '@/utils/get-absolute-url';
 
 async function exchangeToken(code: string): Promise<AccessToken> {
   const data = {

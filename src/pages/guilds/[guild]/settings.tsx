@@ -1,9 +1,9 @@
 import { Flex, Heading, SimpleGrid, Text } from '@chakra-ui/layout';
-import { ChannelSelect } from 'config/example/ChannelSelect';
-import { RolesSelect } from 'config/example/RolesSelect';
+import { ChannelSelect } from '@/config/example/ChannelSelect';
+import { RolesSelect } from '@/config/example/RolesSelect';
 import { useFormRender } from '@/utils/forms/useForm';
 import getGuildLayout from '@/components/layouts/guild/get-guild-layout';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '@/pages/_app';
 
 /**
  * Used for demo only

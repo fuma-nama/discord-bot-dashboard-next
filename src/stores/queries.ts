@@ -1,6 +1,6 @@
 import { CustomFeatures, CustomGuildInfo } from '../config/types';
 import { QueryClient, useMutation, useQuery } from '@tanstack/react-query';
-import { UserInfo, getGuild, getGuilds, fetchUserInfo } from 'api/discord';
+import { UserInfo, getGuild, getGuilds, fetchUserInfo } from '@/api/discord';
 import {
   auth,
   disableFeature,
@@ -11,9 +11,9 @@ import {
   getFeature,
   logout,
   updateFeature,
-} from 'api/bot';
-import { GuildInfo } from 'config/types';
-import { useAccessToken, useSession } from 'utils/auth/hooks';
+} from '@/api/bot';
+import { GuildInfo } from '@/config/types';
+import { useAccessToken, useSession } from '@/utils/auth/hooks';
 
 export const client = new QueryClient({
   defaultOptions: {

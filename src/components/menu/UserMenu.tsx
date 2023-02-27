@@ -8,11 +8,11 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { UserInfo, avatarUrl } from 'api/discord';
-import { common } from 'config/translations/common';
+import { UserInfo, avatarUrl } from '@/api/discord';
+import { common } from '@/config/translations/common';
 import Link from 'next/link';
-import { useSelfUser } from 'stores';
-import { useLogoutMutation } from 'utils/auth/hooks';
+import { useSelfUser } from '@/stores';
+import { useLogoutMutation } from '@/utils/auth/hooks';
 
 export function UserMenu(props: { color: string; shadow: string; bg: string }) {
   const user = useSelfUser();

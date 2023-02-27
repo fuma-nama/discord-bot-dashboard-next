@@ -1,6 +1,6 @@
 import { Flex, Icon, useColorModeValue } from '@chakra-ui/react';
 import { IoMenuOutline } from 'react-icons/io5';
-import { usePageStore } from 'stores';
+import { usePageStore } from '@/stores';
 import { show } from '@/theme';
 
 export function SidebarTrigger() {

@@ -1,9 +1,9 @@
 import { Icon, Image } from '@chakra-ui/react';
-import { useGuildRolesQuery } from 'stores';
-import { SelectField } from 'components/forms/SelectField';
+import { useGuildRolesQuery } from '@/stores';
+import { SelectField } from '@/components/forms/SelectField';
 import { BsPeopleFill } from 'react-icons/bs';
 import { toRGB } from '@/utils/common';
-import { Role } from 'api/bot';
+import { Role } from '@/api/bot';
 import { useRouter } from 'next/router';
 import { Params } from '@/pages/guilds/[guild]/features/[feature]';
 

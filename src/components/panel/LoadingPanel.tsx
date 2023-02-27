@@ -1,6 +1,6 @@
 import { Box, Center, CenterProps, Icon, Spinner, Text, VStack } from '@chakra-ui/react';
 import { UseMutationResult } from '@tanstack/react-query';
-import { common } from 'config/translations/common';
+import { common } from '@/config/translations/common';
 import { ReactNode } from 'react';
 import { BsCloudRain } from 'react-icons/bs';
 import { useColors } from '@/theme';

@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { auth, logout } from 'api/bot';
-import { client, Keys } from 'stores';
+import { auth, logout } from '@/api/bot';
+import { client, Keys } from '@/stores';
 import { AccessToken } from './server';
 
 type SessionResult =

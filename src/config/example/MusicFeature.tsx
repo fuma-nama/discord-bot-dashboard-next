@@ -1,11 +1,11 @@
 import { SimpleGrid } from '@chakra-ui/layout';
-import { MusicFeature } from 'config/types';
+import { MusicFeature } from '@/config/types';
 import { ChannelSelect } from './ChannelSelect';
 import { RolesSelect } from './RolesSelect';
 import { useFormRender } from '@/utils/forms/useForm';
-import { SelectField } from 'components/forms/SelectField';
+import { SelectField } from '@/components/forms/SelectField';
 import { createI18n } from '@/utils/i18n';
-import { provider } from 'config/translations/provider';
+import { provider } from '@/config/translations/provider';
 
 /**
  * Support i18n (Localization)

@@ -1,10 +1,10 @@
 import { BsChatLeftText as ChatIcon } from 'react-icons/bs';
-import { GuildChannel } from 'api/bot';
-import { ChannelTypes } from 'api/discord';
-import { SelectField } from 'components/forms/SelectField';
+import { GuildChannel } from '@/api/bot';
+import { ChannelTypes } from '@/api/discord';
+import { SelectField } from '@/components/forms/SelectField';
 import { useMemo } from 'react';
 import { MdRecordVoiceOver } from 'react-icons/md';
-import { useGuildChannelsQuery } from 'stores';
+import { useGuildChannelsQuery } from '@/stores';
 import { Icon } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
