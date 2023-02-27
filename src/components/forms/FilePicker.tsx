@@ -16,7 +16,7 @@ export type FilePickerProps = DropzoneOptions & {
 export function FilePicker({ value, onChange, text, ...props }: FilePickerProps) {
   const { getRootProps, getInputProps } = useDropzone({
     ...props,
-    onDrop: (files) => onChange(files),
+    onDrop: (files) => onChange?.(files),
   });
   const { borderColor, bg } = useColorsExtend(
     {
@@ -71,7 +71,7 @@ function FilePreview({ file }: { file: File }) {
   return (
     <Flex direction="row" gap={2} w="full" align="center">
       {file.type.startsWith('image/') ? (
-        <Image maxW="70px" maxH="70px" src={url} rounded="md" />
+        <Image alt={file.name} maxW="70px" maxH="70px" src={url} rounded="md" />
       ) : (
         <Center rounded="2xl" bg="brand.300" w="50px" h="50px">
           <Icon as={FaFile} color="white" />
@@ -115,7 +115,8 @@ function useFileUrl(file: Blob) {
     if (file != null) {
       const fileReader = new FileReader();
       fileReader.onload = (e) => {
-        const { result } = e.target;
+        const result = e.target?.result;
+
         if (result != null && typeof result === 'string') {
           setUrl(result);
         }
