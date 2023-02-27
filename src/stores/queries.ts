@@ -2,14 +2,12 @@ import { CustomFeatures, CustomGuildInfo } from '../config/types';
 import { QueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import { UserInfo, getGuild, getGuilds, fetchUserInfo } from '@/api/discord';
 import {
-  auth,
   disableFeature,
   enableFeature,
   fetchGuildChannels,
   fetchGuildInfo,
   fetchGuildRoles,
   getFeature,
-  logout,
   updateFeature,
 } from '@/api/bot';
 import { GuildInfo } from '@/config/types';

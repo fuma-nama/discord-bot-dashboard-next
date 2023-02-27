@@ -1,6 +1,6 @@
 import { CustomFeatures, CustomGuildInfo } from '@/config/types/custom-types';
 import { AccessToken } from '@/utils/auth/server';
-import { withBot, callDefault, callReturn, withAPI } from './core';
+import { withBot, callDefault, callReturn } from './core';
 import { ChannelTypes } from './discord';
 
 export const bot = process.env.NEXT_PUBLIC_API_ENDPOINT ?? 'http://localhost:8080';
@@ -25,27 +25,6 @@ export type GuildChannel = {
    */
   category?: string;
 };
-
-/**
- * Get discord oauth2 access token if logged in, otherwise return null
- */
-export async function auth() {
-  return await callReturn<AccessToken>(
-    '/auth',
-    withAPI({
-      method: 'GET',
-    })
-  );
-}
-
-export async function logout() {
-  await callDefault(
-    `/auth/signout`,
-    withAPI({
-      method: 'POST',
-    })
-  );
-}
 
 /**
  * Get custom guild info on from backend

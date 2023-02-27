@@ -1,7 +1,22 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { auth, logout } from '@/api/bot';
 import { client, Keys } from '@/stores';
 import { AccessToken } from './server';
+import { callReturn, callDefault } from '@/api/core';
+
+/**
+ * Get discord oauth2 access token if logged in, otherwise return null
+ */
+async function auth() {
+  return await callReturn<AccessToken>('/api/auth', {
+    method: 'GET',
+  });
+}
+
+async function logout() {
+  await callDefault(`/api/auth/signout`, {
+    method: 'POST',
+  });
+}
 
 type SessionResult =
   | {

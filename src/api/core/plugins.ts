@@ -3,17 +3,6 @@ import { bot } from '@/api/bot';
 import { discord } from '@/api/discord';
 import { Options } from './core';
 
-export function withAPI<T extends Options>(init?: T): T {
-  return {
-    ...init,
-    origin: '/api',
-    init: {
-      ...init?.init,
-      mode: 'cors',
-    },
-  } as T;
-}
-
 export function withBot<T extends Options>(session: AccessToken, options?: T): T {
   return {
     ...options,
