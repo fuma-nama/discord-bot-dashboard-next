@@ -30,6 +30,13 @@ const customComponents = {
 };
 
 const styles: ChakraStylesConfig<any, any, any> = {
+  menuList: (provided) => ({
+    ...provided,
+    _light: {
+      ...(provided as any)._light,
+      shadow: '14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
+    },
+  }),
   placeholder: (provided) => ({
     ...provided,
     _light: {

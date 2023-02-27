@@ -35,7 +35,7 @@ export function UpdateFeaturePanel<K extends keyof CustomFeatures>({
 
 function Savebar({ result: { serialize, canSave, reset, onSubmit } }: { result: FormRender }) {
   const { guild, feature } = useRouter().query as Params;
-  const { cardBg } = useColors();
+  const { cardBg, shadow } = useColors();
   const mutation = useUpdateFeatureMutation();
   const t = view.useTranslations();
 
@@ -67,6 +67,7 @@ function Savebar({ result: { serialize, canSave, reset, onSubmit } }: { result: 
       bottom={{ base: 2, [breakpoint]: '10px' }}
       w="full"
       p={{ base: 1, [breakpoint]: '15px' }}
+      boxShadow={shadow}
       mt={2}
     >
       <Icon
