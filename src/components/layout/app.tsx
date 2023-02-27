@@ -4,7 +4,7 @@ import { QueryStatus } from '@/components/panel/QueryPanel';
 import { useSelfUserQuery } from '@/stores';
 import { LoadingPanel } from '@/components/panel/LoadingPanel';
 import { DefaultNavbar } from '@/components/navbar/Navbar';
-import { Sidebar, SidebarResponsive } from './sidebar/Sidebar';
+import { Sidebar, SidebarResponsive } from './sidebar';
 import { show } from '@/theme';
 import { ReactNode } from 'react';
 

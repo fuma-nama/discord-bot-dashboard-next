@@ -18,7 +18,7 @@ import { useSelfUser } from '@/stores';
 import { useColors } from '@/theme';
 import { ExampleDashboardView } from '@/components/example';
 import { NextPageWithLayout } from '@/pages/_app';
-import AppLayout from '@/components/layouts/app';
+import AppLayout from '@/components/layout/app';
 
 const HomePage: NextPageWithLayout = () => {
   const t = dashboard.useTranslations();

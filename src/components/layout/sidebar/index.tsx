@@ -9,7 +9,7 @@ import {
   Flex,
   Spacer,
 } from '@chakra-ui/react';
-import { BottomCard, SidebarContent } from './components/SidebarContent';
+import { BottomCard, SidebarContent } from './SidebarContent';
 import { AnimatePresence, motion } from 'framer-motion';
 import { SidebarItemInfo } from '@/utils/routeUtils';
 import { usePageStore } from '@/stores';
@@ -21,7 +21,6 @@ export function Sidebar({ sidebar, items }: { sidebar?: ReactNode; items: Sideba
   const sidebarBg = useColorModeValue('white', 'navy.800');
   const sidebarMargins = '0px';
 
-  // SIDEBAR
   return (
     <Box display={{ base: 'none', [show.sidebar]: 'block' }} minH="100%">
       <Box
@@ -53,7 +52,6 @@ export function Sidebar({ sidebar, items }: { sidebar?: ReactNode; items: Sideba
   );
 }
 
-// FUNCTIONS
 export function SidebarResponsive({
   sidebar,
   items,
@@ -90,5 +88,3 @@ export function SidebarResponsive({
     </Drawer>
   );
 }
-
-export default Sidebar;

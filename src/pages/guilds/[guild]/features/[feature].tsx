@@ -11,7 +11,7 @@ import { UpdateFeaturePanel } from '@/components/feature/UpdateFeaturePanel';
 import { feature as view } from '@/config/translations/feature';
 import { useRouter } from 'next/router';
 import { NextPageWithLayout } from '@/pages/_app';
-import getGuildLayout from '@/components/layouts/guild/get-guild-layout';
+import getGuildLayout from '@/components/layout/guild/get-guild-layout';
 
 export type Params = {
   guild: string;

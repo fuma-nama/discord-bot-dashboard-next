@@ -16,7 +16,7 @@ export function GuildItem({
   return (
     <Card
       bg={active ? brand : globalBg}
-      color={active && 'white'}
+      color={active ? 'white' : undefined}
       onClick={onSelect}
       cursor="pointer"
     >

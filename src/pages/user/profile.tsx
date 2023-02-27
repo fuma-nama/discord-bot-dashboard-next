@@ -20,7 +20,7 @@ import { IoLogOut } from 'react-icons/io5';
 import { useSettingsStore, useSelfUser } from '@/stores';
 import { useColors } from '@/theme';
 import { NextPageWithLayout } from '@/pages/_app';
-import AppLayout from '@/components/layouts/app';
+import AppLayout from '@/components/layout/app';
 import { useLogoutMutation } from '@/utils/auth/hooks';
 
 /**
