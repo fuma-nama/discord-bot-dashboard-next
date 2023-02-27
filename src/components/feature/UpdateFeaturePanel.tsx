@@ -24,7 +24,7 @@ export function UpdateFeaturePanel<K extends keyof CustomFeatures>({
     <>
       <Flex direction="column" w="full" h="full">
         <Flex direction="column" flex={1} gap={5}>
-          <Heading>{config.name}</Heading>
+          <Heading ml={4}>{config.name}</Heading>
           {result.component}
         </Flex>
       </Flex>
