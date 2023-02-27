@@ -56,14 +56,6 @@ export function useGuilds() {
   });
 }
 
-export function useLogoutMutation() {
-  return useMutation(['logout'], () => logout(), {
-    onSuccess() {
-      client.setQueryData<string | null>(Keys.login, () => null);
-    },
-  });
-}
-
 export function useSelfUserQuery() {
   const accessToken = useAccessToken();
 

@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-import { auth } from 'api/bot';
-import { Keys } from 'stores';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { auth, logout } from 'api/bot';
+import { client, Keys } from 'stores';
 import { AccessToken } from './server';
 
 type SessionResult =
@@ -38,4 +38,12 @@ export function useAccessToken() {
   const { session } = useSession();
 
   return session?.access_token;
+}
+
+export function useLogoutMutation() {
+  return useMutation(['logout'], () => logout(), {
+    onSuccess() {
+      return client.invalidateQueries(Keys.login);
+    },
+  });
 }
