@@ -1,18 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-
-export const API_ENDPOINT = 'https://discord.com/api/v10';
-export const CLIENT_ID = process.env.BOT_CLIENT_ID ?? '';
-export const CLIENT_SECRET = process.env.BOT_CLIENT_SECRET ?? '';
-
-export const APP_URL = getAbsoluteUrl();
-
-function getAbsoluteUrl(): string {
-  const defaultUrl = 'http://localhost:3000';
-
-  if (process.env.APP_URL != null) return process.env.APP_URL;
-
-  return process.env.VERCEL_URL == null ? defaultUrl : `https://${process.env.VERCEL_URL}`;
-}
+import { CLIENT_ID } from 'utils/auth/server';
+import { APP_URL } from 'utils/get-absolute-url';
 
 export default function handler(_: NextApiRequest, res: NextApiResponse) {
   const url =

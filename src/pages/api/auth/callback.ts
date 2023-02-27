@@ -1,6 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { API_ENDPOINT, APP_URL, CLIENT_ID, CLIENT_SECRET } from './login';
-import { AccessToken, setServerSession } from 'utils/auth/cookie';
+import {
+  AccessToken,
+  API_ENDPOINT,
+  CLIENT_ID,
+  CLIENT_SECRET,
+  setServerSession,
+} from 'utils/auth/server';
+import { APP_URL } from 'utils/get-absolute-url';
 
 async function exchangeToken(code: string): Promise<AccessToken> {
   const data = {

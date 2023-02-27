@@ -1,4 +1,4 @@
-import { AccessToken } from 'utils/auth/cookie';
+import { AccessToken } from 'utils/auth/server';
 import { bot } from 'api/bot';
 import { discord } from 'api/discord';
 import { Options } from './core';

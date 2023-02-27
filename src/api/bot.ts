@@ -1,5 +1,5 @@
 import { CustomFeatures, CustomGuildInfo } from 'config/types/custom-types';
-import { AccessToken } from 'utils/auth/cookie';
+import { AccessToken } from 'utils/auth/server';
 import { withBot, callDefault, callReturn, withAPI } from './core';
 import { ChannelTypes } from './discord';
 

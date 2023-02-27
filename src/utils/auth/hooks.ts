@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { auth } from 'api/bot';
 import { Keys } from 'stores';
-import { AccessToken } from './cookie';
+import { AccessToken } from './server';
 
 type SessionResult =
   | {
