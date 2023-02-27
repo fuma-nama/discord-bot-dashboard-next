@@ -34,7 +34,11 @@ const styles: ChakraStylesConfig<any, any, any> = {
     ...provided,
     _light: {
       ...(provided as any)._light,
-      shadow: '14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
+      shadow: light.shadow,
+    },
+    _dark: {
+      ...(provided as any)._dark,
+      shadow: dark.shadow,
     },
   }),
   placeholder: (provided) => ({
@@ -80,9 +84,11 @@ const styles: ChakraStylesConfig<any, any, any> = {
     rounded: '2xl',
     _light: {
       borderColor: data.isFocused ? light.brand : 'secondaryGray.500',
+      bg: 'secondaryGray.300',
     },
     _dark: {
       borderColor: data.isFocused ? dark.brand : 'navy.600',
+      bg: 'blackAlpha.300',
     },
   }),
 };

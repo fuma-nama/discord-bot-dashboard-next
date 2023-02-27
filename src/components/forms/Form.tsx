@@ -9,9 +9,9 @@ import { ReactNode } from 'react';
 import { useColors } from '@/theme';
 
 export function FormCard(props: FormControlProps) {
-  const { cardBg } = useColors();
+  const { cardBg, shadow } = useColors();
 
-  return <FormControl bg={cardBg} rounded="3xl" p={4} {...props} />;
+  return <FormControl bg={cardBg} rounded="3xl" p={4} boxShadow={shadow} {...props} />;
 }
 
 export type FormControlCardProps = {
@@ -36,7 +36,7 @@ export function FormControlCard({
   children,
   error,
 }: FormControlCardProps) {
-  const { cardBg, textColorSecondary } = useColors();
+  const { cardBg, textColorSecondary, shadow } = useColors();
 
   return (
     <FormControl
@@ -47,6 +47,7 @@ export function FormControlCard({
       p={4}
       isRequired={required}
       isInvalid={error != null}
+      boxShadow={shadow}
       {...baseControl}
     >
       <FormLabel

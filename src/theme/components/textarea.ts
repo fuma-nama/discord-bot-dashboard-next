@@ -12,9 +12,6 @@ export const textareaStyles = defineStyleConfig({
     border: 0,
     _focus: { boxShadow: 'none' },
   })),
-  defaultProps: {
-    variant: null,
-  },
   variants: {
     main: defineStyle((props: any) => ({
       bg: mode('transparent', 'navy.800')(props),
@@ -32,10 +29,13 @@ export const textareaStyles = defineStyleConfig({
       borderColor: 'var(--border-color)',
       border: '1px solid',
       _light: {
-        bg: 'blackApha.100',
+        bg: 'secondaryGray.300',
         borderColor: 'blackAlpha.200',
         _invalid: {
           borderColor: 'red.300',
+        },
+        _placeholder: {
+          color: 'secondaryGray.700',
         },
       },
       _dark: {
@@ -43,6 +43,9 @@ export const textareaStyles = defineStyleConfig({
         borderColor: 'whiteAlpha.200',
         _invalid: {
           borderColor: 'red.400',
+        },
+        _placeholder: {
+          color: 'secondaryGray.600',
         },
       },
     },

@@ -63,18 +63,6 @@ export const colors = {
     500: '#01B574',
   },
   navy: {
-    /*
-      50: '#d0dcfb',
-      100: '#aac0fe',
-      200: '#a3b9f8',
-      300: '#728fea',
-      400: '#3652ba',
-      500: '#1b3bbb',
-      600: '#24388a',
-      700: '#1B254B',
-      800: '#111c44',
-      900: '#0b1437',
-      */
     50: '#d0dcfb',
     100: '#aac0fe',
     200: '#a3b9f8',
@@ -112,7 +100,7 @@ export const dark = {
   borderColor: '#111C44 !important',
   cardBg: 'navy.800',
   menuBg: 'navy.800',
-  shadow: '14px 17px 40px 4px rgba(112, 144, 176, 0.06)',
+  shadow: '14px 17px 40px 4px rgba(2, 4, 6, 0.06)',
 };
 
 export function useColors() {
