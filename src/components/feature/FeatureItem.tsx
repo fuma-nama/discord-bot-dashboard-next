@@ -57,7 +57,7 @@ export function FeatureItem({
                 rounded: '2xl',
                 leftIcon: <IoOptions />,
                 onClick: () => Router.push(`/guilds/${guild}/features/${feature.id}`),
-                children: t.bn['@/config feature'],
+                children: t.bn['config feature'],
               }
             : {
                 leftIcon: <IoOpen />,

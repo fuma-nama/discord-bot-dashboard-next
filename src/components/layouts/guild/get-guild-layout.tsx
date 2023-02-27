@@ -1,8 +1,8 @@
 import { Box, Center } from '@chakra-ui/layout';
 import AppLayout from '../app';
 import { ReactNode } from 'react';
-import GuildNavbar from './navbar';
-import { InGuildSidebar } from './sidebar';
+import GuildNavbar from './guild-navbar';
+import { InGuildSidebar } from './guild-sidebar';
 
 export default function getGuildLayout({
   back,

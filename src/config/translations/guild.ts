@@ -15,7 +15,7 @@ export const guild = createI18n(provider, {
     },
     bn: {
       'enable feature': 'Enable',
-      '@/config feature': '@/config',
+      'config feature': 'Config',
       invite: 'Invite bot',
       settings: 'Settings',
     },
@@ -33,7 +33,7 @@ export const guild = createI18n(provider, {
     },
     bn: {
       'enable feature': '啟用功能',
-      '@/config feature': '配置',
+      'config feature': '配置',
       invite: '邀請機器人',
       settings: '設置',
     },

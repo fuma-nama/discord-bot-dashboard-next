@@ -1,4 +1,3 @@
-// chakra imports
 import {
   Box,
   Drawer,

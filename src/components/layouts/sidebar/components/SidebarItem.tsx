@@ -7,7 +7,7 @@ import Link from 'next/link';
 export function SidebarItem({ item, active }: { item: SidebarItemInfo; active: boolean }) {
   const { brand, globalBg, cardBg, activeColor, textColor } = useColorsExtend(
     {
-      textColor: 'secondaryGray.500',
+      textColor: 'secondaryGray.900',
       activeColor: 'gray.700',
     },
     {

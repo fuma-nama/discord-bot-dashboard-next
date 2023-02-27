@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import items from '@/config/sidebar';
+import items from '@/config/sidebar-items';
 import { ReactNode, useMemo } from 'react';
 
 export function useActiveSidebarItem(): SidebarItemInfo | null {

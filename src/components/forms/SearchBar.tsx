@@ -1,4 +1,5 @@
 import {
+  Icon,
   IconButton,
   Input,
   InputGroup,
@@ -22,6 +23,7 @@ export function SearchBar(
   const searchIconColor = useColorModeValue('gray.700', 'white');
   const inputBg = useColorModeValue('secondaryGray.300', 'navy.900');
   const inputText = useColorModeValue('gray.700', 'gray.100');
+
   return (
     <InputGroup {...rest}>
       <InputLeftElement>
@@ -31,7 +33,7 @@ export function SearchBar(
           borderRadius="inherit"
           _active={{}}
           variant="ghost"
-          icon={<SearchIcon color={searchIconColor} width="15px" height="15px" />}
+          icon={<Icon as={SearchIcon} color={searchIconColor} width="15px" height="15px" />}
           onClick={onSearch}
         />
       </InputLeftElement>
@@ -45,7 +47,7 @@ export function SearchBar(
         borderRadius="30px"
         placeholder={`${t.search}...`}
         onKeyDown={(e) => {
-          if (e.key === 'Enter') onSearch();
+          if (e.key === 'Enter') onSearch?.();
         }}
         {...input}
       />
