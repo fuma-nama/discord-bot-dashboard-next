@@ -106,7 +106,7 @@ Create the provider
 > provider.ts
 
 ```typescript
-import { initLanguages, initI18n } from 'hooks/i18n';
+import { initLanguages, initI18n } from '@/utils/i18n';
 import { useSettingsStore } from 'stores';
 
 // Supported languages
@@ -129,7 +129,7 @@ Create the translation config (Default folder: [src/config/translations](./src/c
 
 ```ts
 import { provider } from './provider'; //import the provider
-import { createI18n } from 'hooks/i18n';
+import { createI18n } from '@/utils/i18n';
 
 export const test = createI18n(provider, {
   en: {

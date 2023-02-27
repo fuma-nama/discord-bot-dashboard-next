@@ -2,17 +2,16 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import { theme } from '@/theme';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { client, useLoginQuery } from '@/stores';
+import { client } from '@/stores';
 import { NextPage } from 'next';
-import { ReactNode, useEffect } from 'react';
-import { QueryStatus } from 'components/panel/QueryPanel';
+import { ReactNode } from 'react';
 import { LoadingPanel } from 'components/panel/LoadingPanel';
 import Router from 'next/router';
 
 import '@/styles/global.css';
 import 'react-calendar/dist/Calendar.css';
 import '@/styles/date-picker.css';
-import { common } from 'config/translations/common';
+import { useSession } from 'utils/auth/hooks';
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (children: ReactNode) => ReactNode;
@@ -35,26 +34,21 @@ export default function App(props: AppPropsWithLayout) {
 
 function Content({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((c) => c);
-  const t = common.useTranslations();
-  const login = useLoginQuery();
+  const { status } = useSession();
 
-  console.log(login.isSuccess);
-
-  if (login.isSuccess) {
-    if (login.data == null && Component.auth === true) {
-      Router.replace('/auth/signin');
-      return <></>;
-    }
-
-    if (login.data != null && Component.auth === false) {
-      Router.replace('/user/home');
-      return <></>;
-    }
+  if (status === 'unauthenticated' && Component.auth === true) {
+    Router.replace('/auth/signin');
+    return <></>;
   }
 
-  return (
-    <QueryStatus query={login} error={t.fail.login} loading={<LoadingPanel size="lg" />}>
-      {getLayout(<Component {...pageProps} />)}
-    </QueryStatus>
-  );
+  if (status === 'authenticated' && Component.auth === false) {
+    Router.replace('/user/home');
+    return <></>;
+  }
+
+  if (status === 'loading') {
+    return <LoadingPanel size="lg" />;
+  }
+
+  return <>{getLayout(<Component {...pageProps} />)}</>;
 }

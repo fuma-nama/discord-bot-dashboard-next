@@ -1,6 +1,6 @@
-import { IOSTokenStorage } from 'api/core/plugins';
 import { CustomFeatures, CustomGuildInfo } from 'config/types/custom-types';
-import { withBot, callDefault, callReturn } from './core';
+import { AccessToken } from 'utils/auth/cookie';
+import { withBot, callDefault, callReturn, withAPI } from './core';
 import { ChannelTypes } from './discord';
 
 export const bot = process.env.NEXT_PUBLIC_API_ENDPOINT ?? 'http://localhost:8080';
@@ -30,13 +30,10 @@ export type GuildChannel = {
  * Get discord oauth2 access token if logged in, otherwise return null
  */
 export async function auth() {
-  return await callReturn<string | null>(
+  return await callReturn<AccessToken>(
     '/auth',
-    withBot({
+    withAPI({
       method: 'GET',
-      allowed: {
-        401: () => null,
-      },
     })
   );
 }
@@ -44,12 +41,10 @@ export async function auth() {
 export async function logout() {
   await callDefault(
     `/auth/signout`,
-    withBot({
+    withAPI({
       method: 'POST',
     })
   );
-
-  localStorage.removeItem(IOSTokenStorage);
 }
 
 /**
@@ -58,10 +53,13 @@ export async function logout() {
  * @param guild Guild ID
  * @return Guild info, or null if bot hasn't joined the guild
  */
-export async function fetchGuildInfo(guild: string): Promise<CustomGuildInfo | null> {
+export async function fetchGuildInfo(
+  session: AccessToken,
+  guild: string
+): Promise<CustomGuildInfo | null> {
   return await callReturn<CustomGuildInfo | null>(
     `/guilds/${guild}`,
-    withBot({
+    withBot(session, {
       method: 'GET',
       allowed: {
         404: () => null,
@@ -70,44 +68,46 @@ export async function fetchGuildInfo(guild: string): Promise<CustomGuildInfo | n
   );
 }
 
-export async function enableFeature(guild: string, feature: string) {
+export async function enableFeature(session: AccessToken, guild: string, feature: string) {
   return await callDefault(
     `/guilds/${guild}/features/${feature}`,
-    withBot({
+    withBot(session, {
       method: 'POST',
     })
   );
 }
 
-export async function disableFeature(guild: string, feature: string) {
+export async function disableFeature(session: AccessToken, guild: string, feature: string) {
   return await callDefault(
     `/guilds/${guild}/features/${feature}`,
-    withBot({
+    withBot(session, {
       method: 'DELETE',
     })
   );
 }
 
 export async function getFeature<K extends keyof CustomFeatures>(
+  session: AccessToken,
   guild: string,
   feature: K
 ): Promise<CustomFeatures[K]> {
   return await callReturn<CustomFeatures[K]>(
     `/guilds/${guild}/features/${feature}`,
-    withBot({
+    withBot(session, {
       method: 'GET',
     })
   );
 }
 
 export async function updateFeature<K extends keyof CustomFeatures>(
+  session: AccessToken,
   guild: string,
   feature: K,
   options: FormData | string
 ): Promise<CustomFeatures[K]> {
   return await callReturn<CustomFeatures[K]>(
     `/guilds/${guild}/features/${feature}`,
-    withBot({
+    withBot(session, {
       method: 'PATCH',
       body: options,
     })
@@ -120,10 +120,10 @@ export async function updateFeature<K extends keyof CustomFeatures>(
  * The dashboard itself doesn't use it
  * @returns Guild roles
  */
-export async function fetchGuildRoles(guild: string) {
+export async function fetchGuildRoles(session: AccessToken, guild: string) {
   return await callReturn<Role[]>(
     `/guilds/${guild}/roles`,
-    withBot({
+    withBot(session, {
       method: 'GET',
     })
   );
@@ -132,10 +132,10 @@ export async function fetchGuildRoles(guild: string) {
 /**
  * @returns Guild channels
  */
-export async function fetchGuildChannels(guild: string) {
+export async function fetchGuildChannels(session: AccessToken, guild: string) {
   return await callReturn<GuildChannel[]>(
     `/guilds/${guild}/channels`,
-    withBot({
+    withBot(session, {
       method: 'GET',
     })
   );

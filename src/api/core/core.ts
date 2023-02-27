@@ -25,7 +25,7 @@ export type Options = {
    * default: true
    */
   errorOnFail?: boolean;
-  init?: RequestInit;
+  init?: any;
 };
 
 export async function callDefault(url: string, init: Options) {

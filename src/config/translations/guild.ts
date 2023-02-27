@@ -1,5 +1,5 @@
 import { provider } from './provider';
-import { createI18n } from 'hooks/i18n';
+import { createI18n } from '@/utils/i18n';
 
 export const guild = createI18n(provider, {
   en: {

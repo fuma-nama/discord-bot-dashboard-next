@@ -22,7 +22,7 @@ export type ColorPickerProps = {
   /**
    * hex color
    */
-  value: string;
+  value?: string;
   onChange: (color: string) => void;
   supportAlpha?: boolean;
 };

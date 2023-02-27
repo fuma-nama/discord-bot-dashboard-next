@@ -2,9 +2,9 @@ import { SimpleGrid } from '@chakra-ui/layout';
 import { MusicFeature } from 'config/types';
 import { ChannelSelect } from './ChannelSelect';
 import { RolesSelect } from './RolesSelect';
-import { useFormRender } from 'hooks/forms/useForm';
+import { useFormRender } from '@/utils/forms/useForm';
 import { SelectField } from 'components/forms/SelectField';
-import { createI18n } from 'hooks/i18n';
+import { createI18n } from '@/utils/i18n';
 import { provider } from 'config/translations/provider';
 
 /**
@@ -29,7 +29,7 @@ const { T } = createI18n(provider, {
 export function useMusicFeature(data: MusicFeature) {
   return useFormRender<Partial<MusicFeature>>({
     //we will use current options as the default vlaue
-    defaultValue: { bool: false, tags: [], ...data },
+    defaultValue: { ...data },
     //verify values
     verify: (v, errors) => {
       if (v.message != null && v.message.trim().length === 0) {

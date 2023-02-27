@@ -8,7 +8,7 @@ import { useColorsExtend } from '@/theme';
 import { useSettingsStore } from 'stores';
 import { languages, names } from 'config/translations/provider';
 import { SelectField } from 'components/forms/SelectField';
-import { TranslationofConfig } from 'hooks/i18n';
+import { TranslationofConfig } from '@/utils/i18n';
 import { common } from 'config/translations/common';
 import { home } from 'config/translations/home';
 

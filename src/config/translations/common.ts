@@ -1,5 +1,5 @@
 import { provider } from './provider';
-import { createI18n } from 'hooks/i18n';
+import { createI18n } from '@/utils/i18n';
 
 export const common = createI18n(provider, {
   en: {
@@ -10,9 +10,6 @@ export const common = createI18n(provider, {
     profile: 'Profile',
     pages: 'Pages',
     logout: 'Logout',
-    fail: {
-      login: 'Failed to login',
-    },
   },
   cn: {
     loading: '加載中',
@@ -22,8 +19,5 @@ export const common = createI18n(provider, {
     profile: '用戶資料',
     pages: '所有頁面',
     logout: '登出',
-    fail: {
-      login: '登錄失敗',
-    },
   },
 });

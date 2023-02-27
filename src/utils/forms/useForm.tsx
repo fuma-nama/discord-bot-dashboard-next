@@ -64,7 +64,7 @@ type FormState<V> = {
   };
 };
 
-export function useForm<V>(options: UseFormOptions<V>): UseFormResult<V> {
+export function useForm<V extends object>(options: UseFormOptions<V>): UseFormResult<V> {
   const initialState = () =>
     options.initialState ?? {
       updated: false,
@@ -132,7 +132,7 @@ export type UseFormRenderOptions<V> = UseFormOptions<V> & {
   container?: (form: ReactElement) => ReactElement;
 };
 
-export function useFormRender<V>({
+export function useFormRender<V extends object>({
   render,
   container,
   ...options

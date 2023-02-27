@@ -1,4 +1,4 @@
-import { createI18n } from 'hooks/i18n';
+import { createI18n } from '@/utils/i18n';
 import { common } from './common';
 import { provider } from './provider';
 

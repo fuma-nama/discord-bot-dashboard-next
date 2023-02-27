@@ -6,7 +6,7 @@ import { MdAddReaction, MdMessage } from 'react-icons/md';
 import { useMusicFeature } from './example/MusicFeature';
 import { FeaturesConfig, WelcomeMessageFeature } from './types';
 import { provider } from 'config/translations/provider';
-import { createI18n } from 'hooks/i18n';
+import { createI18n } from '@/utils/i18n';
 import { useWelcomeMessageFeature } from './example/WelcomeMessageFeature';
 
 /**

@@ -1,4 +1,4 @@
-export function converter<V>(
+export function converter<V extends object>(
   base: 'json' | 'form' | ((v: V) => FormData | string)
 ): (v: V) => FormData | string {
   switch (base) {
@@ -8,7 +8,7 @@ export function converter<V>(
       return (v) => {
         const data = new FormData();
         for (const [key, value] of Object.entries(v)) {
-          data.set(key, value);
+          data.set(key, value as string | Blob);
         }
 
         return data;

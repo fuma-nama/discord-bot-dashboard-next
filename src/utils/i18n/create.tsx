@@ -1,10 +1,6 @@
 import { ReactElement, ReactNode } from 'react';
 import { Translation, TranslationModel } from './translations';
 
-type I18nProviderLang<Provider> = Provider extends I18nProvider<infer Languages>
-  ? Languages
-  : never;
-
 export type I18nConfig<Languages extends string, Model extends TranslationModel> = {
   useTranslations: () => Translation<Model>;
   translate: (key: keyof Model) => Model[typeof key];

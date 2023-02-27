@@ -1,4 +1,4 @@
-import { initLanguages, initI18n } from 'hooks/i18n';
+import { initLanguages, initI18n } from '@/utils/i18n';
 import { useSettingsStore } from 'stores';
 
 /**

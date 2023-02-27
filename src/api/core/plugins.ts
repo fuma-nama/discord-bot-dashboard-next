@@ -1,27 +1,33 @@
-import { discord } from 'api/discord';
+import { AccessToken } from 'utils/auth/cookie';
 import { bot } from 'api/bot';
+import { discord } from 'api/discord';
 import { Options } from './core';
 
-/**
- * CORS cookies are not working on IOS
- */
-export const IOSTokenStorage = 'ios-session-token';
-
-export function withBot<T extends Options>(init?: T): T {
-  const token = localStorage.getItem(IOSTokenStorage);
-
+export function withAPI<T extends Options>(init?: T): T {
   return {
     ...init,
-    origin: bot,
+    origin: '/api',
     init: {
       ...init?.init,
+      mode: 'cors',
+    },
+  } as T;
+}
+
+export function withBot<T extends Options>(session: AccessToken, options?: T): T {
+  return {
+    ...options,
+    origin: bot,
+    init: {
+      ...options?.init,
       headers: {
-        Authorization: token != null ? `Bearer ${token}` : undefined,
+        Authorization: `${session.token_type} ${session.access_token}`,
+        ...options?.init?.headers,
       },
       credentials: 'include',
       mode: 'cors',
     },
-  };
+  } as T;
 }
 
 export function withDiscord<T extends Options>(accessToken: string, options?: T): T {
@@ -34,8 +40,8 @@ export function withDiscord<T extends Options>(accessToken: string, options?: T)
       ...init,
       headers: {
         ...init?.headers,
-        authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     },
-  };
+  } as T;
 }
