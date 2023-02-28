@@ -23,17 +23,7 @@ export const colors = {
     800: '#190793',
     900: '#02044A',
   },
-  brandTabs: {
-    100: '#E9E3FF',
-    200: '#422AFB',
-    300: '#422AFB',
-    400: '#422AFB',
-    500: '#422AFB',
-    600: '#3311DB',
-    700: '#02044A',
-    800: '#190793',
-    900: '#02044A',
-  },
+  brandAlpha: '#7451ff9c',
   secondaryGray: {
     100: '#E0E5F2',
     200: '#E1E9F8',
@@ -76,6 +66,10 @@ export const colors = {
   },
   gray: {
     100: '#FAFCFE',
+  },
+  shadow: {
+    normal: 'rgba(112, 144, 176, 0.18)',
+    darker: 'rgba(112, 144, 176, 0.3)',
   },
 };
 

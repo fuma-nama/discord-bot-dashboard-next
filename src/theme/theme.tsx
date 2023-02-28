@@ -17,7 +17,7 @@ import { tabsStyles } from './components/tabs';
 import { cardStyles } from './components/card';
 import { textStyles } from './components/text';
 import { globalStyles } from './styles';
-import { colors } from './colors';
+import { colors, dark, light } from './colors';
 import { selectStyles } from './components/select';
 
 export const theme = extendTheme(
@@ -45,6 +45,22 @@ export const theme = extendTheme(
       Progress: progressStyles,
       Text: textStyles,
       Select: selectStyles,
+    },
+    semanticTokens: {
+      colors: {
+        textColorPrimary: {
+          default: light.textColorPrimary,
+          _dark: dark.textColorPrimary,
+        },
+        textColorSecondary: {
+          default: light.textColorSecondary,
+          _dark: dark.textColorSecondary,
+        },
+        globalBg: {
+          default: light.globalBg,
+          _dark: dark.globalBg,
+        },
+      },
     },
   }
 );
