@@ -198,7 +198,7 @@ function MusicPlayer() {
               fontSize="4xl"
               icon={<Icon as={BsPlay} />}
               aria-label="pause"
-              variant="brand"
+              variant="action"
               rounded="full"
             />
             <IconButton
@@ -231,9 +231,8 @@ function PrimaryButton(props: { icon: ReactElement; children: string }) {
   return (
     <Button
       leftIcon={props.icon}
-      variant="action"
-      _light={{ bg: 'white' }}
-      _dark={{ bg: 'navy.800' }}
+      _light={{ bg: 'white', color: 'brand.300' }}
+      _dark={{ bg: 'navy.800', color: 'brand.400' }}
     >
       {props.children}
     </Button>

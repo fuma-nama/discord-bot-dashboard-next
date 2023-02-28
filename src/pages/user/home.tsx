@@ -16,7 +16,7 @@ import { FaRobot } from 'react-icons/fa';
 import { IoOpen } from 'react-icons/io5';
 import { useSelfUser } from '@/stores';
 import { useColors } from '@/theme';
-import { ExampleDashboardView } from '@/components/example';
+import { ExampleDashboardView } from '@/config/example/DashboardView';
 import { NextPageWithLayout } from '@/pages/_app';
 import AppLayout from '@/components/layout/app';
 

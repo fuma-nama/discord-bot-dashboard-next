@@ -21,7 +21,7 @@ export function FeatureItem({
   const mutation = useEnableFeatureMutation(guild, feature.id);
 
   return (
-    <Card>
+    <Card variant="primary">
       <CardBody as={Flex} direction="row" gap={3}>
         <Center
           p={5}

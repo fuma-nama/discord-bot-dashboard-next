@@ -38,6 +38,7 @@ export const cardStyles = defineMultiStyleConfig({
   variants: {
     primary: definePartsStyle({
       container: {
+        rounded: '2xl',
         _light: {
           boxShadow: '14px 17px 30px 4px rgb(112 144 176 / 10%)',
         },

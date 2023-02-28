@@ -83,7 +83,7 @@ function Savebar({ result: { serialize, canSave, reset, onSubmit } }: { result: 
       <Spacer />
       <ButtonGroup isDisabled={mutation.isLoading} size={{ base: 'sm', [breakpoint]: 'md' }}>
         <Button
-          variant="brand"
+          variant="action"
           leftIcon={<IoSave />}
           isLoading={mutation.isLoading}
           onClick={onSave}
