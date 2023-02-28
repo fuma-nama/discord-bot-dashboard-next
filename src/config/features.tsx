@@ -52,7 +52,7 @@ export const features: FeaturesConfig = {
   'welcome-message': {
     name: 'Welcome Message',
     description: 'Send message when user joined the server',
-    icon: <Icon as={MdMessage} w={5} h={5} />,
+    icon: <Icon as={MdMessage} />,
     useRender: useWelcomeMessageFeature,
   },
   gaming: {

@@ -1,21 +1,24 @@
 import { FaChevronLeft as ChevronLeftIcon } from 'react-icons/fa';
-import { Flex, HStack, StackProps, Text, VStack } from '@chakra-ui/layout';
+import { Center, Flex, HStack, StackProps, Text, VStack } from '@chakra-ui/layout';
 import { Icon, IconButton } from '@chakra-ui/react';
 import { HSeparator } from '@/components/layout/Separator';
-import { getFeatures, IdFeature } from '@/config/utils';
+import { getFeatures } from '@/config/utils';
 import { IoSettings } from 'react-icons/io5';
 import { useGuildPreview, useSelectedGuild } from '@/stores';
-import { show, useColors } from '@/theme';
+import { show } from '@/theme';
 import { guild as view } from '@/config/translations/guild';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Params } from '@/pages/guilds/[guild]/features/[feature]';
+import { ReactNode } from 'react';
 
 export function InGuildSidebar() {
   const { selected } = useSelectedGuild();
   const { guild } = useGuildPreview(selected);
-  const route = useRouter().route;
   const t = view.useTranslations();
+
+  const router = useRouter();
+  const { guild: guildId, feature: activeId } = router.query as Params;
 
   return (
     <Flex direction="column" gap={2} p={3}>
@@ -29,53 +32,80 @@ export function InGuildSidebar() {
           {guild?.name}
         </Text>
       </HStack>
-      <CardItem
-        as={Link}
-        href={`/guilds/${selected}/settings`}
-        active={route === `/guilds/[guild]/settings`}
-      >
-        <IoSettings />
-        <Text fontSize="lg" fontWeight="600">
-          {t.bn.settings}
-        </Text>
-      </CardItem>
       <VStack align="stretch">
+        <SidebarItem
+          href={`/guilds/${selected}/settings`}
+          active={router.route === `/guilds/[guild]/settings`}
+          icon={<Icon as={IoSettings} />}
+          name={t.bn.settings}
+        />
         <HSeparator>Features</HSeparator>
         {getFeatures().map((feature) => (
-          <FeatureItem key={feature.id} feature={feature} />
+          <SidebarItem
+            key={feature.id}
+            name={feature.name}
+            icon={feature.icon}
+            active={activeId === feature.id}
+            href={`/guilds/${guildId}/features/${feature.id}`}
+          />
         ))}
       </VStack>
     </Flex>
   );
 }
 
-function CardItem({ active, href, ...props }: { href: string; active: boolean } & StackProps) {
-  const { globalBg, brand, textColorPrimary } = useColors();
+function SidebarItem({
+  name,
+  active,
+  icon,
+  href,
+}: {
+  name: ReactNode;
+  icon: ReactNode;
+  active: boolean;
+  href: string;
+}) {
+  return (
+    <CardItem active={active} href={href}>
+      <Center
+        p={2}
+        fontSize="sm"
+        bg={active ? 'brand.500' : 'transparent'}
+        rounded="xl"
+        color={active ? 'white' : 'textColorPrimary'}
+        border="2px solid"
+        borderColor="blackAlpha.200"
+        boxShadow={`0px 0px 15px ${
+          active ? 'var(--chakra-colors-brandAlpha)' : 'var(--chakra-colors-shadow-darker)'
+        }`}
+        _dark={{
+          bg: active ? 'brand.400' : 'transparent',
+          borderColor: 'whiteAlpha.400',
+        }}
+      >
+        {icon}
+      </Center>
+      <Text fontSize="md" fontWeight={active ? 'bold' : 'normal'}>
+        {name}
+      </Text>
+    </CardItem>
+  );
+}
 
+function CardItem({ active, href, ...props }: { href: string; active: boolean } & StackProps) {
   return (
     <HStack
       as={Link}
       href={href}
       rounded="xl"
-      p={3}
-      color={active ? 'white' : textColorPrimary}
-      bg={active ? brand : globalBg}
+      p={2}
+      color={active ? 'textColorPrimary' : 'textColorSecondary'}
+      bg={active ? 'globalBg' : undefined}
+      _dark={{
+        bg: active ? 'whiteAlpha.100' : undefined,
+      }}
       cursor="pointer"
       {...props}
     />
-  );
-}
-
-function FeatureItem({ feature }: { feature: IdFeature }) {
-  const { guild, feature: activeId } = useRouter().query as Params;
-  const active = activeId === feature.id;
-
-  return (
-    <CardItem active={active} href={`/guilds/${guild}/features/${feature.id}`}>
-      {feature.icon}
-      <Text fontSize="lg" fontWeight="600">
-        {feature.name}
-      </Text>
-    </CardItem>
   );
 }
