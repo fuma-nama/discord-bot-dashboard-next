@@ -65,12 +65,12 @@ export function useWelcomeMessageFeature(
         <Controller
           control={control}
           name="color"
-          render={({ field }) => (
+          render={({ field, fieldState }) => (
             <ColorPickerForm
               control={{
                 label: 'Color',
                 description: 'The color of message',
-                error: errors.color?.message,
+                error: fieldState.error?.message,
               }}
               {...field}
             />

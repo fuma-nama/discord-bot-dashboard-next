@@ -24,11 +24,19 @@ type ExampleSettings = z.infer<typeof schema>;
  * Exmaple for built-in use form hook
  */
 const GuildSettingsPage: NextPageWithLayout = () => {
-  const { getValues, register, control } = useForm<ExampleSettings>({
+  const {
+    watch,
+    register,
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<ExampleSettings>({
     resolver: zodResolver(schema),
     defaultValues: {
       beta: true,
       prefix: '/',
+      role: undefined,
+      channel: undefined,
     },
   });
 
@@ -60,6 +68,7 @@ const GuildSettingsPage: NextPageWithLayout = () => {
       control: {
         label: 'Command prefix',
         description: 'Change the default command prefix',
+        error: errors.prefix?.message,
       },
       placeholder: '/',
       ...register('prefix'),
@@ -69,6 +78,7 @@ const GuildSettingsPage: NextPageWithLayout = () => {
       control: {
         label: 'Logs',
         description: 'The channel to log bot states',
+        error: errors.channel?.message,
       },
       component: (
         <Controller
@@ -89,8 +99,10 @@ const GuildSettingsPage: NextPageWithLayout = () => {
         as="code"
         _light={{ color: 'cyan.500' }}
         _dark={{ color: 'cyan.400' }}
+        cursor="pointer"
+        onClick={handleSubmit(() => console.log('submit'))}
       >
-        {JSON.stringify(getValues())}
+        {JSON.stringify(watch())}
       </Text>
 
       <SimpleGrid mt={5} columns={{ base: 1, md: 2 }} gap={3}>

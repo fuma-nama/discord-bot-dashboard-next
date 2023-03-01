@@ -50,32 +50,53 @@ export type FormOptions = {
 
 export function createForm(...inputs: FormInput[]) {
   function getForm(input: FormInput) {
-    const { type, ...props } = input;
+    switch (input.type) {
+      case 'input': {
+        const { type, ...props } = input;
 
-    switch (type) {
-      case 'input':
-        return <InputForm {...(props as any)} />;
-      case 'textarea':
-        return <TextAreaForm {...(props as any)} />;
-      case 'date':
-        return <DatePickerForm {...(props as any)} />;
-      case 'small-date':
-        return <SmallDatePickerForm {...(props as any)} />;
-      case 'custom-form': {
-        const { component, ...form } = props as any as CustomForm;
-
-        return <FormControlCard {...form}>{component}</FormControlCard>;
+        return <InputForm {...props} />;
       }
-      case 'custom':
+      case 'textarea': {
+        const { type, ...props } = input;
+
+        return <TextAreaForm {...props} />;
+      }
+      case 'date': {
+        const { type, ...props } = input;
+
+        return <DatePickerForm {...props} />;
+      }
+      case 'small-date': {
+        const { type, ...props } = input;
+
+        return <SmallDatePickerForm {...props} />;
+      }
+      case 'custom-form': {
+        return <FormControlCard {...input.control}>{input.component}</FormControlCard>;
+      }
+      case 'custom': {
         return input.component;
-      case 'color':
-        return <ColorPickerForm {...(props as any)} />;
-      case 'small-color':
-        return <SmallColorPickerForm {...(props as any)} />;
-      case 'file':
-        return <FilePickerForm {...(props as any)} />;
-      case 'switch':
-        return <SwitchForm {...(props as any)} />;
+      }
+      case 'color': {
+        const { type, ...props } = input;
+
+        return <ColorPickerForm {...props} />;
+      }
+      case 'small-color': {
+        const { type, ...props } = input;
+
+        return <SmallColorPickerForm {...props} />;
+      }
+      case 'file': {
+        const { type, ...props } = input;
+
+        return <FilePickerForm {...props} />;
+      }
+      case 'switch': {
+        const { type, ...props } = input;
+
+        return <SwitchForm {...props} />;
+      }
     }
   }
 
