@@ -3,10 +3,12 @@ import {
   chakraComponents,
   ChakraStylesConfig,
   OptionBase,
+  Props,
   Select,
   SelectComponent,
+  SelectInstance,
 } from 'chakra-react-select';
-import { ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import { dark, light, useColors } from '@/theme';
 
 const customComponents = {
@@ -99,15 +101,20 @@ export type Option = OptionBase & {
   icon?: ReactNode;
 };
 
-export const SelectField: SelectComponent = (props) => {
+export const SelectFieldBase = forwardRef<SelectInstance, Props>((props, ref) => {
   const { brand } = useColors();
 
   return (
-    <Select
+    <Select<any, any, any>
       focusBorderColor={brand}
       components={customComponents}
       chakraStyles={styles}
+      ref={ref}
       {...props}
     />
   );
-};
+});
+
+SelectFieldBase.displayName = 'SelectField';
+
+export const SelectField = SelectFieldBase as SelectComponent;

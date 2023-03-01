@@ -1,5 +1,4 @@
 import {
-  Box,
   Center,
   Flex,
   Input,
@@ -15,90 +14,92 @@ import {
 import { HexAlphaColorPicker, HexColorInput, HexColorPicker } from 'react-colorful';
 import { ColorPickerBaseProps } from 'react-colorful/dist/types';
 import { FormComponentProps, FormControlCard } from './Form';
-import { useDebouncedCallback } from 'use-debounce';
 import { useColors } from '@/theme';
+import { Override } from '@/utils/types';
+import { forwardRef } from 'react';
 
-export type ColorPickerProps = {
-  /**
-   * hex color
-   */
-  value?: string;
-  onChange: (color: string) => void;
-  supportAlpha?: boolean;
-};
+export type ColorPickerProps = Override<
+  Omit<ColorPickerBaseProps<string>, 'color'>,
+  {
+    value?: string;
+    onChange?: (color: string) => void;
+    supportAlpha?: boolean;
+  }
+>;
 
 export type ColorPickerFormProps = FormComponentProps<ColorPickerProps>;
 
-export function SmallColorPickerForm({
-  value,
-  onChange,
-  supportAlpha,
-  ...props
-}: ColorPickerFormProps) {
-  const onChangeDebounced = useDebouncedCallback((value: string) => onChange(value), 100);
+export const SmallColorPickerForm = forwardRef<HTMLInputElement, ColorPickerFormProps>(
+  ({ value, control, onChange, ...props }, ref) => {
+    return (
+      <FormControlCard {...control}>
+        <Popover>
+          <PopoverTrigger>
+            <InputGroup>
+              <InputLeftAddon bg={value} rounded="xl" h="full" />
+              <Input
+                value={value ?? ''}
+                placeholder={value ?? 'Select a color'}
+                onChange={(e) => onChange?.(e.target.value)}
+                variant="main"
+                ref={ref}
+              />
+            </InputGroup>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverBody>
+              <ColorPicker value={value} onChange={onChange} {...props} />
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </FormControlCard>
+    );
+  }
+);
 
-  return (
-    <FormControlCard {...props}>
-      <Popover>
-        <PopoverTrigger>
-          <InputGroup>
-            <InputLeftAddon bg={value} rounded="xl" h="full" />
+SmallColorPickerForm.displayName = 'SmallColorPickerForm';
+
+export const ColorPickerForm = forwardRef<HTMLInputElement, ColorPickerFormProps>(
+  ({ control, value, onChange, ...props }, ref) => {
+    const { textColorSecondary } = useColors();
+
+    return (
+      <FormControlCard {...control}>
+        <SimpleGrid minChildWidth="200px" gap={2}>
+          <Flex direction="column" gap={3}>
+            <Center minH="150px" rounded="xl" bgColor={value ?? 'blackAlpha.200'} flex={1}>
+              {value == null && (
+                <Text fontSize="sm" color={textColorSecondary}>
+                  No Color
+                </Text>
+              )}
+            </Center>
             <Input
-              as={HexColorInput}
-              color={value}
+              mt="auto"
+              value={value ?? ''}
               placeholder={value ?? 'Select a color'}
-              onChange={onChange as any}
+              onChange={(e) => onChange?.(e.target.value)}
               variant="main"
+              ref={ref}
             />
-          </InputGroup>
-        </PopoverTrigger>
-        <PopoverContent>
-          <PopoverBody>
-            <ColorPicker value={value} onChange={onChangeDebounced} supportAlpha={supportAlpha} />
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
-    </FormControlCard>
-  );
-}
+          </Flex>
+          <ColorPicker value={value} onChange={onChange} {...props} />
+        </SimpleGrid>
+      </FormControlCard>
+    );
+  }
+);
 
-export function ColorPickerForm({ value, onChange, supportAlpha, ...props }: ColorPickerFormProps) {
-  const { textColorSecondary } = useColors();
-  const onChangeDebounced = useDebouncedCallback((value: string) => onChange(value), 100);
+ColorPickerForm.displayName = 'ColorPickerForm';
 
-  return (
-    <FormControlCard {...props}>
-      <SimpleGrid minChildWidth="200px" gap={2}>
-        <Flex direction="column" gap={3}>
-          <Center minH="150px" rounded="xl" bgColor={value ?? 'blackAlpha.200'} flex={1}>
-            {value == null && (
-              <Text fontSize="sm" color={textColorSecondary}>
-                No Color
-              </Text>
-            )}
-          </Center>
-          <Input
-            mt="auto"
-            as={HexColorInput}
-            color={value}
-            placeholder={value ?? 'Select a color'}
-            onChange={onChange as any}
-            variant="main"
-          />
-        </Flex>
-        <ColorPicker value={value} onChange={onChangeDebounced} supportAlpha={supportAlpha} />
-      </SimpleGrid>
-    </FormControlCard>
-  );
-}
-
-export function ColorPicker({ value, onChange, supportAlpha }: ColorPickerProps) {
+export function ColorPicker({ value, onChange, supportAlpha, ...rest }: ColorPickerProps) {
   const props: Partial<ColorPickerBaseProps<string>> = {
     color: value,
     onChange,
     style: {
       width: '100%',
     },
+    ...rest,
   };
 
   return supportAlpha ? <HexAlphaColorPicker {...props} /> : <HexColorPicker {...props} />;

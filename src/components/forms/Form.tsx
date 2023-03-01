@@ -8,12 +8,6 @@ import { Flex, Spacer, Text } from '@chakra-ui/layout';
 import { ReactNode } from 'react';
 import { useColors } from '@/theme';
 
-export function FormCard(props: FormControlProps) {
-  const { cardBg, shadow } = useColors();
-
-  return <FormControl bg={cardBg} rounded="3xl" p={4} boxShadow={shadow} {...props} />;
-}
-
 export type FormControlCardProps = {
   label?: string | ReactNode;
   description?: string | ReactNode;
@@ -26,7 +20,29 @@ export type FormControlCardProps = {
   children: ReactNode;
 };
 
-export type FormComponentProps<V> = V & Omit<FormControlCardProps, keyof V | 'children'>;
+export type FormComponentProps<T> = T & {
+  control: Omit<FormControlCardProps, 'children'>;
+};
+
+export function Form({ required, baseControl, error, children }: FormControlCardProps) {
+  const { cardBg, shadow } = useColors();
+
+  return (
+    <FormControl
+      as={Flex}
+      direction="column"
+      bg={cardBg}
+      rounded="3xl"
+      p={4}
+      isRequired={required}
+      isInvalid={error != null}
+      boxShadow={shadow}
+      {...baseControl}
+    >
+      {children}
+    </FormControl>
+  );
+}
 
 export function FormControlCard({
   label,

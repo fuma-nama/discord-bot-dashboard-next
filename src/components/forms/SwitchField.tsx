@@ -8,35 +8,31 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { ReactNode } from 'react';
-import { FormCard, FormComponentProps } from './Form';
+import { forwardRef, ReactNode } from 'react';
+import { Form, FormComponentProps } from './Form';
 
-export type SwitchFormProps = FormComponentProps<{
-  value?: boolean;
-  onChange: (v: boolean) => void;
-}>;
+export type SwitchFormProps = FormComponentProps<SwitchProps>;
 
-export function SwitchForm(props: SwitchFormProps) {
-  return (
-    <FormCard isRequired={props.required} isInvalid={props.error != null} {...props.baseControl}>
-      <Flex justify="space-between" align="center" borderRadius="16px" gap={3}>
-        <FormLabel _hover={{ cursor: 'pointer' }} flexDirection="column">
-          <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight={{ base: '600', lg: 'bold' }}>
-            {props.label}
-          </Text>
-          <Text variant="secondary">{props.description}</Text>
-        </FormLabel>
-        <Switch
-          variant="main"
-          size="md"
-          isChecked={props.value}
-          onChange={(e) => props.onChange(e.target.checked)}
-        />
-      </Flex>
-      <FormErrorMessage>{props.error}</FormErrorMessage>
-    </FormCard>
-  );
-}
+export const SwitchForm = forwardRef<HTMLInputElement, SwitchFormProps>(
+  ({ control, ...props }, ref) => {
+    return (
+      <Form {...control}>
+        <Flex justify="space-between" align="center" borderRadius="16px" gap={3}>
+          <FormLabel _hover={{ cursor: 'pointer' }} flexDirection="column">
+            <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight={{ base: '600', lg: 'bold' }}>
+              {control.label}
+            </Text>
+            <Text variant="secondary">{control.description}</Text>
+          </FormLabel>
+          <Switch type="checkbox" variant="main" size="md" {...props} ref={ref} />
+        </Flex>
+        <FormErrorMessage>{control.error}</FormErrorMessage>
+      </Form>
+    );
+  }
+);
+
+SwitchForm.displayName = 'SwitchForm';
 
 export function SwitchField(
   props: {

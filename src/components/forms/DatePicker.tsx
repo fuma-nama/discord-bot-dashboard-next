@@ -13,6 +13,7 @@ import {
   PopoverTrigger,
 } from '@chakra-ui/react';
 import { AiTwotoneCalendar as CalendarIcon } from 'react-icons/ai';
+import { forwardRef } from 'react';
 
 export type DatePickerProps = CalendarProps;
 
@@ -28,54 +29,42 @@ export function DatePicker(props: DatePickerProps) {
   );
 }
 
-export function DatePickerForm({
-  picker,
-  value,
-  onChange,
-  ...props
-}: FormComponentProps<{
-  value?: CalendarProps['value'];
-  onChange?: CalendarProps['onChange'];
-  picker?: DatePickerProps;
-}>) {
-  return (
-    <FormControlCard {...props}>
-      <DatePicker value={value ?? null} onChange={onChange} {...picker} />
-    </FormControlCard>
-  );
-}
+export type DatePickerFormProps = FormComponentProps<DatePickerProps>;
 
-export function SmallDatePickerForm({
-  picker,
-  value,
-  onChange,
-  ...props
-}: FormComponentProps<{
-  value?: CalendarProps['value'];
-  onChange?: CalendarProps['onChange'];
-  picker?: DatePickerProps;
-}>) {
-  const text = (value ?? picker?.value)?.toLocaleString(undefined, {
-    dateStyle: 'short',
-  });
+export const DatePickerForm = forwardRef<HTMLInputElement, DatePickerFormProps>(
+  function DatePickerForm({ control, value, ...props }, ref) {
+    return (
+      <FormControlCard {...control}>
+        <DatePicker value={value ?? null} inputRef={ref as any} {...props} />
+      </FormControlCard>
+    );
+  }
+);
 
-  return (
-    <FormControlCard {...props}>
-      <Popover>
-        <PopoverTrigger>
-          <InputGroup>
-            <Input value={text ?? ''} placeholder="Select a Date" variant="main" readOnly />
-            <InputRightElement zIndex={0}>
-              <CalendarIcon />
-            </InputRightElement>
-          </InputGroup>
-        </PopoverTrigger>
-        <PopoverContent>
-          <PopoverBody>
-            <DatePicker value={value ?? null} onChange={onChange} {...picker} />
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
-    </FormControlCard>
-  );
-}
+export const SmallDatePickerForm = forwardRef<HTMLInputElement, DatePickerFormProps>(
+  function SmallDatePickerForm({ value, control, ...props }, ref) {
+    const text = value?.toLocaleString(undefined, {
+      dateStyle: 'short',
+    });
+
+    return (
+      <FormControlCard {...control}>
+        <Popover>
+          <PopoverTrigger>
+            <InputGroup>
+              <Input value={text ?? ''} placeholder="Select a Date" variant="main" readOnly />
+              <InputRightElement zIndex={0}>
+                <CalendarIcon />
+              </InputRightElement>
+            </InputGroup>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverBody>
+              <DatePicker value={value ?? null} inputRef={ref as any} {...props} />
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </FormControlCard>
+    );
+  }
+);

@@ -1,21 +1,29 @@
 import { Box, Center, Flex, Text, VStack } from '@chakra-ui/layout';
 import { Icon, Image } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { Accept, DropzoneOptions, useDropzone } from 'react-dropzone';
+import { ComponentPropsWithoutRef, forwardRef, useEffect, useState } from 'react';
+import { DropzoneOptions, useDropzone } from 'react-dropzone';
 import { FaFile } from 'react-icons/fa';
 import { MdUpload } from 'react-icons/md';
 import { useColorsExtend } from '@/theme';
 import { FormComponentProps, FormControlCard } from './Form';
+import { Override } from '@/utils/types';
 
-export type FilePickerProps = DropzoneOptions & {
-  value?: File[];
-  onChange?: (v: File[]) => void;
-  text?: string;
-};
+export type FilePickerProps = Override<
+  ComponentPropsWithoutRef<'input'>,
+  {
+    value?: File[];
+    onChange?: (v: File[]) => void;
+    text?: string;
+    options?: DropzoneOptions;
+  }
+>;
 
-export function FilePicker({ value, onChange, text, ...props }: FilePickerProps) {
+export const FilePicker = forwardRef<HTMLInputElement, FilePickerProps>(function FilePicker(
+  { value, onChange, text, options, ...props },
+  ref
+) {
   const { getRootProps, getInputProps } = useDropzone({
-    ...props,
+    ...options,
     onDrop: (files) => onChange?.(files),
   });
   const { borderColor, bg } = useColorsExtend(
@@ -42,7 +50,7 @@ export function FilePicker({ value, onChange, text, ...props }: FilePickerProps)
       cursor="pointer"
     >
       <div {...getRootProps()}>
-        <input {...getInputProps()} />
+        <input {...getInputProps({ ...props, ref })} />
         {empty ? (
           <VStack textAlign="center">
             <Icon as={MdUpload} w="70px" h="70px" />
@@ -63,7 +71,7 @@ export function FilePicker({ value, onChange, text, ...props }: FilePickerProps)
       </div>
     </Box>
   );
-}
+});
 
 function FilePreview({ file }: { file: File }) {
   const url = useFileUrl(file);
@@ -87,26 +95,17 @@ function FilePreview({ file }: { file: File }) {
   );
 }
 
-export function FilePickerForm({
-  value,
-  onChange,
-  accept,
-  picker,
-  helperText,
-  ...props
-}: FormComponentProps<{
-  value?: File[];
-  onChange?: (files: File[]) => void;
-  accept?: Accept;
-  helperText?: string;
-  picker?: FilePickerProps;
-}>) {
-  return (
-    <FormControlCard {...props}>
-      <FilePicker value={value} onChange={onChange} accept={accept} text={helperText} {...picker} />
-    </FormControlCard>
-  );
-}
+export type FilePickerFormProps = FormComponentProps<FilePickerProps>;
+
+export const FilePickerForm = forwardRef<HTMLInputElement, FilePickerFormProps>(
+  function FilePickerForm({ control, ...props }, ref) {
+    return (
+      <FormControlCard {...control}>
+        <FilePicker {...props} ref={ref} />
+      </FormControlCard>
+    );
+  }
+);
 
 function useFileUrl(file: Blob) {
   const [url, setUrl] = useState<string>();

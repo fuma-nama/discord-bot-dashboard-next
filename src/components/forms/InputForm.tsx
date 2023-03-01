@@ -1,29 +1,17 @@
 import { Input, InputProps } from '@chakra-ui/react';
-import { FormCard, FormComponentProps, FormControlCard } from './Form';
+import { forwardRef } from 'react';
+import { FormComponentProps, FormControlCard } from './Form';
 
-export type InputFormProps = {
-  value?: string;
-  onChange?: (v: string) => void;
-  placeholder?: string;
-  input?: InputProps;
-};
+export type InputFormProps = FormComponentProps<InputProps>;
 
-export function InputForm({
-  value,
-  onChange,
-  placeholder,
-  input,
-  ...props
-}: FormComponentProps<InputFormProps>) {
-  return (
-    <FormControlCard {...props}>
-      <Input
-        variant="main"
-        value={value}
-        onChange={(e) => onChange?.(e.target.value)}
-        placeholder={placeholder}
-        {...input}
-      />
-    </FormControlCard>
-  );
-}
+export const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
+  ({ control, ...props }, ref) => {
+    return (
+      <FormControlCard {...control}>
+        <Input variant="main" ref={ref} {...props} />
+      </FormControlCard>
+    );
+  }
+);
+
+InputForm.displayName = 'InputForm';
