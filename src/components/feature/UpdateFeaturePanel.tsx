@@ -31,7 +31,7 @@ export function UpdateFeaturePanel<K extends keyof CustomFeatures>({
   );
 }
 
-function Savebar({ result: { serialize, canSave, reset, onSubmit } }: { result: FormRender }) {
+function Savebar({ result: { canSave, reset, onSubmit } }: { result: FormRender<any> }) {
   const { guild, feature } = useRouter().query as Params;
   const { cardBg, shadow } = useColors();
   const mutation = useUpdateFeatureMutation();
@@ -39,19 +39,18 @@ function Savebar({ result: { serialize, canSave, reset, onSubmit } }: { result: 
 
   const breakpoint = '3sm';
   const onSave = () => {
-    //prevent submit if returns true
-    if (onSubmit?.() === true) return;
-
-    mutation.mutate(
-      {
-        guild,
-        feature,
-        options: serialize(),
-      },
-      {
-        onSuccess: reset,
-      }
-    );
+    onSubmit?.(async (data) => {
+      return await mutation.mutateAsync(
+        {
+          guild,
+          feature,
+          options: data,
+        },
+        {
+          onSuccess: reset,
+        }
+      );
+    });
   };
 
   return (

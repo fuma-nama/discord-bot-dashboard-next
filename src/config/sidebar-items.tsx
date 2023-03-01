@@ -1,7 +1,7 @@
 import { Icon } from '@chakra-ui/react';
 import { common } from '@/config/translations/common';
 import { MdPerson, MdDashboard } from 'react-icons/md';
-import { SidebarItemInfo } from '@/utils/routeUtils';
+import { SidebarItemInfo } from '@/utils/router';
 
 const items: SidebarItemInfo[] = [
   {

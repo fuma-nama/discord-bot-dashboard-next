@@ -10,7 +10,7 @@ export type CustomGuildInfo = GuildInfo & {};
  * Define feature ids and it's option types
  */
 export type CustomFeatures = {
-  music: MusicFeature;
+  music: {};
   gaming: {};
   'reaction-role': {};
   meme: {};
@@ -21,18 +21,4 @@ export type CustomFeatures = {
 export type WelcomeMessageFeature = {
   channel?: string;
   message: string;
-};
-
-/** example only */
-export type MusicFeature = {
-  message: string;
-  channel?: string;
-
-  role?: string;
-  color?: string;
-  count?: string;
-  date?: Date;
-  file?: File[];
-  bool: boolean;
-  tags: string[];
 };

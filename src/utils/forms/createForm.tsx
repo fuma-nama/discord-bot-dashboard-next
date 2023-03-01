@@ -1,9 +1,8 @@
-import { ComponentProps, DependencyList, Fragment, ReactElement } from 'react';
+import { ComponentProps, Fragment, ReactElement } from 'react';
 import { ColorPickerForm, SmallColorPickerForm } from '@/components/forms/ColorPicker';
 import { DatePickerForm, SmallDatePickerForm } from '@/components/forms/DatePicker';
 import { FilePickerForm } from '@/components/forms/FilePicker';
 import { FormComponentProps, FormControlCard } from '@/components/forms/Form';
-import { Memoize } from '@/utils/memorize';
 import { InputForm } from '@/components/forms/InputForm';
 import { SwitchForm } from '@/components/forms/SwitchField';
 import { TextAreaForm } from '@/components/forms/TextAreaForm';
@@ -22,16 +21,7 @@ export type FormInput = (
 ) &
   IForm;
 
-interface IForm {
-  /**
-   * prevent re-renders until objects in memorize list is changed
-   *
-   * This settings may imporve performance
-   *
-   * default: not enabled
-   */
-  memorize?: DependencyList;
-}
+interface IForm {}
 
 export type Input = ComponentProps<typeof InputForm> & { type: 'input' };
 export type TextArea = ComponentProps<typeof TextAreaForm> & { type: 'textarea' };
@@ -58,9 +48,9 @@ export type FormOptions = {
   defaultMemorize?: string[];
 };
 
-export function createForm(options: FormOptions = {}, ...inputs: FormInput[]) {
+export function createForm(...inputs: FormInput[]) {
   function getForm(input: FormInput) {
-    const { type, memorize, ...props } = input;
+    const { type, ...props } = input;
 
     switch (type) {
       case 'input':
@@ -92,21 +82,7 @@ export function createForm(options: FormOptions = {}, ...inputs: FormInput[]) {
   return (
     <>
       {inputs.map((input, i) => {
-        const form = getForm(input);
-
-        if (input.memorize !== undefined || options.defaultMemorize !== undefined) {
-          const memorize =
-            input.memorize ??
-            options.defaultMemorize?.map((key) => input[key as keyof typeof input]);
-
-          return (
-            <Memoize key={i} dependencies={memorize ?? []}>
-              {form}
-            </Memoize>
-          );
-        }
-
-        return <Fragment key={i}>{form}</Fragment>;
+        return <Fragment key={i}>{getForm(input)}</Fragment>;
       })}
     </>
   );

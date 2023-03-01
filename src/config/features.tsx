@@ -3,7 +3,6 @@ import { BsMusicNoteBeamed } from 'react-icons/bs';
 import { FaGamepad } from 'react-icons/fa';
 import { IoHappy } from 'react-icons/io5';
 import { MdAddReaction, MdMessage } from 'react-icons/md';
-import { useMusicFeature } from './example/MusicFeature';
 import { FeaturesConfig } from './types';
 import { provider } from '@/config/translations/provider';
 import { createI18n } from '@/utils/i18n';
@@ -46,7 +45,10 @@ export const features: FeaturesConfig = {
     description: <T text="music description" />,
     icon: <Icon as={BsMusicNoteBeamed} />,
     useRender: (data) => {
-      return useMusicFeature(data);
+      return {
+        serialize: () => '{}',
+        component: <></>,
+      };
     },
   },
   'welcome-message': {

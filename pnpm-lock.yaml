@@ -14,6 +14,7 @@ specifiers:
   '@chakra-ui/theme-tools': ^2.0.0
   '@emotion/react': ^11.8.1
   '@emotion/styled': ^11.3.0
+  '@hookform/resolvers': ^2.9.11
   '@tanstack/react-query': ^4.2.3
   '@types/node': 16.11.7
   '@types/react': ^18.0.0
@@ -35,9 +36,10 @@ specifiers:
   react-colorful: ^5.6.1
   react-dom: ^18.0.0
   react-dropzone: ^14.2.3
+  react-hook-form: ^7.43.2
   react-icons: ^4.3.1
   typescript: ^4.8.2
-  use-debounce: ^9.0.2
+  zod: ^3.20.6
   zustand: ^4.1.4
 
 dependencies:
@@ -53,6 +55,7 @@ dependencies:
   '@chakra-ui/theme-tools': 2.0.14_wydxv7ulravhb2h4fp66dsrywe
   '@emotion/react': 11.10.5_aceoovvn67xgkjcw4rnkhejjna
   '@emotion/styled': 11.10.5_syizxdee6om2iremn7cmgew3ca
+  '@hookform/resolvers': 2.9.11_react-hook-form@7.43.2
   '@tanstack/react-query': 4.19.0_biqbaboplfbrettd7655fr4n2y
   apexcharts: 3.36.3
   chakra-react-select: 4.4.2_jixjfee4xcneribhluntj2evv4
@@ -66,8 +69,9 @@ dependencies:
   react-colorful: 5.6.1_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
   react-dropzone: 14.2.3_react@18.2.0
+  react-hook-form: 7.43.2_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
-  use-debounce: 9.0.2_react@18.2.0
+  zod: 3.20.6
   zustand: 4.1.4_react@18.2.0
 
 devDependencies:
@@ -1677,6 +1681,14 @@ packages:
     resolution: {integrity: sha512-6RsqvCYe0AYWtsGvuWqCm7mZytnXAZCjWtsWu1Kg8dI3INvj/DbKlDsZO+mKSaQdPT12uxIW9W2dAWJkPx4Y5g==}
     dependencies:
       '@floating-ui/core': 1.0.2
+    dev: false
+
+  /@hookform/resolvers/2.9.11_react-hook-form@7.43.2:
+    resolution: {integrity: sha512-bA3aZ79UgcHj7tFV7RlgThzwSSHZgvfbt2wprldRkYBcMopdMvHyO17Wwp/twcJasNFischFfS7oz8Katz8DdQ==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.43.2_react@18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.11.7:
@@ -3966,6 +3978,15 @@ packages:
       use-sidecar: 1.1.2_kzbn2opkn2327fwg5yzwzya5o4
     dev: false
 
+  /react-hook-form/7.43.2_react@18.2.0:
+    resolution: {integrity: sha512-NvD3Oe2Y9hhqo2R4I4iJigDzSLpdMnzUpNMxlnzTbdiT7NT3BW0GxWCzEtwPudZMUPbZhNcSy1EcGAygyhDORg==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-icons/4.7.1_react@18.2.0:
     resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
     peerDependencies:
@@ -4486,15 +4507,6 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /use-debounce/9.0.2_react@18.2.0:
-    resolution: {integrity: sha512-QLyB0sxt9F5AisGDrUybCRJSLE60bTQR0yXc+IebNGUu1GCXwii1zsZl82mPGdWqDVQy7+1FKMLHQUixxf5Nbw==}
-    engines: {node: '>= 10.0.0'}
-    peerDependencies:
-      react: '>=16.8.0'
-    dependencies:
-      react: 18.2.0
-    dev: false
-
   /use-isomorphic-layout-effect/1.1.2_kzbn2opkn2327fwg5yzwzya5o4:
     resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}
     peerDependencies:
@@ -4596,6 +4608,10 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /zod/3.20.6:
+    resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
+    dev: false
 
   /zustand/4.1.4_react@18.2.0:
     resolution: {integrity: sha512-k2jVOlWo8p4R83mQ+/uyB8ILPO2PCJOf+QVjcL+1PbMCk1w5OoPYpAIxy9zd93FSfmJqoH6lGdwzzjwqJIRU5A==}

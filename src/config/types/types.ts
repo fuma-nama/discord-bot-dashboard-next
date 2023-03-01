@@ -54,14 +54,16 @@ export interface FeatureConfig<K extends keyof CustomFeatures> {
   /**
    * Render content in Feature view
    */
-  useRender: (data: CustomFeatures[K]) => FormRender;
+  useRender: (data: CustomFeatures[K]) => FormRender<CustomFeatures[K]>;
   /**
    * Render skeleton before featrue is loaded
    */
   useSkeleton?: () => ReactNode;
 }
 
-export type FormRender = {
+type SubmitFn<T> = (data: FormData | string) => Promise<T>;
+
+export type FormRender<T = unknown> = {
   /**
    * Save bar will be disappeared if `canSave` is false
    */
@@ -72,16 +74,7 @@ export type FormRender = {
    *
    * If returns true, prevent submit
    */
-  onSubmit?: () => boolean;
-
-  /**
-   * Get the form/json body of update feature request
-   *
-   * Should be handled by the server
-   *
-   * endpoint: (PATCH `/guilds/{guild}/features/{feature}`)
-   */
-  serialize: () => FormData | string;
+  onSubmit?: (onSubmit: SubmitFn<T>) => void;
 
   /**
    * Reset current value
