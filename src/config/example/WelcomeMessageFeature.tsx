@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { ColorPickerForm } from '@/components/forms/ColorPicker';
 import { DatePickerForm } from '@/components/forms/DatePicker';
 import { FilePickerForm } from '@/components/forms/FilePicker';
+import { SwitchForm } from '@/components/forms/SwitchField';
 
 const schema = z.object({
   message: z.string().min(20),
@@ -16,6 +17,7 @@ const schema = z.object({
   color: z.string().optional(),
   date: z.date().optional(),
   file: z.custom<File[]>().optional(),
+  danger: z.boolean(),
 });
 
 type Input = z.infer<typeof schema>;
@@ -32,6 +34,7 @@ export function useWelcomeMessageFeature(
       color: undefined,
       date: undefined,
       file: [],
+      danger: false,
     },
   });
   const errors = formState.errors;
@@ -94,6 +97,16 @@ export function useWelcomeMessageFeature(
               control={{ label: 'File', description: 'The file to upload' }}
               options={{ accept: { 'image/*': [] }, multiple: false }}
               {...field}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="danger"
+          render={(props) => (
+            <SwitchForm
+              control={{ label: 'Turn on', description: 'Enable something' }}
+              {...props.field}
             />
           )}
         />

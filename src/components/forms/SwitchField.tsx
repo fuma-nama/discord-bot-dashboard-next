@@ -11,10 +11,14 @@ import {
 import { forwardRef, ReactNode } from 'react';
 import { Form, FormComponentProps } from './Form';
 
-export type SwitchFormProps = FormComponentProps<SwitchProps>;
+export type SwitchFormProps = FormComponentProps<
+  Omit<SwitchProps, 'value' | 'isChecked'> & {
+    value?: boolean;
+  }
+>;
 
 export const SwitchForm = forwardRef<HTMLInputElement, SwitchFormProps>(
-  ({ control, ...props }, ref) => {
+  ({ control, value, ...props }, ref) => {
     return (
       <Form {...control}>
         <Flex justify="space-between" align="center" borderRadius="16px" gap={3}>
@@ -24,7 +28,7 @@ export const SwitchForm = forwardRef<HTMLInputElement, SwitchFormProps>(
             </Text>
             <Text variant="secondary">{control.description}</Text>
           </FormLabel>
-          <Switch type="checkbox" variant="main" size="md" {...props} ref={ref} />
+          <Switch variant="main" size="md" isChecked={value} {...props} ref={ref} />
         </Flex>
         <FormErrorMessage>{control.error}</FormErrorMessage>
       </Form>
