@@ -26,24 +26,14 @@ export const FilePicker = forwardRef<HTMLInputElement, FilePickerProps>(function
     ...options,
     onDrop: (files) => onChange?.(files),
   });
-  const { borderColor, bg } = useColorsExtend(
-    {
-      bg: 'gray.100',
-      borderColor: 'secondaryGray.100',
-    },
-    {
-      bg: 'navy.700',
-      borderColor: 'whiteAlpha.100',
-    }
-  );
 
   const empty = value == null || value.length === 0;
 
   return (
     <Box
-      bg={bg}
+      bg="inputBackground"
       border="1px dashed"
-      borderColor={borderColor}
+      borderColor="inputBorder"
       borderRadius="16px"
       w="100%"
       p={5}

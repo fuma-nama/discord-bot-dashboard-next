@@ -60,6 +60,14 @@ export const theme = extendTheme(
           default: light.globalBg,
           _dark: dark.globalBg,
         },
+        inputBackground: {
+          default: 'secondaryGray.300',
+          _dark: 'blackAlpha.300',
+        },
+        inputBorder: {
+          default: 'blackAlpha.200',
+          _dark: 'whiteAlpha.200',
+        },
       },
     },
   }
