@@ -40,16 +40,11 @@ function Savebar({ result: { canSave, reset, onSubmit } }: { result: FormRender<
   const breakpoint = '3sm';
   const onSave = () => {
     onSubmit?.(async (data) => {
-      return await mutation.mutateAsync(
-        {
-          guild,
-          feature,
-          options: data,
-        },
-        {
-          onSuccess: reset,
-        }
-      );
+      return await mutation.mutateAsync({
+        guild,
+        feature,
+        options: data,
+      });
     });
   };
 
