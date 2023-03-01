@@ -14,7 +14,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 //   Custom components
-import { useActiveSidebarItem, SidebarItemInfo } from '@/utils/routeUtils';
+import { useActiveSidebarItem, SidebarItemInfo } from '@/utils/router';
 import { useGuilds, useSelectedGuild, useSelfUserQuery } from '@/stores';
 import { SearchBar } from '@/components/forms/SearchBar';
 import { useMemo, useState } from 'react';

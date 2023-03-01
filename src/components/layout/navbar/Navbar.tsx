@@ -11,7 +11,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
-import { useActiveSidebarItem } from '@/utils/routeUtils';
+import { useActiveSidebarItem } from '@/utils/router';
 import { NavbarDefaultItems, NavbarLinksBox } from './NavbarItems';
 import { IoHome } from 'react-icons/io5';
 import { FaChevronRight as ChevronRightIcon } from 'react-icons/fa';

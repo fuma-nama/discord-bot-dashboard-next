@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { BottomCard, SidebarContent } from './SidebarContent';
 import { AnimatePresence, motion } from 'framer-motion';
-import { SidebarItemInfo } from '@/utils/routeUtils';
+import { SidebarItemInfo } from '@/utils/router';
 import { usePageStore } from '@/stores';
 import { show } from '@/theme';
 import { ReactNode } from 'react';

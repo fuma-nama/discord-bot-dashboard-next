@@ -1,6 +1,6 @@
 // chakra imports
 import { Box, HStack, Text } from '@chakra-ui/react';
-import { SidebarItemInfo } from '@/utils/routeUtils';
+import { SidebarItemInfo } from '@/utils/router';
 import { useColorsExtend, useItemHoverBg } from '@/theme';
 import Link from 'next/link';
 
