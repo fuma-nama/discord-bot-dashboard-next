@@ -11,12 +11,13 @@ import {
   SimpleGrid,
   Text,
 } from '@chakra-ui/react';
-import { HexAlphaColorPicker, HexColorInput, HexColorPicker } from 'react-colorful';
+import { HexAlphaColorPicker, HexColorPicker } from 'react-colorful';
 import { ColorPickerBaseProps } from 'react-colorful/dist/types';
 import { FormComponentProps, FormControlCard } from './Form';
 import { useColors } from '@/theme';
 import { Override } from '@/utils/types';
 import { forwardRef } from 'react';
+import { convertHexToRGBA } from '@/utils/common';
 
 export type ColorPickerProps = Override<
   Omit<ColorPickerBaseProps<string>, 'color'>,
@@ -67,7 +68,14 @@ export const ColorPickerForm = forwardRef<HTMLInputElement, ColorPickerFormProps
       <FormControlCard {...control}>
         <SimpleGrid minChildWidth="200px" gap={2}>
           <Flex direction="column" gap={3}>
-            <Center minH="150px" rounded="xl" bgColor={value ?? 'blackAlpha.200'} flex={1}>
+            <Center
+              minH="150px"
+              rounded="xl"
+              border="1px solid"
+              borderColor="inputBorder"
+              bgColor={value == null ? 'inputBackground' : convertHexToRGBA(value)}
+              flex={1}
+            >
               {value == null && (
                 <Text fontSize="sm" color={textColorSecondary}>
                   No Color
