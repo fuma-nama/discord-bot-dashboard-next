@@ -1,17 +1,19 @@
 import { BsChatLeftText as ChatIcon } from 'react-icons/bs';
 import { GuildChannel } from '@/api/bot';
 import { ChannelTypes } from '@/api/discord';
-import { SelectField } from '@/components/forms/SelectField';
-import { useMemo } from 'react';
+import { Option, SelectField } from '@/components/forms/SelectField';
+import { forwardRef, useMemo } from 'react';
 import { MdRecordVoiceOver } from 'react-icons/md';
 import { useGuildChannelsQuery } from '@/stores';
 import { Icon } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { SelectInstance, Props as SelectProps } from 'chakra-react-select';
+import { Override } from '@/utils/types';
 
 /**
  * Render an options
  */
-const render = (channel: GuildChannel) => {
+const render = (channel: GuildChannel): Option => {
   const icon = () => {
     switch (channel.type) {
       case ChannelTypes.GUILD_STAGE_VOICE:
@@ -63,31 +65,39 @@ function mapOptions(channels: GuildChannel[]) {
   });
 }
 
-export function ChannelSelect({
-  value,
-  onChange,
-}: {
-  value?: string;
-  onChange: (v: string) => void;
-}) {
-  const guild = useRouter().query.guild as string;
-  const channelsQuery = useGuildChannelsQuery(guild);
-  const isLoading = channelsQuery.isLoading;
+type Props = Override<
+  SelectProps<Option, false>,
+  {
+    value?: string;
+    onChange: (v: string) => void;
+  }
+>;
 
-  const selected = value != null ? channelsQuery.data?.find((c) => c.id === value) : null;
-  const options = useMemo(
-    () => (channelsQuery.data != null ? mapOptions(channelsQuery.data) : []),
-    [channelsQuery.data]
-  );
+export const ChannelSelect = forwardRef<SelectInstance<Option, false>, Props>(
+  ({ value, onChange, ...rest }, ref) => {
+    const guild = useRouter().query.guild as string;
+    const channelsQuery = useGuildChannelsQuery(guild);
+    const isLoading = channelsQuery.isLoading;
 
-  return (
-    <SelectField
-      isDisabled={isLoading}
-      isLoading={isLoading}
-      placeholder="Select a channel"
-      value={selected != null && render(selected)}
-      options={options}
-      onChange={(e) => e && onChange(e.value)}
-    />
-  );
-}
+    const selected = value != null ? channelsQuery.data?.find((c) => c.id === value) : null;
+    const options = useMemo(
+      () => (channelsQuery.data != null ? mapOptions(channelsQuery.data) : []),
+      [channelsQuery.data]
+    );
+
+    return (
+      <SelectField<Option>
+        isDisabled={isLoading}
+        isLoading={isLoading}
+        placeholder="Select a channel"
+        value={selected != null ? render(selected) : null}
+        options={options}
+        onChange={(e) => e != null && onChange(e.value)}
+        ref={ref}
+        {...rest}
+      />
+    );
+  }
+);
+
+ChannelSelect.displayName = 'ChannelSelect';
