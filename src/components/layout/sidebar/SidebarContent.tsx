@@ -43,7 +43,7 @@ export function SidebarContent({ items }: { items: SidebarItemInfo[] }) {
   // SIDEBAR
   return (
     <>
-      <Flex alignItems="center" flexDirection="column" bg="brand.400">
+      <Flex alignItems="center" flexDirection="column" bg="brand.500" _dark={{ bg: 'brand.400' }}>
         <VStack align="center" my="32px" color="white">
           <Heading m={0}>{config.name}</Heading>
         </VStack>
