@@ -9,6 +9,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { forwardRef, ReactNode } from 'react';
+import { FieldValues, Path, useController, UseControllerProps } from 'react-hook-form';
 import { Form, FormComponentProps } from './Form';
 
 export type SwitchFormProps = FormComponentProps<
@@ -16,6 +17,18 @@ export type SwitchFormProps = FormComponentProps<
     value?: boolean;
   }
 >;
+
+export function ControlledSwitchForm<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends Path<TFieldValues> = Path<TFieldValues>
+>(
+  props: SwitchFormProps & {
+    controller: UseControllerProps<TFieldValues, TName>;
+  }
+) {
+  const { field } = useController(props.controller);
+  return <SwitchForm {...props} {...field} />;
+}
 
 export const SwitchForm = forwardRef<HTMLInputElement, SwitchFormProps>(
   ({ control, value, ...props }, ref) => {

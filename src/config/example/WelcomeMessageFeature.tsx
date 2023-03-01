@@ -9,7 +9,7 @@ import { z } from 'zod';
 import { ColorPickerForm } from '@/components/forms/ColorPicker';
 import { DatePickerForm } from '@/components/forms/DatePicker';
 import { FilePickerForm } from '@/components/forms/FilePicker';
-import { SwitchForm } from '@/components/forms/SwitchField';
+import { ControlledSwitchForm, SwitchForm } from '@/components/forms/SwitchField';
 
 const schema = z.object({
   message: z.string().min(20),
@@ -100,15 +100,12 @@ export function useWelcomeMessageFeature(
             />
           )}
         />
-        <Controller
-          control={control}
-          name="danger"
-          render={(props) => (
-            <SwitchForm
-              control={{ label: 'Turn on', description: 'Enable something' }}
-              {...props.field}
-            />
-          )}
+        <ControlledSwitchForm
+          control={{ label: 'Turn on', description: 'Enable something' }}
+          controller={{
+            control,
+            name: 'danger',
+          }}
         />
       </SimpleGrid>
     ),
