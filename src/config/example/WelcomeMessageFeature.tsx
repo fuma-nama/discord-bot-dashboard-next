@@ -67,6 +67,11 @@ export function useWelcomeMessageFeature(
           supportAlpha
           controller={{ control, name: 'color' }}
         />
+        <FilePickerForm
+          control={{ label: 'File', description: 'The file to upload' }}
+          options={{ accept: { 'image/*': [] }, multiple: false }}
+          controller={{ control, name: 'file' }}
+        />
         <ColorPickerForm
           control={{
             label: 'Color',
@@ -80,11 +85,6 @@ export function useWelcomeMessageFeature(
             description: 'The date of today',
           }}
           controller={{ control, name: 'date' }}
-        />
-        <FilePickerForm
-          control={{ label: 'File', description: 'The file to upload' }}
-          options={{ accept: { 'image/*': [] }, multiple: false }}
-          controller={{ control, name: 'file' }}
         />
         <SwitchForm
           control={{ label: 'Turn on', description: 'Enable something' }}

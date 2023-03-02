@@ -16,8 +16,6 @@ import {
 import { AiTwotoneCalendar as CalendarIcon } from 'react-icons/ai';
 import { useController } from 'react-hook-form';
 
-export type DatePickerProps = Omit<CalendarProps, 'value' | 'onChange'>;
-
 export function DatePicker(props: CalendarProps) {
   return (
     <Calendar
@@ -31,7 +29,9 @@ export function DatePicker(props: CalendarProps) {
   );
 }
 
-export const DatePickerForm: ControlledInput<DatePickerProps, CalendarProps['value']> = ({
+export type DatePickerFormProps = Omit<CalendarProps, 'value' | 'onChange'>;
+
+export const DatePickerForm: ControlledInput<DatePickerFormProps, CalendarProps['value']> = ({
   control,
   controller,
   ...props
@@ -48,7 +48,7 @@ export const DatePickerForm: ControlledInput<DatePickerProps, CalendarProps['val
   );
 };
 
-export const SmallDatePickerForm: ControlledInput<DatePickerProps, CalendarProps['value']> = ({
+export const SmallDatePickerForm: ControlledInput<DatePickerFormProps, CalendarProps['value']> = ({
   control,
   controller,
   ...props
