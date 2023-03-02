@@ -94,14 +94,14 @@ export const ColorPickerForm: ControlledInput<ColorPickerFormProps, ColorPickerP
 };
 
 export type ColorPickerProps = {
-  value?: string;
+  value?: string | null;
   onChange?: (color: string) => void;
   supportAlpha?: boolean;
 };
 
 export function ColorPicker({ value, onChange, supportAlpha, ...rest }: ColorPickerProps) {
   const props: Partial<ColorPickerBaseProps<string>> = {
-    color: value,
+    color: value ?? undefined,
     onChange,
     style: {
       width: '100%',
