@@ -13,7 +13,7 @@ import { SwitchForm } from '@/components/forms/SwitchField';
 
 const schema = z.object({
   message: z.string().min(20),
-  channel: z.string().refine((e) => e === '1', { message: 'No' }),
+  channel: z.string(),
   color: z.string().optional(),
   date: z.date().optional(),
   file: z.custom<File[]>().optional(),

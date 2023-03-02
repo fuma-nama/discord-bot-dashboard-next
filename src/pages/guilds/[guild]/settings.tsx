@@ -17,13 +17,10 @@ const schema = z.object({
   channel: z.string().optional(),
 });
 
-/**
- * Used for demo only
- */
 type ExampleSettings = z.infer<typeof schema>;
 
 /**
- * Exmaple for built-in use form hook
+ * Exmaple for using react-hook-form with built-in components
  */
 const GuildSettingsPage: NextPageWithLayout = () => {
   const { watch, register, control, formState, handleSubmit } = useForm<ExampleSettings>({
