@@ -1,5 +1,5 @@
 import { Calendar, CalendarProps } from 'react-calendar';
-import { FormComponentProps, FormControlCard } from './Form';
+import { ControlledInput, FormControlCard } from './Form';
 import { Icon } from '@chakra-ui/react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { Text } from '@chakra-ui/layout';
@@ -13,11 +13,11 @@ import {
   PopoverTrigger,
 } from '@chakra-ui/react';
 import { AiTwotoneCalendar as CalendarIcon } from 'react-icons/ai';
-import { forwardRef } from 'react';
+import { useController } from 'react-hook-form';
 
-export type DatePickerProps = CalendarProps;
+export type DatePickerProps = Omit<CalendarProps, 'value' | 'onChange'>;
 
-export function DatePicker(props: DatePickerProps) {
+export function DatePicker(props: CalendarProps) {
   return (
     <Calendar
       view={'month'}
@@ -25,46 +25,59 @@ export function DatePicker(props: DatePickerProps) {
       prevLabel={<Icon as={MdChevronLeft} w="24px" h="24px" mt="4px" />}
       nextLabel={<Icon as={MdChevronRight} w="24px" h="24px" mt="4px" />}
       {...props}
+      value={props.value ?? null}
     />
   );
 }
 
-export type DatePickerFormProps = FormComponentProps<DatePickerProps>;
+export const DatePickerForm: ControlledInput<DatePickerProps, CalendarProps['value']> = ({
+  control,
+  controller,
+  ...props
+}) => {
+  const {
+    field: { ref, ...field },
+    fieldState,
+  } = useController(controller);
 
-export const DatePickerForm = forwardRef<HTMLInputElement, DatePickerFormProps>(
-  function DatePickerForm({ control, value, ...props }, ref) {
-    return (
-      <FormControlCard {...control}>
-        <DatePicker value={value ?? null} inputRef={ref as any} {...props} />
-      </FormControlCard>
-    );
-  }
-);
+  return (
+    <FormControlCard {...control} error={fieldState.error?.message}>
+      <DatePicker inputRef={ref} {...field} {...props} />
+    </FormControlCard>
+  );
+};
 
-export const SmallDatePickerForm = forwardRef<HTMLInputElement, DatePickerFormProps>(
-  function SmallDatePickerForm({ value, control, ...props }, ref) {
-    const text = value?.toLocaleString(undefined, {
-      dateStyle: 'short',
-    });
+export const SmallDatePickerForm: ControlledInput<DatePickerProps, CalendarProps['value']> = ({
+  control,
+  controller,
+  ...props
+}) => {
+  const {
+    field: { ref, ...field },
+    fieldState,
+  } = useController(controller);
 
-    return (
-      <FormControlCard {...control}>
-        <Popover>
-          <PopoverTrigger>
-            <InputGroup>
-              <Input value={text ?? ''} placeholder="Select a Date" variant="main" readOnly />
-              <InputRightElement zIndex={0}>
-                <CalendarIcon />
-              </InputRightElement>
-            </InputGroup>
-          </PopoverTrigger>
-          <PopoverContent>
-            <PopoverBody>
-              <DatePicker value={value ?? null} inputRef={ref as any} {...props} />
-            </PopoverBody>
-          </PopoverContent>
-        </Popover>
-      </FormControlCard>
-    );
-  }
-);
+  const text = field.value?.toLocaleString(undefined, {
+    dateStyle: 'short',
+  });
+
+  return (
+    <FormControlCard {...control} error={fieldState.error?.message}>
+      <Popover>
+        <PopoverTrigger>
+          <InputGroup>
+            <Input value={text ?? ''} placeholder="Select a Date" variant="main" readOnly />
+            <InputRightElement zIndex={0}>
+              <CalendarIcon />
+            </InputRightElement>
+          </InputGroup>
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverBody>
+            <DatePicker inputRef={ref} {...field} {...props} />
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+    </FormControlCard>
+  );
+};

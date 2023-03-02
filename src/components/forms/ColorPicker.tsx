@@ -13,92 +13,90 @@ import {
 } from '@chakra-ui/react';
 import { HexAlphaColorPicker, HexColorPicker } from 'react-colorful';
 import { ColorPickerBaseProps } from 'react-colorful/dist/types';
-import { FormComponentProps, FormControlCard } from './Form';
+import { ControlledInput, FormControlCard } from './Form';
 import { useColors } from '@/theme';
-import { Override } from '@/utils/types';
-import { forwardRef } from 'react';
 import { convertHexToRGBA } from '@/utils/common';
+import { useController } from 'react-hook-form';
 
-export type ColorPickerProps = Override<
-  Omit<ColorPickerBaseProps<string>, 'color'>,
-  {
-    value?: string;
-    onChange?: (color: string) => void;
-    supportAlpha?: boolean;
-  }
->;
+export type ColorPickerFormProps = Omit<ColorPickerProps, 'value' | 'onChange'>;
 
-export type ColorPickerFormProps = FormComponentProps<ColorPickerProps>;
+export const SmallColorPickerForm: ControlledInput<
+  ColorPickerFormProps,
+  ColorPickerProps['value']
+> = ({ control, controller, ...props }) => {
+  const { field, fieldState } = useController(controller);
+  const { value } = field;
 
-export const SmallColorPickerForm = forwardRef<HTMLInputElement, ColorPickerFormProps>(
-  ({ value, control, onChange, ...props }, ref) => {
-    return (
-      <FormControlCard {...control}>
-        <Popover>
-          <PopoverTrigger>
-            <InputGroup>
-              <InputLeftAddon bg={value} rounded="xl" h="full" />
-              <Input
-                value={value ?? ''}
-                placeholder={value ?? 'Select a color'}
-                onChange={(e) => onChange?.(e.target.value)}
-                variant="main"
-                ref={ref}
-              />
-            </InputGroup>
-          </PopoverTrigger>
-          <PopoverContent>
-            <PopoverBody>
-              <ColorPicker value={value} onChange={onChange} {...props} />
-            </PopoverBody>
-          </PopoverContent>
-        </Popover>
-      </FormControlCard>
-    );
-  }
-);
-
-SmallColorPickerForm.displayName = 'SmallColorPickerForm';
-
-export const ColorPickerForm = forwardRef<HTMLInputElement, ColorPickerFormProps>(
-  ({ control, value, onChange, ...props }, ref) => {
-    const { textColorSecondary } = useColors();
-
-    return (
-      <FormControlCard {...control}>
-        <SimpleGrid minChildWidth="200px" gap={2}>
-          <Flex direction="column" gap={3}>
-            <Center
-              minH="150px"
-              rounded="xl"
-              border="1px solid"
-              borderColor="inputBorder"
-              bgColor={value == null ? 'inputBackground' : convertHexToRGBA(value)}
-              flex={1}
-            >
-              {value == null && (
-                <Text fontSize="sm" color={textColorSecondary}>
-                  No Color
-                </Text>
-              )}
-            </Center>
+  return (
+    <FormControlCard {...control} error={fieldState.error?.message}>
+      <Popover>
+        <PopoverTrigger>
+          <InputGroup>
+            <InputLeftAddon bg={value} rounded="xl" h="full" />
             <Input
-              mt="auto"
-              value={value ?? ''}
-              placeholder={value ?? 'Select a color'}
-              onChange={(e) => onChange?.(e.target.value)}
               variant="main"
-              ref={ref}
+              placeholder={value ?? 'Select a color'}
+              {...field}
+              value={field.value ?? ''}
             />
-          </Flex>
-          <ColorPicker value={value} onChange={onChange} {...props} />
-        </SimpleGrid>
-      </FormControlCard>
-    );
-  }
-);
+          </InputGroup>
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverBody>
+            <ColorPicker value={value} onChange={field.onChange} {...props} />
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+    </FormControlCard>
+  );
+};
 
-ColorPickerForm.displayName = 'ColorPickerForm';
+export const ColorPickerForm: ControlledInput<ColorPickerFormProps, ColorPickerProps['value']> = ({
+  control,
+  controller,
+  ...props
+}) => {
+  const { field, fieldState } = useController(controller);
+  const { textColorSecondary } = useColors();
+  const { value } = field;
+
+  return (
+    <FormControlCard {...control} error={fieldState.error?.message}>
+      <SimpleGrid columns={{ base: 1, '3sm': 2 }} gap={2}>
+        <Flex direction="column" gap={3}>
+          <Center
+            display={{ base: 'none', '3sm': 'flex' }}
+            minH="150px"
+            rounded="xl"
+            border="1px solid"
+            borderColor="inputBorder"
+            bgColor={value == null ? 'inputBackground' : convertHexToRGBA(value)}
+            flex={1}
+          >
+            {value == null && (
+              <Text fontSize="sm" color={textColorSecondary}>
+                No Color
+              </Text>
+            )}
+          </Center>
+          <Input
+            placeholder={value ?? 'Select a color'}
+            variant="main"
+            {...field}
+            value={field.value ?? ''}
+          />
+        </Flex>
+        <ColorPicker value={field.value} onChange={field.onChange} {...props} />
+      </SimpleGrid>
+    </FormControlCard>
+  );
+};
+
+export type ColorPickerProps = {
+  value?: string;
+  onChange?: (color: string) => void;
+  supportAlpha?: boolean;
+};
 
 export function ColorPicker({ value, onChange, supportAlpha, ...rest }: ColorPickerProps) {
   const props: Partial<ColorPickerBaseProps<string>> = {

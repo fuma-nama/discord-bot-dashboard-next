@@ -5,12 +5,12 @@ import {
   FormLabel,
 } from '@chakra-ui/form-control';
 import { Flex, Spacer, Text } from '@chakra-ui/layout';
-import { ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { useColors } from '@/theme';
+import { FieldPathByValue, FieldValues, Path, UseControllerProps } from 'react-hook-form';
+import { Override } from '@/utils/types';
 
-export type FormControlCardProps = {
-  label?: string | ReactNode;
-  description?: string | ReactNode;
+export type FormProps = {
   required?: boolean;
   baseControl?: FormControlProps;
   /**
@@ -20,11 +20,43 @@ export type FormControlCardProps = {
   children: ReactNode;
 };
 
+export type FormControlCardProps = FormProps & {
+  label?: string | ReactNode;
+  description?: string | ReactNode;
+};
+
 export type FormComponentProps<T> = T & {
   control: Omit<FormControlCardProps, 'children'>;
 };
 
-export function Form({ required, baseControl, error, children }: FormControlCardProps) {
+export type ControlledInputProps<
+  T,
+  TFieldValue extends FieldValues = FieldValues,
+  TName extends Path<TFieldValue> = Path<TFieldValue>
+> = Override<
+  T,
+  {
+    control: {
+      label?: string | ReactNode;
+      description?: string | ReactNode;
+      required?: boolean;
+      baseControl?: FormControlProps;
+    };
+    controller: UseControllerProps<TFieldValue, TName>;
+  }
+>;
+
+export type ControlledInput<Props, V = unknown> = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPathByValue<TFieldValues, V | undefined | null> = FieldPathByValue<
+    TFieldValues,
+    V | undefined | null
+  >
+>(
+  props: ControlledInputProps<Props, TFieldValues, TName>
+) => ReactElement;
+
+export function Form(props: FormControlProps) {
   const { cardBg, shadow } = useColors();
 
   return (
@@ -34,12 +66,10 @@ export function Form({ required, baseControl, error, children }: FormControlCard
       bg={cardBg}
       rounded="3xl"
       p={4}
-      isRequired={required}
-      isInvalid={error != null}
       boxShadow={shadow}
-      {...baseControl}
+      {...props}
     >
-      {children}
+      {props.children}
     </FormControl>
   );
 }
@@ -52,20 +82,8 @@ export function FormControlCard({
   children,
   error,
 }: FormControlCardProps) {
-  const { cardBg, textColorSecondary, shadow } = useColors();
-
   return (
-    <FormControl
-      as={Flex}
-      direction="column"
-      bg={cardBg}
-      rounded="3xl"
-      p={4}
-      isRequired={required}
-      isInvalid={error != null}
-      boxShadow={shadow}
-      {...baseControl}
-    >
+    <Form isRequired={required} isInvalid={error != null} {...baseControl}>
       <FormLabel
         fontSize={{ base: 'lg', lg: 'xl' }}
         fontWeight={{ base: '600', lg: 'bold' }}
@@ -73,10 +91,10 @@ export function FormControlCard({
       >
         {label}
       </FormLabel>
-      <Text color={textColorSecondary}>{description}</Text>
+      <Text color="textColorSecondary">{description}</Text>
       <Spacer mt={2} />
       {children}
       <FormErrorMessage>{error}</FormErrorMessage>
-    </FormControl>
+    </Form>
   );
 }

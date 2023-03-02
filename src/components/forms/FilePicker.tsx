@@ -1,67 +1,66 @@
 import { Box, Center, Flex, Text, VStack } from '@chakra-ui/layout';
 import { Icon, Image } from '@chakra-ui/react';
-import { ComponentPropsWithoutRef, forwardRef, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DropzoneOptions, useDropzone } from 'react-dropzone';
 import { FaFile } from 'react-icons/fa';
 import { MdUpload } from 'react-icons/md';
-import { useColorsExtend } from '@/theme';
-import { FormComponentProps, FormControlCard } from './Form';
-import { Override } from '@/utils/types';
+import { ControlledInput, FormControlCard } from './Form';
+import { useController } from 'react-hook-form';
 
-export type FilePickerProps = Override<
-  ComponentPropsWithoutRef<'input'>,
-  {
-    value?: File[];
-    onChange?: (v: File[]) => void;
-    text?: string;
-    options?: DropzoneOptions;
-  }
->;
+export type FilePickerFormProps = {
+  id?: string;
+  text?: string;
+  options?: DropzoneOptions;
+  placeholder?: string;
+};
 
-export const FilePicker = forwardRef<HTMLInputElement, FilePickerProps>(function FilePicker(
-  { value, onChange, text, options, ...props },
-  ref
-) {
+export const FilePickerForm: ControlledInput<FilePickerFormProps, File[]> = (props) => {
+  const { control, controller, options, placeholder, ...rest } = props;
+  const { field, fieldState } = useController(controller);
+  const { value, onChange } = field;
+
   const { getRootProps, getInputProps } = useDropzone({
     ...options,
-    onDrop: (files) => onChange?.(files),
+    onDrop: (files) => onChange(files),
   });
 
   const empty = value == null || value.length === 0;
 
   return (
-    <Box
-      bg="inputBackground"
-      border="1px dashed"
-      borderColor="inputBorder"
-      borderRadius="16px"
-      w="100%"
-      p={5}
-      cursor="pointer"
-    >
-      <div {...getRootProps()}>
-        <input {...getInputProps({ ...props, ref })} />
-        {empty ? (
-          <VStack textAlign="center">
-            <Icon as={MdUpload} w="70px" h="70px" />
-            <Text fontSize="lg" fontWeight="700" mb="12px">
-              Upload Files
-            </Text>
-            <Text fontSize="sm" fontWeight="500" color="secondaryGray.500">
-              {text}
-            </Text>
-          </VStack>
-        ) : (
-          <Flex direction="column" gap={2}>
-            {value?.map((file, i) => (
-              <FilePreview key={i} file={file} />
-            ))}
-          </Flex>
-        )}
-      </div>
-    </Box>
+    <FormControlCard {...control} error={fieldState.error?.message}>
+      <Box
+        bg="inputBackground"
+        border="1px dashed"
+        borderColor="inputBorder"
+        borderRadius="16px"
+        w="100%"
+        p={5}
+        cursor="pointer"
+      >
+        <div {...getRootProps()}>
+          <input {...getInputProps({ ...field, ...rest })} />
+          {empty ? (
+            <VStack textAlign="center">
+              <Icon as={MdUpload} w="70px" h="70px" />
+              <Text fontSize="lg" fontWeight="700" mb="12px">
+                Upload Files
+              </Text>
+              <Text fontSize="sm" fontWeight="500" color="secondaryGray.500">
+                {placeholder}
+              </Text>
+            </VStack>
+          ) : (
+            <Flex direction="column" gap={2}>
+              {(value as File[])?.map((file, i) => (
+                <FilePreview key={i} file={file} />
+              ))}
+            </Flex>
+          )}
+        </div>
+      </Box>
+    </FormControlCard>
   );
-});
+};
 
 function FilePreview({ file }: { file: File }) {
   const url = useFileUrl(file);
@@ -84,18 +83,6 @@ function FilePreview({ file }: { file: File }) {
     </Flex>
   );
 }
-
-export type FilePickerFormProps = FormComponentProps<FilePickerProps>;
-
-export const FilePickerForm = forwardRef<HTMLInputElement, FilePickerFormProps>(
-  function FilePickerForm({ control, ...props }, ref) {
-    return (
-      <FormControlCard {...control}>
-        <FilePicker {...props} ref={ref} />
-      </FormControlCard>
-    );
-  }
-);
 
 function useFileUrl(file: Blob) {
   const [url, setUrl] = useState<string>();
