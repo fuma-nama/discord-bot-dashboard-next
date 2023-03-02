@@ -6,7 +6,9 @@ import { NextPageWithLayout } from '@/pages/_app';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createForm } from '@/utils/forms/createForm';
+import { SwitchForm } from '@/components/forms/SwitchField';
+import { FormControlCard } from '@/components/forms/Form';
+import { InputForm } from '@/components/forms/InputForm';
 
 const schema = z.object({
   beta: z.boolean(),
@@ -24,13 +26,7 @@ type ExampleSettings = z.infer<typeof schema>;
  * Exmaple for built-in use form hook
  */
 const GuildSettingsPage: NextPageWithLayout = () => {
-  const {
-    watch,
-    register,
-    control,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<ExampleSettings>({
+  const { watch, register, control, handleSubmit } = useForm<ExampleSettings>({
     resolver: zodResolver(schema),
     defaultValues: {
       beta: true,
@@ -39,56 +35,6 @@ const GuildSettingsPage: NextPageWithLayout = () => {
       channel: undefined,
     },
   });
-
-  const form = createForm(
-    {
-      control: {
-        label: 'Beta Features',
-        description: 'Use beta features before releasing',
-      },
-      type: 'switch',
-      ...register('beta'),
-    },
-    {
-      type: 'custom-form',
-      control: {
-        label: 'Admin Role',
-        description: 'Roles that able to configure the discord bot',
-      },
-      component: (
-        <Controller
-          control={control}
-          name="role"
-          render={({ field }) => <RolesSelect {...field} />}
-        />
-      ),
-    },
-    {
-      type: 'input',
-      control: {
-        label: 'Command prefix',
-        description: 'Change the default command prefix',
-        error: errors.prefix?.message,
-      },
-      placeholder: '/',
-      ...register('prefix'),
-    },
-    {
-      type: 'custom-form',
-      control: {
-        label: 'Logs',
-        description: 'The channel to log bot states',
-        error: errors.channel?.message,
-      },
-      component: (
-        <Controller
-          control={control}
-          name="channel"
-          render={({ field }) => <ChannelSelect {...field} />}
-        />
-      ),
-    }
-  );
 
   return (
     <Flex direction="column">
@@ -106,7 +52,44 @@ const GuildSettingsPage: NextPageWithLayout = () => {
       </Text>
 
       <SimpleGrid mt={5} columns={{ base: 1, md: 2 }} gap={3}>
-        {form}
+        <SwitchForm
+          control={{
+            label: 'Beta Features',
+            description: 'Use beta features before releasing',
+          }}
+          controller={{ control, name: 'beta' }}
+        />
+        <Controller
+          control={control}
+          name="role"
+          render={({ field, fieldState }) => (
+            <FormControlCard
+              label="Admin Role"
+              description="Roles that able to configure the discord bot"
+              error={fieldState.error?.message}
+            >
+              <RolesSelect {...field} />
+            </FormControlCard>
+          )}
+        />
+        <InputForm
+          control={{ label: 'Command prefix', description: 'Change the default command prefix' }}
+          placeholder="/"
+          {...register('prefix')}
+        />
+        <Controller
+          control={control}
+          name="channel"
+          render={({ field, fieldState }) => (
+            <FormControlCard
+              label="Logs"
+              description="The channel to log bot states"
+              error={fieldState.error?.message}
+            >
+              <ChannelSelect {...field} />
+            </FormControlCard>
+          )}
+        />
       </SimpleGrid>
     </Flex>
   );
