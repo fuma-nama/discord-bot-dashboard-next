@@ -26,7 +26,7 @@ type ExampleSettings = z.infer<typeof schema>;
  * Exmaple for built-in use form hook
  */
 const GuildSettingsPage: NextPageWithLayout = () => {
-  const { watch, register, control, handleSubmit } = useForm<ExampleSettings>({
+  const { watch, register, control, formState, handleSubmit } = useForm<ExampleSettings>({
     resolver: zodResolver(schema),
     defaultValues: {
       beta: true,
@@ -35,6 +35,7 @@ const GuildSettingsPage: NextPageWithLayout = () => {
       channel: undefined,
     },
   });
+  const errors = formState.errors;
 
   return (
     <Flex direction="column">
@@ -73,7 +74,11 @@ const GuildSettingsPage: NextPageWithLayout = () => {
           )}
         />
         <InputForm
-          control={{ label: 'Command prefix', description: 'Change the default command prefix' }}
+          control={{
+            label: 'Command prefix',
+            description: 'Change the default command prefix',
+            error: errors.prefix?.message,
+          }}
           placeholder="/"
           {...register('prefix')}
         />
