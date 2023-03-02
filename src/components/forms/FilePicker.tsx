@@ -15,7 +15,9 @@ export type FilePickerFormProps = {
   placeholder?: string;
 };
 
-export const FilePickerForm: ControlledInput<FilePickerFormProps, File[]> = (props) => {
+export const FilePickerForm: ControlledInput<FilePickerFormProps, File[] | undefined | null> = (
+  props
+) => {
   const { control, controller, options, placeholder, ...rest } = props;
   const { field, fieldState } = useController(controller);
   const { value, onChange } = field;

@@ -17,10 +17,7 @@ export type ControlledInputProps<
 
 export type ControlledInput<Props, V = unknown> = <
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPathByValue<TFieldValues, V | undefined | null> = FieldPathByValue<
-    TFieldValues,
-    V | undefined | null
-  >
+  TName extends FieldPathByValue<TFieldValues, V> = FieldPathByValue<TFieldValues, V>
 >(
   props: ControlledInputProps<Props, TFieldValues, TName>
 ) => ReactElement;

@@ -1,9 +1,9 @@
 import { SimpleGrid } from '@chakra-ui/layout';
-import { FormCard, FormCardController } from '@/components/forms/Form';
+import { FormCardController } from '@/components/forms/Form';
 import { TextAreaForm } from '@/components/forms/TextAreaForm';
 import { FormRender, WelcomeMessageFeature } from '@/config/types';
 import { ChannelSelect } from './ChannelSelect';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { ColorPickerForm, SmallColorPickerForm } from '@/components/forms/ColorPicker';
