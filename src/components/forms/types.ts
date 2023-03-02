@@ -16,8 +16,8 @@ export type ControlledInputProps<
 >;
 
 export type ControlledInput<Props, V = unknown> = <
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPathByValue<TFieldValues, V> = FieldPathByValue<TFieldValues, V>
+  TFieldValues extends FieldValues,
+  TName extends FieldPathByValue<TFieldValues, V>
 >(
   props: ControlledInputProps<Props, TFieldValues, TName>
 ) => ReactElement;
