@@ -39,7 +39,7 @@ export const FilePickerForm: ControlledInput<FilePickerFormProps, File[]> = (pro
         cursor="pointer"
       >
         <div {...getRootProps()}>
-          <input {...getInputProps({ ...field, ...rest })} />
+          <input {...getInputProps({ ...field, ...rest, value: undefined })} />
           {empty ? (
             <VStack textAlign="center">
               <Icon as={MdUpload} w="70px" h="70px" />
