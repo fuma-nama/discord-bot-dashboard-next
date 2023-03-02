@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import { DropzoneOptions, useDropzone } from 'react-dropzone';
 import { FaFile } from 'react-icons/fa';
 import { MdUpload } from 'react-icons/md';
-import { ControlledInput, FormControlCard } from './Form';
+import { FormCard } from './Form';
 import { useController } from 'react-hook-form';
+import { ControlledInput } from './types';
 
 export type FilePickerFormProps = {
   id?: string;
@@ -27,7 +28,7 @@ export const FilePickerForm: ControlledInput<FilePickerFormProps, File[]> = (pro
   const empty = value == null || value.length === 0;
 
   return (
-    <FormControlCard {...control} error={fieldState.error?.message}>
+    <FormCard {...control} error={fieldState.error?.message}>
       <Box
         bg="inputBackground"
         border="1px dashed"
@@ -58,7 +59,7 @@ export const FilePickerForm: ControlledInput<FilePickerFormProps, File[]> = (pro
           )}
         </div>
       </Box>
-    </FormControlCard>
+    </FormCard>
   );
 };
 

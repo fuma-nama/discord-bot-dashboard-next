@@ -1,5 +1,5 @@
 import { SimpleGrid } from '@chakra-ui/layout';
-import { FormControlCard } from '@/components/forms/Form';
+import { FormCard, FormCardController } from '@/components/forms/Form';
 import { TextAreaForm } from '@/components/forms/TextAreaForm';
 import { FormRender, WelcomeMessageFeature } from '@/config/types';
 import { ChannelSelect } from './ChannelSelect';
@@ -13,7 +13,7 @@ import { SwitchForm } from '@/components/forms/SwitchField';
 
 const schema = z.object({
   message: z.string().min(20),
-  channel: z.string(),
+  channel: z.string().refine((e) => e === '1', { message: 'No' }),
   color: z.string().optional(),
   date: z.date().optional(),
   file: z.custom<File[]>().optional(),
@@ -42,18 +42,13 @@ export function useWelcomeMessageFeature(
   return {
     component: (
       <SimpleGrid columns={{ base: 1, lg: 2 }} gap={3}>
-        <Controller
-          control={control}
-          name="channel"
-          render={({ field, fieldState }) => (
-            <FormControlCard
-              label="Channel"
-              description="Where to send the welcome message"
-              error={fieldState.error?.message}
-            >
-              <ChannelSelect {...field} />
-            </FormControlCard>
-          )}
+        <FormCardController
+          control={{
+            label: 'Channel',
+            description: 'Where to send the welcome message',
+          }}
+          controller={{ control, name: 'channel' }}
+          render={({ field }) => <ChannelSelect {...field} />}
         />
         <TextAreaForm
           control={{

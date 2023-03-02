@@ -1,15 +1,16 @@
 import { Input, InputProps } from '@chakra-ui/react';
 import { forwardRef } from 'react';
-import { FormComponentProps, FormControlCard } from './Form';
+import { FormCard } from './Form';
+import { WithControl } from './types';
 
-export type InputFormProps = FormComponentProps<InputProps>;
+export type InputFormProps = WithControl<InputProps>;
 
 export const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
   ({ control, ...props }, ref) => {
     return (
-      <FormControlCard {...control}>
+      <FormCard {...control}>
         <Input variant="main" ref={ref} {...props} />
-      </FormControlCard>
+      </FormCard>
     );
   }
 );

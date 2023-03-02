@@ -13,10 +13,11 @@ import {
 } from '@chakra-ui/react';
 import { HexAlphaColorPicker, HexColorPicker } from 'react-colorful';
 import { ColorPickerBaseProps } from 'react-colorful/dist/types';
-import { ControlledInput, FormControlCard } from './Form';
+import { FormCard } from './Form';
 import { useColors } from '@/theme';
 import { convertHexToRGBA } from '@/utils/common';
 import { useController } from 'react-hook-form';
+import { ControlledInput } from './types';
 
 export type ColorPickerFormProps = Omit<ColorPickerProps, 'value' | 'onChange'>;
 
@@ -28,7 +29,7 @@ export const SmallColorPickerForm: ControlledInput<
   const { value } = field;
 
   return (
-    <FormControlCard {...control} error={fieldState.error?.message}>
+    <FormCard {...control} error={fieldState.error?.message}>
       <Popover>
         <PopoverTrigger>
           <InputGroup>
@@ -47,7 +48,7 @@ export const SmallColorPickerForm: ControlledInput<
           </PopoverBody>
         </PopoverContent>
       </Popover>
-    </FormControlCard>
+    </FormCard>
   );
 };
 
@@ -61,7 +62,7 @@ export const ColorPickerForm: ControlledInput<ColorPickerFormProps, ColorPickerP
   const { value } = field;
 
   return (
-    <FormControlCard {...control} error={fieldState.error?.message}>
+    <FormCard {...control} error={fieldState.error?.message}>
       <SimpleGrid columns={{ base: 1, '3sm': 2 }} gap={2}>
         <Flex direction="column" gap={3}>
           <Center
@@ -88,7 +89,7 @@ export const ColorPickerForm: ControlledInput<ColorPickerFormProps, ColorPickerP
         </Flex>
         <ColorPicker value={field.value} onChange={field.onChange} {...props} />
       </SimpleGrid>
-    </FormControlCard>
+    </FormCard>
   );
 };
 

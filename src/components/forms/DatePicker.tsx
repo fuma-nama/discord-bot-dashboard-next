@@ -1,5 +1,6 @@
 import { Calendar, CalendarProps } from 'react-calendar';
-import { ControlledInput, FormControlCard } from './Form';
+import { FormCard } from './Form';
+import { ControlledInput } from './types';
 import { Icon } from '@chakra-ui/react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { Text } from '@chakra-ui/layout';
@@ -41,9 +42,9 @@ export const DatePickerForm: ControlledInput<DatePickerProps, CalendarProps['val
   } = useController(controller);
 
   return (
-    <FormControlCard {...control} error={fieldState.error?.message}>
+    <FormCard {...control} error={fieldState.error?.message}>
       <DatePicker inputRef={ref} {...field} {...props} />
-    </FormControlCard>
+    </FormCard>
   );
 };
 
@@ -62,7 +63,7 @@ export const SmallDatePickerForm: ControlledInput<DatePickerProps, CalendarProps
   });
 
   return (
-    <FormControlCard {...control} error={fieldState.error?.message}>
+    <FormCard {...control} error={fieldState.error?.message}>
       <Popover>
         <PopoverTrigger>
           <InputGroup>
@@ -78,6 +79,6 @@ export const SmallDatePickerForm: ControlledInput<DatePickerProps, CalendarProps
           </PopoverBody>
         </PopoverContent>
       </Popover>
-    </FormControlCard>
+    </FormCard>
   );
 };

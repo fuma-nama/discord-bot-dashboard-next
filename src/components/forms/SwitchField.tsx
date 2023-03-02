@@ -10,7 +10,8 @@ import {
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { useController } from 'react-hook-form';
-import { ControlledInput, Form } from './Form';
+import { Form } from './Form';
+import { ControlledInput } from './types';
 
 export type SwitchFormProps = { id?: string };
 

@@ -7,7 +7,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SwitchForm } from '@/components/forms/SwitchField';
-import { FormControlCard } from '@/components/forms/Form';
+import { FormCard, FormCardController } from '@/components/forms/Form';
 import { InputForm } from '@/components/forms/InputForm';
 
 const schema = z.object({
@@ -60,18 +60,13 @@ const GuildSettingsPage: NextPageWithLayout = () => {
           }}
           controller={{ control, name: 'beta' }}
         />
-        <Controller
-          control={control}
-          name="role"
-          render={({ field, fieldState }) => (
-            <FormControlCard
-              label="Admin Role"
-              description="Roles that able to configure the discord bot"
-              error={fieldState.error?.message}
-            >
-              <RolesSelect {...field} />
-            </FormControlCard>
-          )}
+        <FormCardController
+          control={{
+            label: 'Admin Role',
+            description: 'Roles that able to configure the discord bot',
+          }}
+          controller={{ control, name: 'role' }}
+          render={({ field }) => <RolesSelect {...field} />}
         />
         <InputForm
           control={{
@@ -82,18 +77,13 @@ const GuildSettingsPage: NextPageWithLayout = () => {
           placeholder="/"
           {...register('prefix')}
         />
-        <Controller
-          control={control}
-          name="channel"
-          render={({ field, fieldState }) => (
-            <FormControlCard
-              label="Logs"
-              description="The channel to log bot states"
-              error={fieldState.error?.message}
-            >
-              <ChannelSelect {...field} />
-            </FormControlCard>
-          )}
+        <FormCardController
+          control={{
+            label: 'Logs',
+            description: 'The channel to log bot states',
+          }}
+          controller={{ control, name: 'channel' }}
+          render={({ field }) => <ChannelSelect {...field} />}
         />
       </SimpleGrid>
     </Flex>
