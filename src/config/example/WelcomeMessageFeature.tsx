@@ -3,13 +3,13 @@ import { FormControlCard } from '@/components/forms/Form';
 import { TextAreaForm } from '@/components/forms/TextAreaForm';
 import { FormRender, WelcomeMessageFeature } from '@/config/types';
 import { ChannelSelect } from './ChannelSelect';
-import { Controller, useController, useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { ColorPickerForm } from '@/components/forms/ColorPicker';
+import { ColorPickerForm, SmallColorPickerForm } from '@/components/forms/ColorPicker';
 import { DatePickerForm } from '@/components/forms/DatePicker';
 import { FilePickerForm } from '@/components/forms/FilePicker';
-import { ControlledSwitchForm, SwitchForm } from '@/components/forms/SwitchField';
+import { SwitchForm } from '@/components/forms/SwitchField';
 
 const schema = z.object({
   message: z.string().min(20),
@@ -42,17 +42,19 @@ export function useWelcomeMessageFeature(
   return {
     component: (
       <SimpleGrid columns={{ base: 1, lg: 2 }} gap={3}>
-        <FormControlCard
-          label="Channel"
-          description="Where to send the welcome message"
-          error={errors.channel?.message}
-        >
-          <Controller
-            control={control}
-            name="channel"
-            render={({ field }) => <ChannelSelect {...field} />}
-          />
-        </FormControlCard>
+        <Controller
+          control={control}
+          name="channel"
+          render={({ field, fieldState }) => (
+            <FormControlCard
+              label="Channel"
+              description="Where to send the welcome message"
+              error={fieldState.error?.message}
+            >
+              <ChannelSelect {...field} />
+            </FormControlCard>
+          )}
+        />
         <TextAreaForm
           control={{
             label: 'Message',
@@ -62,45 +64,34 @@ export function useWelcomeMessageFeature(
           placeholder="Type some text here..."
           {...register('message')}
         />
-        <Controller
-          control={control}
-          name="color"
-          render={({ field, fieldState }) => (
-            <ColorPickerForm
-              control={{
-                label: 'Color',
-                description: 'The color of message',
-                error: fieldState.error?.message,
-              }}
-              {...field}
-            />
-          )}
+        <SmallColorPickerForm
+          control={{
+            label: 'Color',
+            description: 'The color of message',
+          }}
+          supportAlpha
+          controller={{ control, name: 'color' }}
         />
-        <Controller
-          control={control}
-          name="date"
-          render={({ field }) => (
-            <DatePickerForm
-              control={{
-                label: 'Date',
-                description: 'The date of today',
-              }}
-              {...field}
-            />
-          )}
+        <ColorPickerForm
+          control={{
+            label: 'Color',
+            description: 'The color of message',
+          }}
+          controller={{ control, name: 'color' }}
         />
-        <Controller
-          control={control}
-          name="file"
-          render={({ field }) => (
-            <FilePickerForm
-              control={{ label: 'File', description: 'The file to upload' }}
-              options={{ accept: { 'image/*': [] }, multiple: false }}
-              {...field}
-            />
-          )}
+        <DatePickerForm
+          control={{
+            label: 'Date',
+            description: 'The date of today',
+          }}
+          controller={{ control, name: 'date' }}
         />
-        <ControlledSwitchForm
+        <FilePickerForm
+          control={{ label: 'File', description: 'The file to upload' }}
+          options={{ accept: { 'image/*': [] }, multiple: false }}
+          controller={{ control, name: 'file' }}
+        />
+        <SwitchForm
           control={{ label: 'Turn on', description: 'Enable something' }}
           controller={{
             control,
