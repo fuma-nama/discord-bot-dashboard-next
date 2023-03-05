@@ -6,7 +6,6 @@ import { guild as view } from '@/config/translations/guild';
 import { BsMailbox } from 'react-icons/bs';
 import { FaRobot } from 'react-icons/fa';
 import { useGuildInfoQuery } from '@/stores';
-import { useColors } from '@/theme';
 import { useRouter } from 'next/router';
 import { getFeatures } from '@/config/utils';
 import { Banner } from '@/components/GuildBanner';
@@ -22,7 +21,11 @@ const GuildPage: NextPageWithLayout = () => {
 
   return (
     <QueryStatus query={query} loading={<LoadingPanel size="sm" />} error={t.error.load}>
-      {query.data != null ? <GuildPanel guild={guild} info={query.data} /> : <NotJoined />}
+      {query.data != null ? (
+        <GuildPanel guild={guild} info={query.data} />
+      ) : (
+        <NotJoined guild={guild} />
+      )}
     </QueryStatus>
   );
 };
@@ -50,9 +53,8 @@ function GuildPanel({ guild: id, info }: { guild: string; info: CustomGuildInfo 
   );
 }
 
-function NotJoined() {
+function NotJoined({ guild }: { guild: string }) {
   const t = view.useTranslations();
-  const { textColorSecondary } = useColors();
 
   return (
     <Center flexDirection="column" gap={3} h="full" p={5}>
@@ -60,10 +62,10 @@ function NotJoined() {
       <Text fontSize="xl" fontWeight="600">
         {t.error['not found']}
       </Text>
-      <Text textAlign="center" color={textColorSecondary}>
+      <Text textAlign="center" color="textColorSecondary">
         {t.error['not found description']}
       </Text>
-      <Link href={config.inviteUrl} target="_blank">
+      <Link href={`${config.inviteUrl}&guild_id=${guild}`} target="_blank">
         <Button variant="brand" leftIcon={<FaRobot />}>
           {t.bn.invite}
         </Button>
