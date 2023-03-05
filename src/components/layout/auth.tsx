@@ -37,7 +37,6 @@ function LanguageSelect() {
         label: names[lang],
         value: lang,
       }}
-      menuPlacement="top"
       onChange={(e) => e != null && setLang(e.value)}
       options={languages.map(({ name, key }) => ({
         label: name,
