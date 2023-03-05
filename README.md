@@ -2,9 +2,7 @@
 
 # Modern Discord Bot Dashboard
 
-> This project is still in development
-
-Using typescript, Next.js 13, react 18 and chakra ui 2.0
+Using Typescript, Next.js 13, React 18 and Chakra ui 2.0
 
 - Support Light/Dark theme
 - Multi languages support (i18n)
