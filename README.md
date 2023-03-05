@@ -11,7 +11,7 @@ Using Typescript, Next.js 13, React 18 and Chakra ui 2.0
 - Flexiable and Customizable
 - Detailed Documentation
 
-**Live Demo:** https://demo-discord-dashboard.vercel.app/
+**Live Demo:** https://demo-bot.vercel.app
 
 - Only 'Welcome message' Feature is Supported
 
