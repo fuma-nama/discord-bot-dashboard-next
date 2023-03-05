@@ -1,6 +1,6 @@
 ![banner](./document/4B9E09C4-48F7-47B4-9622-93A43912BE63.png)
 
-# Mordern Discord Bot Dashboard
+# Modern Discord Bot Dashboard
 
 > This project is still in development
 
@@ -16,7 +16,6 @@ Using typescript, Next.js 13, react 18 and chakra ui 2.0
 **Live Demo:** https://demo-discord-dashboard.vercel.app/
 
 - Only 'Welcome message' Feature is Supported
-- The api might be down sometimes (It is using the free tier of Koyeb)
 
 ## Review (not the latest version)
 
@@ -44,17 +43,19 @@ As a template, you need to customize a few things in order to get it work
    `git clone https://github.com/SonMooSans/discord-bot-dashboard-next.git`
 2. **Install dependencies**
    <br>
-   We prefer pnpm
+   We always prefer `pnpm`
 
    |      NPM      |      PNPM      |
    | :-----------: | :------------: |
    | `npm install` | `pnpm install` |
 
 3. **Customize following files**
-   - [src/pages/user/home](./src/pages/user/home.tsx) **User Dashboard** - Some states about the user
-   - [src/components/HomeView](./src/components/HomeView.tsx) **Home page** - introduce your bot
-   - [src/pages/guilds/[guild]](./src/pages/guilds/[guild]/index.tsx) **Guild Dashboard** - The place to customize guild (ex: features, actions)
-4. **Define Features**
+4. | Path                                  | Description   |
+   | ------------------------------------- | ------------- |
+   | [src/pages/\*](./src/pages)           | All the pages |
+   | [src/components/\*](./src/components) | Components    |
+   | [src/api/\*](./src/api)               | API utils     |
+5. **Define Features**
    <br>
    The dashboard has built-in support for configuring features
    <br>
@@ -79,21 +80,21 @@ As a template, you need to customize a few things in order to get it work
     }
    ```
 
-   The `useRender` property is used to render Feature Configuration Panel
+   The `useRender` property is used to render Feature Configuration Panel <br>
    Take a look at [example/MusicFeature.tsx](./src/config/example/WelcomeMessageFeature.tsx) for examples
 
-5. **Configure General Information**
+6. **Configure General Information**
    <br>
    Modify [src/config/common.tsx](./src/config/common.tsx)
    - Bot name & icon
    - Invite url _(example: https://discord.com/oauth2/authorize?client_id=1234&scope=bot)_
    - Guild settings
-6. **Configure Environment variables**
+7. **Configure Environment variables**
    <br>
    Those variables are required: [.env.example](./.env.example)
    <br>
    You can define environment variables by creating a `.env` file
-7. **Done!**
+8. **Done!**
    <br>
    Start the app by `pnpm run dev` _(depends on your package manager)_
    <br>
@@ -148,8 +149,8 @@ export const { languages, names } = initLanguages<'en' | 'cn'>({
 // Create provider and export it
 // We need to define how to get the current language
 export const provider = initI18n({
-  getLang: () => useSettingsStore.getState().lang,
-  useLang: () => useSettingsStore((s) => s.lang),
+  getLang: () => {...},
+  useLang: () => {...},
 });
 ```
 
@@ -196,10 +197,9 @@ Create your OAuth2 application in https://discord.com/developers/applications
 
 **`Login -> Discord OAuth -> API Routes -> Client`**
 
-- Open login url
+- Login (`/api/auth/login`)
   <br>
-  In dev mode, it is the `http://localhost:8080/login`
-  Redirects user to discord oauth url
+  - Redirects user to discord oauth url
 - Open Discord OAuth url
   - User authorizes the application
   - Redirect back to `/auth/callback` _(http://localhost:3000/auth/callback)_
