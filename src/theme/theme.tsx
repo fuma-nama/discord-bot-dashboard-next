@@ -56,6 +56,10 @@ export const theme = extendTheme(
           default: light.textColorSecondary,
           _dark: dark.textColorSecondary,
         },
+        TextSecondary: {
+          default: light.textColorSecondary,
+          _dark: dark.textColorSecondary,
+        },
         globalBg: {
           default: light.globalBg,
           _dark: dark.globalBg,
@@ -67,6 +71,10 @@ export const theme = extendTheme(
         inputBorder: {
           default: 'blackAlpha.200',
           _dark: 'whiteAlpha.200',
+        },
+        brand: {
+          default: light.brand,
+          _dark: dark.brand,
         },
       },
     },
