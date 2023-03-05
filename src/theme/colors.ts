@@ -1,5 +1,3 @@
-import { useColorModeValue } from '@chakra-ui/react';
-
 export const colors = {
   brand: {
     100: '#E9E3FF',
@@ -81,7 +79,6 @@ export const light = {
   textColorDetails: 'navy.700',
   borderColor: 'white !important',
   cardBg: 'white',
-  menuBg: 'white',
   shadow: '14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
 };
 
@@ -93,17 +90,5 @@ export const dark = {
   textColorDetails: 'secondaryGray.600',
   borderColor: '#111C44 !important',
   cardBg: 'navy.800',
-  menuBg: 'navy.800',
   shadow: '14px 17px 40px 4px rgba(2, 4, 6, 0.06)',
 };
-
-export function useColorsExtend<T>(_light: T, _dark: T) {
-  return useColorModeValue({ ...light, ..._light }, { ...dark, ..._dark });
-}
-
-export function useItemHoverBg() {
-  return useColorModeValue(
-    { cursor: 'pointer', bg: 'white', boxShadow: '0px 40px 58px -20px rgba(112, 144, 176, 0.12)' },
-    { cursor: 'pointer', bg: 'navy.700', boxShadow: 'unset' }
-  );
-}
