@@ -16,7 +16,7 @@ export type AccessToken = {
 };
 
 export function getServerSession(req: NextApiRequest, res: NextApiResponse) {
-  const raw = getCookie(TokenCookie, { req, httpOnly: true }) as string;
+  const raw = getCookie(TokenCookie, { req, res, httpOnly: true }) as string;
   if (raw == null) return null;
 
   return JSON.parse(raw) as AccessToken;
