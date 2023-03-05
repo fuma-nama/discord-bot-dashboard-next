@@ -263,7 +263,7 @@ GET `/guilds/{guild}/channels`
 
 ### Official Example Backend
 
-**Node.js (Typescript):** https://github.com/SonMooSans/discord-bot-dashboard-backend-next
+**Node.js (Typescript):** https://github.com/SonMooSans/discord-dashboard-backend-next
 
 ## Any issues?
 
