@@ -7,6 +7,7 @@ import { NextPage } from 'next';
 import { ReactNode } from 'react';
 import { LoadingPanel } from '@/components/panel/LoadingPanel';
 import Router from 'next/router';
+import Head from 'next/head';
 
 import '@/styles/global.css';
 import 'react-calendar/dist/Calendar.css';
@@ -26,6 +27,9 @@ export default function App(props: AppPropsWithLayout) {
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={client}>
+        <Head>
+          <title>Demo Bot</title>
+        </Head>
         <Content {...props} />
       </QueryClientProvider>
     </ChakraProvider>

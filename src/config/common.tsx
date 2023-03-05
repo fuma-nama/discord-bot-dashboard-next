@@ -2,7 +2,7 @@ import { createIcon } from '@chakra-ui/react';
 import { PermissionFlags } from '@/api/discord';
 import { AppConfig } from './types';
 
-const OmagizeIcon = createIcon({
+const BotIcon = createIcon({
   displayName: 'OmagizeLogo',
   viewBox: '0 0 512 512',
   path: (
@@ -20,8 +20,8 @@ const OmagizeIcon = createIcon({
 });
 
 export const config: AppConfig = {
-  name: 'BadDog',
-  icon: OmagizeIcon,
+  name: 'Demo Bot',
+  icon: BotIcon,
   inviteUrl:
     'https://discord.com/api/oauth2/authorize?client_id=1070011901385375845&permissions=8&scope=bot',
   guild: {
