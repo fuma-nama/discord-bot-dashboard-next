@@ -15,8 +15,8 @@ export const globalStyles = (props: any) => ({
     filter: mode('none', 'invert(1)')(props),
   },
   body: {
-    color: mode(light.textColorPrimary, dark.textColorPrimary)(props),
-    bg: mode(light.globalBg, dark.globalBg)(props),
+    color: 'TextPrimary',
+    bg: 'globalBg',
     fontFamily: 'DM Sans',
     letterSpacing: '-0.5px',
   },

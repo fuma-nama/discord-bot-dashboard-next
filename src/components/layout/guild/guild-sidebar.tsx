@@ -72,7 +72,7 @@ function SidebarItem({
         fontSize="sm"
         bg={active ? 'brand.500' : 'transparent'}
         rounded="xl"
-        color={active ? 'white' : 'textColorPrimary'}
+        color={active ? 'white' : 'TextPrimary'}
         border="2px solid"
         borderColor="blackAlpha.200"
         boxShadow={`0px 0px 15px ${
@@ -99,7 +99,7 @@ function CardItem({ active, href, ...props }: { href: string; active: boolean } 
       href={href}
       rounded="xl"
       p={2}
-      color={active ? 'textColorPrimary' : 'textColorSecondary'}
+      color={active ? 'TextPrimary' : 'TextSecondary'}
       bg={active ? 'globalBg' : undefined}
       _dark={{
         bg: active ? 'whiteAlpha.100' : undefined,

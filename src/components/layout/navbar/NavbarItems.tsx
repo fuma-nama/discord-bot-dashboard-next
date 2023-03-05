@@ -6,19 +6,18 @@ import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { useColorsExtend } from '@/theme';
 
 export function NavbarDefaultItems() {
-  const { iconColor, textColorPrimary, menuBg, shadow } = useNavbarColors();
+  const { iconColor, menuBg, shadow } = useNavbarColors();
 
   return (
     <>
       <SidebarTrigger />
       <ThemeSwitch color={iconColor} />
-      <UserMenu color={textColorPrimary} shadow={shadow} bg={menuBg} />
+      <UserMenu color="TextPrimary" shadow={shadow} bg={menuBg} />
     </>
   );
 }
 
 export function NavbarLinksBox(props: FlexProps) {
-  // Chakra Color Mode
   const { menuBg, shadow } = useNavbarColors();
 
   return (
@@ -38,11 +37,9 @@ export function NavbarLinksBox(props: FlexProps) {
 export function useNavbarColors() {
   return useColorsExtend(
     {
-      textColorBrand: 'brand.700',
       iconColor: 'gray.400',
     },
     {
-      textColorBrand: 'brand.400',
       iconColor: 'white',
     }
   );

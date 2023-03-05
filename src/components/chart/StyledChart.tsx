@@ -1,5 +1,4 @@
-import { useToken } from '@chakra-ui/react';
-import { useColorsExtend } from '@/theme';
+import { useColorModeValue, useToken } from '@chakra-ui/react';
 import { deepmerge } from 'deepmerge-ts';
 import dynamic from 'next/dynamic';
 import type { Props as ChartProps } from 'react-apexcharts';
@@ -7,10 +6,10 @@ import type { Props as ChartProps } from 'react-apexcharts';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export function StyledChart(props: ChartProps) {
-  const { theme, ...colors } = useColorsExtend({ theme: 'light' }, { theme: 'dark' });
+  const theme = useColorModeValue('light', 'dark');
   const [textColorPrimary, textColorSecondary] = useToken('colors', [
-    colors.textColorPrimary,
-    colors.textColorSecondary,
+    'TextPrimary',
+    'TextSecondary',
   ]);
 
   const options: ApexCharts.ApexOptions = {

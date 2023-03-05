@@ -15,14 +15,12 @@ import { dashboard } from '@/config/translations/dashboard';
 import { FaRobot } from 'react-icons/fa';
 import { IoOpen } from 'react-icons/io5';
 import { useSelfUser } from '@/stores';
-import { useColors } from '@/theme';
 import { ExampleDashboardView } from '@/config/example/DashboardView';
 import { NextPageWithLayout } from '@/pages/_app';
 import AppLayout from '@/components/layout/app';
 
 const HomePage: NextPageWithLayout = () => {
   const t = dashboard.useTranslations();
-  const { brand } = useColors();
   const user = useSelfUser();
 
   //used for demo, you should remove it
@@ -32,7 +30,7 @@ const HomePage: NextPageWithLayout = () => {
     <Center h="full" flexDirection="column" textAlign="center" p={3}>
       <Heading size={{ base: 'md', '3sm': 'lg' }}>
         {t.welcome}
-        <Text as="span" color={brand}>
+        <Text as="span" color="brand">
           {user.username}
         </Text>
       </Heading>

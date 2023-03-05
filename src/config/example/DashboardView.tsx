@@ -22,7 +22,6 @@ import {
 } from '@chakra-ui/react';
 import { config } from '@/config/common';
 import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi';
-import { useColors } from '@/theme';
 import { StyledChart } from '@/components/chart/StyledChart';
 import { dashboard } from '@/config/translations/dashboard';
 
@@ -41,12 +40,11 @@ import { ReactElement } from 'react';
 
 export function ExampleDashboardView() {
   const t = dashboard.useTranslations();
-  const { globalBg, brand } = useColors();
 
   if (window == null) return <></>;
   return (
     <Flex direction="column" gap={5}>
-      <HStack rounded="2xl" bg={brand} gap={2} p={5}>
+      <HStack rounded="2xl" bg="brand" gap={2} p={5}>
         <Circle color="white" bg="blackAlpha.300" p={4} display={{ base: 'none', md: 'block' }}>
           <Icon as={FaRobot} w="60px" h="60px" />
         </Circle>
@@ -69,7 +67,7 @@ export function ExampleDashboardView() {
       <Grid templateColumns={{ base: '1fr', lg: '0.5fr 1fr' }} gap={3}>
         <Card rounded="3xl" variant="primary">
           <CardBody as={Center} p={4} flexDirection="column" gap={3}>
-            <Circle p={4} bg={globalBg}>
+            <Circle p={4} bg="globalBg">
               <Icon as={BsMusicNoteBeamed} w="80px" h="80px" />
             </Circle>
             <Text fontWeight="600">{t.vc.create}</Text>
@@ -147,7 +145,6 @@ function TestChart() {
 
 function MusicPlayer() {
   const t = dashboard.useTranslations();
-  const { cardBg, textColorSecondary, brand } = useColors();
 
   return (
     <>
@@ -156,7 +153,7 @@ function MusicPlayer() {
           alt="image"
           rounded="xl"
           src="https://cdns-images.dzcdn.net/images/artist/61bcbf8296b1669499064406c534d39d/500x500.jpg"
-          bg={brand}
+          bg="brand"
           w="200px"
           h="200px"
           display={{ base: 'none', md: 'block' }}
@@ -167,14 +164,14 @@ function MusicPlayer() {
         />
         <Flex
           direction="column"
-          bg={cardBg}
+          bg="CardBackground"
           rounded="xl"
           gap={3}
           p={3}
           flex={1}
           _light={{ boxShadow: '14px 17px 30px 4px rgb(112 144 176 / 13%)' }}
         >
-          <HStack color={textColorSecondary} display={{ base: 'none', md: 'flex' }}>
+          <HStack color="TextSecondary" display={{ base: 'none', md: 'flex' }}>
             <BsPlayBtn />
             <Text>{t.music['now playing']}</Text>
           </HStack>
@@ -240,16 +237,14 @@ function PrimaryButton(props: { icon: ReactElement; children: string }) {
 }
 
 function VoiceChannelItem() {
-  const { brand, textColorSecondary } = useColors();
-
   return (
     <Card rounded="2xl" variant="primary">
       <CardHeader as={HStack}>
-        <Icon as={MdVoiceChat} w="30px" h="30px" color={brand} />
+        <Icon as={MdVoiceChat} w="30px" h="30px" color="brand" />
         <Text>My Channel</Text>
       </CardHeader>
       <CardBody>
-        <Text color={textColorSecondary}>89 Members</Text>
+        <Text color="TextSecondary">89 Members</Text>
       </CardBody>
     </Card>
   );

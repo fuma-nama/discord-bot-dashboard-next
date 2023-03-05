@@ -15,24 +15,21 @@ export function SidebarItem({ item, active }: { item: SidebarItemInfo; active: b
       activeColor: 'white',
     }
   );
-  const hover = useItemHoverBg();
 
   return (
-    <Link href={item.path}>
-      <HStack bg={cardBg} py={2} px={3} rounded="lg" {...(active && hover)}>
-        <Box color={active ? 'white' : brand} bg={active ? brand : globalBg} p={1} rounded="lg">
-          <Box w="20px" h="20px">
-            {item.icon}
-          </Box>
+    <HStack as={Link} bg={cardBg} py={2} px={3} rounded="lg" href={item.path}>
+      <Box color={active ? 'white' : brand} bg={active ? brand : globalBg} p={1} rounded="lg">
+        <Box w="20px" h="20px">
+          {item.icon}
         </Box>
-        <Text
-          me="auto"
-          color={active ? activeColor : textColor}
-          fontWeight={active ? 'bold' : 'normal'}
-        >
-          {item.name}
-        </Text>
-      </HStack>
-    </Link>
+      </Box>
+      <Text
+        me="auto"
+        color={active ? activeColor : textColor}
+        fontWeight={active ? 'bold' : 'normal'}
+      >
+        {item.name}
+      </Text>
+    </HStack>
   );
 }

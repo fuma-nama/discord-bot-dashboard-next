@@ -47,14 +47,16 @@ export const theme = extendTheme(
       Select: selectStyles,
     },
     semanticTokens: {
+      shadows: {
+        normal: {
+          default: light.shadow,
+          _dark: dark.shadow,
+        },
+      },
       colors: {
-        textColorPrimary: {
+        TextPrimary: {
           default: light.textColorPrimary,
           _dark: dark.textColorPrimary,
-        },
-        textColorSecondary: {
-          default: light.textColorSecondary,
-          _dark: dark.textColorSecondary,
         },
         TextSecondary: {
           default: light.textColorSecondary,
@@ -75,6 +77,10 @@ export const theme = extendTheme(
         brand: {
           default: light.brand,
           _dark: dark.brand,
+        },
+        CardBackground: {
+          default: light.cardBg,
+          _dark: dark.cardBg,
         },
       },
     },

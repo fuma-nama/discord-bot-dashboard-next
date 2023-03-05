@@ -18,7 +18,6 @@ import { languages, names, useLang } from '@/config/translations/provider';
 import { profile } from '@/config/translations/profile';
 import { IoLogOut } from 'react-icons/io5';
 import { useSettingsStore, useSelfUser } from '@/stores';
-import { useColors } from '@/theme';
 import { NextPageWithLayout } from '@/pages/_app';
 import AppLayout from '@/components/layout/app';
 import { useLogoutMutation } from '@/utils/auth/hooks';
@@ -31,7 +30,6 @@ const ProfilePage: NextPageWithLayout = () => {
   const logout = useLogoutMutation();
   const t = profile.useTranslations();
 
-  const { cardBg, brand } = useColors();
   const { colorMode, setColorMode } = useColorMode();
   const { lang, setLang } = useLang();
   const [devMode, setDevMode] = useSettingsStore((s) => [s.devMode, s.setDevMode]);
@@ -48,7 +46,7 @@ const ProfilePage: NextPageWithLayout = () => {
             rounded="2xl"
           />
         ) : (
-          <Box bg={brand} rounded="2xl" sx={{ aspectRatio: '1100 / 440' }} />
+          <Box bg="brand" rounded="2xl" sx={{ aspectRatio: '1100 / 440' }} />
         )}
         <VStack mt="-50px" ml="40px" align="start">
           <Avatar
@@ -56,7 +54,7 @@ const ProfilePage: NextPageWithLayout = () => {
             name={user.username}
             w="100px"
             h="100px"
-            ringColor={cardBg}
+            ringColor="CardBackground"
             ring="6px"
           />
           <Text fontWeight="600" fontSize="2xl">

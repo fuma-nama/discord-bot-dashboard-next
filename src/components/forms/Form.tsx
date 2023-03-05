@@ -6,7 +6,6 @@ import {
 } from '@chakra-ui/form-control';
 import { Flex, Spacer, Text } from '@chakra-ui/layout';
 import { ReactNode } from 'react';
-import { useColors } from '@/theme';
 import {
   Controller,
   ControllerProps,
@@ -26,16 +25,14 @@ export type FormProps = {
 };
 
 export function Form(props: FormControlProps) {
-  const { cardBg, shadow } = useColors();
-
   return (
     <FormControl
       as={Flex}
       direction="column"
-      bg={cardBg}
+      bg="CardBackground"
       rounded="3xl"
       p={4}
-      boxShadow={shadow}
+      boxShadow="normal"
       {...props}
     >
       {props.children}
@@ -65,7 +62,7 @@ export function FormCard({
       >
         {label}
       </FormLabel>
-      <Text color="textColorSecondary">{description}</Text>
+      <Text color="TextSecondary">{description}</Text>
       <Spacer mt={2} />
       {children}
       <FormErrorMessage>{error}</FormErrorMessage>

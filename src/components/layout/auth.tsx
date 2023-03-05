@@ -4,7 +4,6 @@ import { config } from '@/config/common';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { ReactNode } from 'react';
 import { SelectField } from '../forms/SelectField';
-import { useSettingsStore } from '@/stores';
 import { languages, names, useLang } from '@/config/translations/provider';
 import { common } from '@/config/translations/common';
 
@@ -13,7 +12,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
     <Box w="full" h="full" overflow="auto" py={40}>
       {children}
       <HStack pos="fixed" top={0} w="full" bg="globalBg" px={{ base: 5, lg: 10 }} py={2}>
-        {config.icon != null && <Icon color="textColorPrimary" as={config.icon} w={10} h={10} />}
+        {config.icon != null && <Icon color="TextPrimary" as={config.icon} w={10} h={10} />}
         <Text fontWeight="600" fontSize="lg">
           {config.name}
         </Text>

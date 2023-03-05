@@ -50,11 +50,10 @@ export function SwitchField(
 ) {
   const { id, label, desc, ...rest } = props;
 
-  const textColorPrimary = useColorModeValue('secondaryGray.900', 'white');
   return (
     <Flex justify="space-between" align="center" borderRadius="16px" gap={3}>
       <FormLabel htmlFor={id} _hover={{ cursor: 'pointer' }} flexDirection="column">
-        <Text color={textColorPrimary} fontSize="md" fontWeight="600">
+        <Text color="TextPrimary" fontSize="md" fontWeight="600">
           {label}
         </Text>
         <Text color="secondaryGray.600" fontSize="md">

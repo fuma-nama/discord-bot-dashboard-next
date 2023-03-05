@@ -3,7 +3,6 @@ import { UseMutationResult } from '@tanstack/react-query';
 import { common } from '@/config/translations/common';
 import { ReactNode } from 'react';
 import { BsCloudRain } from 'react-icons/bs';
-import { useColors } from '@/theme';
 import { ErrorPanel } from './ErrorPanel';
 
 export type Props = {
@@ -28,14 +27,13 @@ export function MutationPanel({
 
 export function LoadingPanel({ size, ...props }: Props & CenterProps) {
   const t = common.useTranslations();
-  const { brand, textColorPrimary } = useColors();
 
   if (size === 'sm') {
     return (
       <Center w="full" h="full" {...props}>
         <VStack>
           <Spinner size="lg" />
-          <Text color={textColorPrimary}>{t.loading}</Text>
+          <Text color="TextPrimary">{t.loading}</Text>
         </VStack>
       </Center>
     );
@@ -52,13 +50,13 @@ export function LoadingPanel({ size, ...props }: Props & CenterProps) {
             w="150px"
             h="150px"
             thickness="4px"
-            color={brand}
+            color="brand"
           />
 
-          <Icon color={brand} as={BsCloudRain} w="100px" h="100px" />
+          <Icon color="brand" as={BsCloudRain} w="100px" h="100px" />
         </Box>
 
-        <Text color={brand} fontWeight="bold">
+        <Text color="brand" fontWeight="bold">
           {t.loading}
         </Text>
       </VStack>

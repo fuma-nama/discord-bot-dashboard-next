@@ -62,7 +62,7 @@ function NotJoined({ guild }: { guild: string }) {
       <Text fontSize="xl" fontWeight="600">
         {t.error['not found']}
       </Text>
-      <Text textAlign="center" color="textColorSecondary">
+      <Text textAlign="center" color="TextSecondary">
         {t.error['not found description']}
       </Text>
       <Link href={`${config.inviteUrl}&guild_id=${guild}`} target="_blank">

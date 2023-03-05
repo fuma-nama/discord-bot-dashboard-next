@@ -9,7 +9,7 @@ import {
   SelectInstance,
 } from 'chakra-react-select';
 import { forwardRef, ReactNode } from 'react';
-import { dark, light, useColors } from '@/theme';
+import { dark, light } from '@/theme';
 
 const customComponents = {
   SingleValue: ({ children, ...props }: any) => {
@@ -102,11 +102,9 @@ export type Option = OptionBase & {
 };
 
 export const SelectFieldBase = forwardRef<SelectInstance, Props>((props, ref) => {
-  const { brand } = useColors();
-
   return (
     <Select<any, any, any>
-      focusBorderColor={brand}
+      focusBorderColor="brand"
       components={customComponents}
       chakraStyles={styles}
       ref={ref}

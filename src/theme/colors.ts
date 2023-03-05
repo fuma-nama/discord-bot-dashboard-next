@@ -97,10 +97,6 @@ export const dark = {
   shadow: '14px 17px 40px 4px rgba(2, 4, 6, 0.06)',
 };
 
-export function useColors() {
-  return useColorModeValue(light, dark);
-}
-
 export function useColorsExtend<T>(_light: T, _dark: T) {
   return useColorModeValue({ ...light, ..._light }, { ...dark, ..._dark });
 }

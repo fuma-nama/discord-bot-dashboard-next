@@ -14,7 +14,6 @@ import {
 import { HexAlphaColorPicker, HexColorPicker } from 'react-colorful';
 import { ColorPickerBaseProps } from 'react-colorful/dist/types';
 import { FormCard } from './Form';
-import { useColors } from '@/theme';
 import { convertHexToRGBA } from '@/utils/common';
 import { useController } from 'react-hook-form';
 import { ControlledInput } from './types';
@@ -58,7 +57,6 @@ export const ColorPickerForm: ControlledInput<ColorPickerFormProps, ColorPickerP
   ...props
 }) => {
   const { field, fieldState } = useController(controller);
-  const { textColorSecondary } = useColors();
   const { value } = field;
 
   return (
@@ -75,7 +73,7 @@ export const ColorPickerForm: ControlledInput<ColorPickerFormProps, ColorPickerP
             flex={1}
           >
             {value == null && (
-              <Text fontSize="sm" color={textColorSecondary}>
+              <Text fontSize="sm" color="TextSecondary">
                 No Color
               </Text>
             )}

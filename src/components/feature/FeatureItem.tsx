@@ -3,7 +3,6 @@ import { Button, ButtonGroup, Card, CardBody, CardFooter, Switch } from '@chakra
 import { IdFeature } from '@/config/utils';
 import { IoOpen, IoOptions } from 'react-icons/io5';
 import { useEnableFeatureMutation } from '@/stores';
-import { useColors } from '@/theme';
 import { guild as view } from '@/config/translations/guild';
 import Router from 'next/router';
 
@@ -17,7 +16,6 @@ export function FeatureItem({
   enabled: boolean;
 }) {
   const t = view.useTranslations();
-  const { textColorSecondary, brand, globalBg } = useColors();
   const mutation = useEnableFeatureMutation(guild, feature.id);
 
   return (
@@ -25,7 +23,7 @@ export function FeatureItem({
       <CardBody as={Flex} direction="row" gap={3}>
         <Center
           p={5}
-          bg={enabled ? brand : globalBg}
+          bg={enabled ? 'brand' : 'globalBg'}
           color={enabled ? 'white' : undefined}
           rounded="xl"
           w="60px"
@@ -37,7 +35,7 @@ export function FeatureItem({
           <Text fontSize="xl" fontWeight="600">
             {feature.name}
           </Text>
-          <Text color={textColorSecondary}>{feature.description}</Text>
+          <Text color="TextSecondary">{feature.description}</Text>
         </Flex>
         <>
           <Switch

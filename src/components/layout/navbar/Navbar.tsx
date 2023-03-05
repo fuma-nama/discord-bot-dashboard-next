@@ -15,21 +15,12 @@ import { useActiveSidebarItem } from '@/utils/router';
 import { NavbarDefaultItems, NavbarLinksBox } from './NavbarItems';
 import { IoHome } from 'react-icons/io5';
 import { FaChevronRight as ChevronRightIcon } from 'react-icons/fa';
-import { show, useColorsExtend } from '@/theme';
+import { show } from '@/theme';
 import { common } from '@/config/translations/common';
 import Link from 'next/link';
 
 export function DefaultNavbar({ children }: { children?: ReactNode }) {
   const activeItem = useActiveSidebarItem();
-  const { textColorPrimary, linkColor } = useColorsExtend(
-    {
-      linkColor: 'brand.400',
-    },
-    {
-      linkColor: 'cyan.200',
-    }
-  );
-
   const breadcrumb = [
     {
       icon: (<IoHome />) as ReactNode,
@@ -60,7 +51,16 @@ export function DefaultNavbar({ children }: { children?: ReactNode }) {
       >
         <Breadcrumb
           fontSize="sm"
-          separator={<Icon verticalAlign="middle" as={ChevronRightIcon} color={linkColor} />}
+          separator={
+            <Icon
+              verticalAlign="middle"
+              as={ChevronRightIcon}
+              color="brand.500"
+              _dark={{
+                color: 'brand.100',
+              }}
+            />
+          }
         >
           {breadcrumb.map((item, i) => (
             <BreadcrumbItem key={i}>
@@ -69,8 +69,12 @@ export function DefaultNavbar({ children }: { children?: ReactNode }) {
                 href={item.href}
                 gap={1}
                 rounded="full"
-                colorScheme="brand"
-                color={linkColor}
+                color="brand.500"
+                bg="brand.100"
+                _dark={{
+                  color: 'brand.100',
+                  bg: '#7551FF33',
+                }}
               >
                 {item.icon}
                 <Text>{item.text}</Text>
@@ -79,7 +83,7 @@ export function DefaultNavbar({ children }: { children?: ReactNode }) {
           ))}
         </Breadcrumb>
         <Text
-          color={textColorPrimary}
+          color="TextPrimary"
           fontWeight="bold"
           fontSize={{ base: '25px', '3sm': '34px' }}
           mb={2}

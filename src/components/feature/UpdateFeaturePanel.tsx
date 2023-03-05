@@ -5,7 +5,6 @@ import { SlideFade } from '@chakra-ui/react';
 import { FeatureConfig, FormRender, CustomFeatures } from '@/config/types';
 import { IoSave } from 'react-icons/io5';
 import { useUpdateFeatureMutation } from '@/stores';
-import { useColors } from '@/theme';
 import { Params } from '../../pages/guilds/[guild]/features/[feature]';
 import { feature as view } from '@/config/translations/feature';
 import { useRouter } from 'next/router';
@@ -33,7 +32,6 @@ export function UpdateFeaturePanel<K extends keyof CustomFeatures>({
 
 function Savebar({ result: { canSave, reset, onSubmit } }: { result: FormRender<any> }) {
   const { guild, feature } = useRouter().query as Params;
-  const { cardBg, shadow } = useColors();
   const mutation = useUpdateFeatureMutation();
   const t = view.useTranslations();
 
@@ -52,14 +50,14 @@ function Savebar({ result: { canSave, reset, onSubmit } }: { result: FormRender<
     <HStack
       as={SlideFade}
       in={canSave}
-      bg={cardBg}
+      bg="CardBackground"
       rounded="3xl"
       zIndex="sticky"
       pos="sticky"
       bottom={{ base: 2, [breakpoint]: '10px' }}
       w="full"
       p={{ base: 1, [breakpoint]: '15px' }}
-      boxShadow={shadow}
+      shadow="normal"
       mt={2}
     >
       <Icon
