@@ -204,7 +204,7 @@ Create your OAuth2 application in https://discord.com/developers/applications
   - Redirects user to discord oauth url
 - Open Discord OAuth url
   - User authorizes the application
-  - Redirect back to `/auth/callback` _(http://localhost:3000/auth/callback)_
+  - Redirect back to `/api/auth/callback`
 - API Routes
   - Store the access token in http-only cookies
   - Redirect back to home page
