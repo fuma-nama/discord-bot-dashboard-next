@@ -62,7 +62,7 @@ const ProfilePage: NextPageWithLayout = () => {
           </Text>
         </VStack>
       </Flex>
-      <Card w="full" rounded="3xl" h="fit-content">
+      <Card w="full" rounded="3xl" h="fit-content" variant="primary">
         <CardHeader fontSize="2xl">{t.settings}</CardHeader>
         <CardBody as={Flex} direction="column" gap={3} mt={3}>
           <SwitchField
