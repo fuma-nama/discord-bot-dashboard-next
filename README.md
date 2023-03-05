@@ -49,13 +49,15 @@ As a template, you need to customize a few things in order to get it work
    | :-----------: | :------------: |
    | `npm install` | `pnpm install` |
 
-3. **Customize following files**
-4. | Path                                  | Description   |
+3. **Customize files**
+   <br>
+   The file structure of this project
+   | Path | Description |
    | ------------------------------------- | ------------- |
-   | [src/pages/\*](./src/pages)           | All the pages |
-   | [src/components/\*](./src/components) | Components    |
-   | [src/api/\*](./src/api)               | API utils     |
-5. **Define Features**
+   | [src/pages/\*](./src/pages) | All the pages |
+   | [src/components/\*](./src/components) | Components |
+   | [src/api/\*](./src/api) | API utils |
+4. **Define Features**
    <br>
    The dashboard has built-in support for configuring features
    <br>
@@ -83,18 +85,18 @@ As a template, you need to customize a few things in order to get it work
    The `useRender` property is used to render Feature Configuration Panel <br>
    Take a look at [example/MusicFeature.tsx](./src/config/example/WelcomeMessageFeature.tsx) for examples
 
-6. **Configure General Information**
+5. **Configure General Information**
    <br>
    Modify [src/config/common.tsx](./src/config/common.tsx)
    - Bot name & icon
    - Invite url _(example: https://discord.com/oauth2/authorize?client_id=1234&scope=bot)_
    - Guild settings
-7. **Configure Environment variables**
+6. **Configure Environment variables**
    <br>
    Those variables are required: [.env.example](./.env.example)
    <br>
    You can define environment variables by creating a `.env` file
-8. **Done!**
+7. **Done!**
    <br>
    Start the app by `pnpm run dev` _(depends on your package manager)_
    <br>
