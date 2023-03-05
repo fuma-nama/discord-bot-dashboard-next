@@ -1,4 +1,5 @@
 import { Languages } from '@/config/translations/provider';
+import Router from 'next/router';
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -28,7 +29,11 @@ export const useSettingsStore = create(
       devMode: false,
       setDevMode: (v) => set({ devMode: v }),
       lang: 'en',
-      setLang: (v) => set({ lang: v }),
+      setLang: (v) => {
+        const path = Router.asPath;
+
+        Router.push(path, path, { locale: v });
+      },
     }),
     {
       name: 'settings',

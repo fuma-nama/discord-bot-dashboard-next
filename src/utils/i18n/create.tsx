@@ -3,7 +3,6 @@ import { Translation, TranslationModel } from './translations';
 
 export type I18nConfig<Languages extends string, Model extends TranslationModel> = {
   useTranslations: () => Translation<Model>;
-  translate: (key: keyof Model) => Model[typeof key];
   translations: {
     [lang in Languages]: Translation<Model>;
   };
@@ -11,7 +10,6 @@ export type I18nConfig<Languages extends string, Model extends TranslationModel>
 };
 
 export type I18nProvider<Languages extends string> = {
-  getLang: () => Languages;
   useLang: () => Languages;
   useTranslations<Model>(text: {
     [K in Languages]: Model;
@@ -30,16 +28,11 @@ export type TranslationofConfig<T> = T extends I18nConfig<never, infer Keys>
  */
 export function initI18n<Languages extends string>(config: {
   /**
-   * get current langauge
-   */
-  getLang: () => Languages;
-  /**
    * get and subscribe current langauge
    */
   useLang: () => Languages;
 }): I18nProvider<Languages> {
   return {
-    getLang: config.getLang,
     useLang: config.useLang,
     useTranslations(text) {
       const lang = config.useLang();
@@ -62,11 +55,6 @@ export function createI18n<Model extends TranslationModel, Languages extends str
 ): I18nConfig<Languages, Model> {
   return {
     translations: translations,
-    translate(key) {
-      const lang = provider.getLang();
-
-      return translations[lang][key];
-    },
     useTranslations() {
       const lang = provider.useLang();
       const translation = translations[lang];

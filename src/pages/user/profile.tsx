@@ -14,7 +14,7 @@ import {
 import { avatarUrl, bannerUrl } from '@/api/discord';
 import { SelectField } from '@/components/forms/SelectField';
 import { SwitchField } from '@/components/forms/SwitchField';
-import { languages, names } from '@/config/translations/provider';
+import { languages, names, useLang } from '@/config/translations/provider';
 import { profile } from '@/config/translations/profile';
 import { IoLogOut } from 'react-icons/io5';
 import { useSettingsStore, useSelfUser } from '@/stores';
@@ -33,12 +33,8 @@ const ProfilePage: NextPageWithLayout = () => {
 
   const { cardBg, brand } = useColors();
   const { colorMode, setColorMode } = useColorMode();
-  const [devMode, setDevMode, lang, setLang] = useSettingsStore((s) => [
-    s.devMode,
-    s.setDevMode,
-    s.lang,
-    s.setLang,
-  ]);
+  const { lang, setLang } = useLang();
+  const [devMode, setDevMode] = useSettingsStore((s) => [s.devMode, s.setDevMode]);
 
   return (
     <Grid templateColumns={{ base: '1fr', md: 'minmax(0, 800px) auto' }} gap={{ base: 3, lg: 6 }}>

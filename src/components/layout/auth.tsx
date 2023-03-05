@@ -5,7 +5,7 @@ import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { ReactNode } from 'react';
 import { SelectField } from '../forms/SelectField';
 import { useSettingsStore } from '@/stores';
-import { languages, names } from '@/config/translations/provider';
+import { languages, names, useLang } from '@/config/translations/provider';
 import { common } from '@/config/translations/common';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
@@ -28,7 +28,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 }
 
 function LanguageSelect() {
-  const [lang, setLang] = useSettingsStore((s) => [s.lang, s.setLang]);
+  const { lang, setLang } = useLang();
 
   return (
     <SelectField

@@ -8,6 +8,10 @@ const nextConfig = {
       { source: '/', destination: '/user/home', permanent: false },
     ];
   },
+  i18n: {
+    locales: ['en', 'cn'],
+    defaultLocale: 'en',
+  },
 };
 
 module.exports = nextConfig;
