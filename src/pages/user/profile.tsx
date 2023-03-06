@@ -17,10 +17,11 @@ import { SwitchField } from '@/components/forms/SwitchField';
 import { languages, names, useLang } from '@/config/translations/provider';
 import { profile } from '@/config/translations/profile';
 import { IoLogOut } from 'react-icons/io5';
-import { useSettingsStore, useSelfUser } from '@/stores';
+import { useSettingsStore } from '@/stores';
 import { NextPageWithLayout } from '@/pages/_app';
 import AppLayout from '@/components/layout/app';
 import { useLogoutMutation } from '@/utils/auth/hooks';
+import { useSelfUser } from '@/api/hooks';
 
 /**
  * User info and general settings here

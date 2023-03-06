@@ -4,7 +4,7 @@ import { ChannelTypes } from '@/api/discord';
 import { Option, SelectField } from '@/components/forms/SelectField';
 import { forwardRef, useMemo } from 'react';
 import { MdRecordVoiceOver } from 'react-icons/md';
-import { useGuildChannelsQuery } from '@/stores';
+import { useGuildChannelsQuery } from '@/api/hooks';
 import { Icon } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { SelectInstance, Props as SelectProps } from 'chakra-react-select';

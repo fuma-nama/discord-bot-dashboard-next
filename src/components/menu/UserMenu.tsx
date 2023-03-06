@@ -11,7 +11,7 @@ import {
 import { UserInfo, avatarUrl } from '@/api/discord';
 import { common } from '@/config/translations/common';
 import Link from 'next/link';
-import { useSelfUser } from '@/stores';
+import { useSelfUser } from '@/api/hooks';
 import { useLogoutMutation } from '@/utils/auth/hooks';
 
 export function UserMenu(props: { color: string; shadow: string; bg: string }) {

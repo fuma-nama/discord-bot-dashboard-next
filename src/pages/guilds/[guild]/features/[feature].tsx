@@ -5,7 +5,7 @@ import { LoadingPanel } from '@/components/panel/LoadingPanel';
 import { features } from '@/config/features';
 import { CustomFeatures, FeatureConfig } from '@/config/types';
 import { BsSearch } from 'react-icons/bs';
-import { useEnableFeatureMutation, useFeatureQuery } from '@/stores';
+import { useEnableFeatureMutation, useFeatureQuery } from '@/api/hooks';
 import { UpdateFeaturePanel } from '@/components/feature/UpdateFeaturePanel';
 import { feature as view } from '@/config/translations/feature';
 import { useRouter } from 'next/router';

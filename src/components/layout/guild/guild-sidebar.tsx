@@ -4,7 +4,7 @@ import { Icon, IconButton } from '@chakra-ui/react';
 import { HSeparator } from '@/components/layout/Separator';
 import { getFeatures } from '@/config/utils';
 import { IoSettings } from 'react-icons/io5';
-import { useGuildPreview, useSelectedGuild } from '@/stores';
+import { useGuildPreview } from '@/api/hooks';
 import { show } from '@/theme';
 import { guild as view } from '@/config/translations/guild';
 import { useRouter } from 'next/router';
@@ -13,16 +13,15 @@ import { Params } from '@/pages/guilds/[guild]/features/[feature]';
 import { ReactNode } from 'react';
 
 export function InGuildSidebar() {
-  const { selected } = useSelectedGuild();
-  const { guild } = useGuildPreview(selected);
-  const t = view.useTranslations();
-
   const router = useRouter();
   const { guild: guildId, feature: activeId } = router.query as Params;
+  const { guild } = useGuildPreview(guildId);
+
+  const t = view.useTranslations();
 
   return (
     <Flex direction="column" gap={2} p={3}>
-      <HStack as={Link} cursor="pointer" mb={2} href={`/guilds/${selected}`}>
+      <HStack as={Link} cursor="pointer" mb={2} href={`/guilds/${guildId}`}>
         <IconButton
           display={{ base: 'none', [show.sidebar]: 'block' }}
           icon={<Icon verticalAlign="middle" as={ChevronLeftIcon} />}
@@ -34,7 +33,7 @@ export function InGuildSidebar() {
       </HStack>
       <VStack align="stretch">
         <SidebarItem
-          href={`/guilds/${selected}/settings`}
+          href={`/guilds/${guildId}/settings`}
           active={router.route === `/guilds/[guild]/settings`}
           icon={<Icon as={IoSettings} />}
           name={t.bn.settings}

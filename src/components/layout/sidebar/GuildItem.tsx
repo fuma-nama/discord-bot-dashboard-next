@@ -1,21 +1,23 @@
 import { Avatar, Card, CardBody, Flex, Text } from '@chakra-ui/react';
 import { Guild, iconUrl } from '@/api/discord';
+import Link from 'next/link';
 
 export function GuildItem({
   guild,
   active,
-  onSelect,
+  href,
 }: {
   guild: Guild;
   active: boolean;
-  onSelect: () => void;
+  href: string;
 }) {
   return (
     <Card
       bg={active ? 'brand' : 'globalBg'}
       color={active ? 'white' : undefined}
-      onClick={onSelect}
       cursor="pointer"
+      as={Link}
+      href={href}
     >
       <CardBody as={Flex} direction="column" gap={3}>
         <Avatar name={guild.name} src={iconUrl(guild)} />

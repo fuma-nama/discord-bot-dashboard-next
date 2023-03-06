@@ -153,3 +153,16 @@ export function useGuildChannelsQuery(guild: string) {
 
   return useQuery(Keys.guildChannels(guild), () => fetchGuildChannels(session!!, guild));
 }
+
+export function useSelfUser(): UserInfo {
+  return useSelfUserQuery().data!!;
+}
+
+export function useGuildPreview(guild: string) {
+  const query = useGuilds();
+
+  return {
+    guild: query.data?.find((g) => g.id === guild),
+    query,
+  };
+}

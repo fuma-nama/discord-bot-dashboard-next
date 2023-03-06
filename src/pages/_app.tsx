@@ -2,7 +2,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import { theme } from '@/theme';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { client } from '@/stores';
+import { client } from '@/api/hooks';
 import { NextPage } from 'next';
 import { ReactNode } from 'react';
 import { LoadingPanel } from '@/components/panel/LoadingPanel';

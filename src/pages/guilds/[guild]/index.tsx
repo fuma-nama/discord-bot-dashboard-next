@@ -5,7 +5,7 @@ import { config } from '@/config/common';
 import { guild as view } from '@/config/translations/guild';
 import { BsMailbox } from 'react-icons/bs';
 import { FaRobot } from 'react-icons/fa';
-import { useGuildInfoQuery } from '@/stores';
+import { useGuildInfoQuery } from '@/api/hooks';
 import { useRouter } from 'next/router';
 import { getFeatures } from '@/config/utils';
 import { Banner } from '@/components/GuildBanner';

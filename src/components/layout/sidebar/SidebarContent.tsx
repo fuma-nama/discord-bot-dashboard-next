@@ -1,4 +1,3 @@
-// chakra imports
 import {
   Avatar,
   Box,
@@ -13,9 +12,8 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-//   Custom components
 import { useActiveSidebarItem, SidebarItemInfo } from '@/utils/router';
-import { useGuilds, useSelectedGuild, useSelfUserQuery } from '@/stores';
+import { useGuilds, useSelfUserQuery } from '@/api/hooks';
 import { SearchBar } from '@/components/forms/SearchBar';
 import { useMemo, useState } from 'react';
 import { config } from '@/config/common';
@@ -24,11 +22,14 @@ import { avatarUrl } from '@/api/discord';
 import { GuildItem } from './GuildItem';
 import { SidebarItem } from './SidebarItem';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export function SidebarContent({ items }: { items: SidebarItemInfo[] }) {
-  const { selected: selectedGroup, setSelected: onSelect } = useSelectedGuild();
   const [filter, setFilter] = useState('');
   const guilds = useGuilds();
+  const { guild: selectedGroup } = useRouter().query as {
+    guild: string;
+  };
 
   const filteredGuilds = useMemo(
     () =>
@@ -67,7 +68,7 @@ export function SidebarContent({ items }: { items: SidebarItemInfo[] }) {
               key={guild.id}
               guild={guild}
               active={selectedGroup === guild.id}
-              onSelect={() => onSelect(guild.id)}
+              href={`/guilds/${guild.id}`}
             />
           ))}
         </Flex>

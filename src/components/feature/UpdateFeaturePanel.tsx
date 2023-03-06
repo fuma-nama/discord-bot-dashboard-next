@@ -4,8 +4,8 @@ import { ButtonGroup, Button, Icon } from '@chakra-ui/react';
 import { SlideFade } from '@chakra-ui/react';
 import { FeatureConfig, FormRender, CustomFeatures } from '@/config/types';
 import { IoSave } from 'react-icons/io5';
-import { useUpdateFeatureMutation } from '@/stores';
-import { Params } from '../../pages/guilds/[guild]/features/[feature]';
+import { useUpdateFeatureMutation } from '@/api/hooks';
+import { Params } from '@/pages/guilds/[guild]/features/[feature]';
 import { feature as view } from '@/config/translations/feature';
 import { useRouter } from 'next/router';
 

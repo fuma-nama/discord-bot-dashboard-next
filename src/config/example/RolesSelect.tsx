@@ -1,5 +1,5 @@
 import { Icon, Image } from '@chakra-ui/react';
-import { useGuildRolesQuery } from '@/stores';
+import { useGuildRolesQuery } from '@/api/hooks';
 import { SelectField } from '@/components/forms/SelectField';
 import { BsPeopleFill } from 'react-icons/bs';
 import { toRGB } from '@/utils/common';

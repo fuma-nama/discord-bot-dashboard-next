@@ -1,5 +1,3 @@
-import { Languages } from '@/config/translations/provider';
-import Router from 'next/router';
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -11,8 +9,6 @@ export type PageStore = {
 export type PersistStore = {
   devMode: boolean;
   setDevMode: (v: boolean) => void;
-  lang: Languages;
-  setLang: (v: Languages) => void;
 };
 
 export const usePageStore = create<PageStore>((set) => ({
@@ -28,12 +24,6 @@ export const useSettingsStore = create(
     (set) => ({
       devMode: false,
       setDevMode: (v) => set({ devMode: v }),
-      lang: 'en',
-      setLang: (v) => {
-        const path = Router.asPath;
-
-        Router.push(path, path, { locale: v });
-      },
     }),
     {
       name: 'settings',

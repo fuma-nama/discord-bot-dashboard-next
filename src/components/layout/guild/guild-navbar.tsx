@@ -4,14 +4,15 @@ import { Avatar, Icon, IconButton, SkeletonCircle } from '@chakra-ui/react';
 import { iconUrl } from '@/api/discord';
 import { NavbarBox } from '@/components/layout/navbar/Navbar';
 import { NavbarDefaultItems, NavbarLinksBox } from '@/components/layout/navbar/NavbarItems';
-import { useGuildPreview, useSelectedGuild } from '@/stores';
+import { useGuildPreview } from '@/api/hooks';
 import { motion } from 'framer-motion';
 import { ReactElement } from 'react';
 import { show } from '@/theme';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function GuildNavbar({ back }: { back?: boolean }) {
-  const { selected } = useSelectedGuild();
+  const { guild: selected } = useRouter().query as { guild: string };
   const { guild } = useGuildPreview(selected);
 
   return (

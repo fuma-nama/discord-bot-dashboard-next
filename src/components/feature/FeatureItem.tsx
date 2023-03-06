@@ -2,7 +2,7 @@ import { Center, Flex, Text } from '@chakra-ui/layout';
 import { Button, ButtonGroup, Card, CardBody, CardFooter, Switch } from '@chakra-ui/react';
 import { IdFeature } from '@/config/utils';
 import { IoOpen, IoOptions } from 'react-icons/io5';
-import { useEnableFeatureMutation } from '@/stores';
+import { useEnableFeatureMutation } from '@/api/hooks';
 import { guild as view } from '@/config/translations/guild';
 import Router from 'next/router';
 
