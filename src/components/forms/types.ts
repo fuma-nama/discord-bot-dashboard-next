@@ -3,7 +3,7 @@ import type { ReactElement } from 'react';
 import type { FieldValues, Path, UseControllerProps, FieldPathByValue } from 'react-hook-form';
 import type { FormCardProps } from './Form';
 
-export type ControlledInputProps<
+type ControlledInputProps<
   T,
   TFieldValue extends FieldValues,
   TName extends Path<TFieldValue>

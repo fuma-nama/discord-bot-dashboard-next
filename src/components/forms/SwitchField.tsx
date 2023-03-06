@@ -7,7 +7,7 @@ import { ControlledInput } from './types';
 
 export type SwitchFormProps = { id?: string };
 
-export const SwitchForm: ControlledInput<SwitchFormProps, boolean> = ({
+export const SwitchFieldForm: ControlledInput<SwitchFormProps, boolean> = ({
   control,
   controller,
   ...props

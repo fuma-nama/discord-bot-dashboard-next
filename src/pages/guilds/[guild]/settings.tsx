@@ -1,11 +1,11 @@
 import { Flex, Heading, SimpleGrid, Text } from '@chakra-ui/layout';
-import { RolesSelectForm } from '@/components/forms/RolesSelect';
+import { RoleSelectForm } from '@/components/forms/RoleSelect';
 import getGuildLayout from '@/components/layout/guild/get-guild-layout';
 import { NextPageWithLayout } from '@/pages/_app';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SwitchForm } from '@/components/forms/SwitchField';
+import { SwitchFieldForm } from '@/components/forms/SwitchField';
 import { InputForm } from '@/components/forms/InputForm';
 import { ChannelSelectForm } from '@/components/forms/ChannelSelect';
 
@@ -49,14 +49,14 @@ const GuildSettingsPage: NextPageWithLayout = () => {
       </Text>
 
       <SimpleGrid mt={5} columns={{ base: 1, md: 2 }} gap={3}>
-        <SwitchForm
+        <SwitchFieldForm
           control={{
             label: 'Beta Features',
             description: 'Use beta features before releasing',
           }}
           controller={{ control, name: 'beta' }}
         />
-        <RolesSelectForm
+        <RoleSelectForm
           control={{
             label: 'Admin Role',
             description: 'Roles that able to configure the discord bot',

@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { ColorPickerForm, SmallColorPickerForm } from '@/components/forms/ColorPicker';
 import { DatePickerForm } from '@/components/forms/DatePicker';
 import { FilePickerForm } from '@/components/forms/FilePicker';
-import { SwitchForm } from '@/components/forms/SwitchField';
+import { SwitchFieldForm } from '@/components/forms/SwitchField';
 import { ChannelSelectForm } from '@/components/forms/ChannelSelect';
 
 const schema = z.object({
@@ -84,7 +84,7 @@ export function useWelcomeMessageFeature(
           }}
           controller={{ control, name: 'date' }}
         />
-        <SwitchForm
+        <SwitchFieldForm
           control={{ label: 'Turn on', description: 'Enable something' }}
           controller={{
             control,

@@ -36,7 +36,7 @@ function render(role: Role): Option {
   };
 }
 
-export const RolesSelect = forwardRef<SelectInstance<Option, false>, Props>((props, ref) => {
+export const RoleSelect = forwardRef<SelectInstance<Option, false>, Props>((props, ref) => {
   const { value, onChange, ...rest } = props;
   const { guild } = useRouter().query as Params;
   const rolesQuery = useGuildRolesQuery(guild);
@@ -58,9 +58,9 @@ export const RolesSelect = forwardRef<SelectInstance<Option, false>, Props>((pro
   );
 });
 
-RolesSelect.displayName = 'RolesSelect';
+RoleSelect.displayName = 'RolesSelect';
 
-export const RolesSelectForm: ControlledInput<Omit<Props, 'value' | 'onChange'>> = ({
+export const RoleSelectForm: ControlledInput<Omit<Props, 'value' | 'onChange'>> = ({
   control,
   controller,
   ...props
@@ -69,7 +69,7 @@ export const RolesSelectForm: ControlledInput<Omit<Props, 'value' | 'onChange'>>
 
   return (
     <FormCard {...control} error={fieldState?.error?.message}>
-      <RolesSelect {...field} {...props} />
+      <RoleSelect {...field} {...props} />
     </FormCard>
   );
 };
