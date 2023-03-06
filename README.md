@@ -82,7 +82,7 @@ As a template, you need to customize a few things in order to get it work
    ```
 
    The `useRender` property is used to render Feature Configuration Panel <br>
-   Take a look at [example/MusicFeature.tsx](./src/config/example/WelcomeMessageFeature.tsx) for examples
+   Take a look at [here](./src/config/example/WelcomeMessageFeature.tsx) for examples
 
 5. **Configure General Information**
    <br>
@@ -101,99 +101,23 @@ As a template, you need to customize a few things in order to get it work
    <br>
    Then you should see the app started in port `3000`
 
-## The `useForm` hook
-
-We are using [`react-hook-form`](https://react-hook-form.com/) for forms, including feature configuration or settings page
-
-### Built-in Components
-
-There're some common components such as `<FilePicker />` in the [src/components/forms/\*](./src/components/forms) folder
-
-### Controller
-
-We inject `useController` into custom components so as to provides better code quality
-
-Therefore, You don't have to wrap the inputs into the `<Controller />` component
-
-For example, the Color picker & Switch field can be used in this way
-
-```tsx
-<ColorPickerForm
-  control={{
-    label: 'Color',
-    description: 'The color of message',
-  }}
-  controller={{ control, name: 'color' }} //from the useForm hook
-/>
-```
-
-[Learn More](https://react-hook-form.com/api/usecontroller/)
-
-## Localization
-
-We provide a built-in localizaion utils for you which is light-weight and type-safe
-
-Create the provider
-
-> provider.ts
-
-```typescript
-import { initLanguages, initI18n } from '@/utils/i18n';
-import { useSettingsStore } from '@/stores';
-
-// Supported languages
-export const { languages, names } = initLanguages<'en' | 'cn'>({
-  en: 'English',
-  cn: '中文',
-});
-
-// Create provider and export it
-// We need to define how to get the current language
-export const provider = initI18n({
-  useLang: () => {...},
-});
-```
-
-Create the translation config (Default folder: [src/config/translations](./src/config/translations))
-
-> test.ts
-
-```ts
-import { provider } from './provider'; //import the provider
-import { createI18n } from '@/utils/i18n';
-
-export const test = createI18n(provider, {
-  en: {
-    hello: 'Hello',
-  },
-  cn: {
-    hello: '你好',
-  },
-});
-```
-
-Use it in any places
-
-> component.tsx
-
-```tsx
-import {test} from '@/config/translations/test'
-
-export function YourComponent() {
-  const t = test.useTranslations();
-
-  return <>
-   <p>{t.hello}</p>
-   <test.T text='hello'>
-  </>
-}
-```
+   [Localization](./document/localization.md) | [Forms](./document/form.md)
 
 ## Authorization
 
 We are using the [API Routes](https://nextjs.org/docs/api-routes/introduction) of Next.js to handle Authorization
 
-Create your OAuth2 application in https://discord.com/developers/applications
+### Configure the Application
+
+1. Open Discord Developer Portal
+2. Create your OAuth2 application in https://discord.com/developers/applications
+3. In `<Your Application>` -> OAuth2 -> Redirects
+
+   Add `<APP_URL>/api/auth/callback` url to the redirects <br>
+   For Example: `http://localhost:3000/api/auth/callback` <br>
+   **This is required for Authorization**
+
+### Authorization Flow
 
 **`Login -> Discord OAuth -> API Routes -> Client`**
 
@@ -213,7 +137,7 @@ Check [src/api/bot.ts](./src/api/bot.ts), it defined a built-in API for fetching
 
 ### Official Example
 
-**Node.js (Typescript):** https://github.com/SonMooSans/discord-dashboard-backend-next
+[Node.js (Typescript)](https://github.com/SonMooSans/discord-dashboard-backend-next)
 
 ### Authorization
 
