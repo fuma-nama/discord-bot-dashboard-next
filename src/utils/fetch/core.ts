@@ -4,7 +4,7 @@ export type ReturnOptions<T> = Options & {
    * @param status
    */
   allowed?: {
-    [status: number]: (res: Response) => T;
+    [status: number]: (res: Response) => T | Promise<T>;
   };
 };
 
@@ -37,7 +37,7 @@ export async function callReturn<T>(url: string, init: ReturnOptions<T>): Promis
 
   if (!res.ok) {
     if (init.allowed?.[res.status] != null) {
-      return init.allowed[res.status](res);
+      return await init.allowed[res.status](res);
     } else {
       await handleError(res, options);
     }
