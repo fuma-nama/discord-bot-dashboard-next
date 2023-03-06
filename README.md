@@ -41,7 +41,7 @@ As a template, you need to customize a few things in order to get it work
    `git clone https://github.com/SonMooSans/discord-bot-dashboard-next.git`
 2. **Install dependencies**
    <br>
-   We always prefer `pnpm`
+   We always prefer [`PNpm`](https://pnpm.io)
 
    |      NPM      |      PNPM      |
    | :-----------: | :------------: |
@@ -92,7 +92,7 @@ As a template, you need to customize a few things in order to get it work
    - Guild settings
 6. **Configure Environment variables**
    <br>
-   Those variables are required: [.env.example](./.env.example)
+   Those variables in [.env.example](./.env.example) are required
    <br>
    You can define environment variables by creating a `.env` file
 7. **Done!**
@@ -150,7 +150,6 @@ export const { languages, names } = initLanguages<'en' | 'cn'>({
 // Create provider and export it
 // We need to define how to get the current language
 export const provider = initI18n({
-  getLang: () => {...},
   useLang: () => {...},
 });
 ```
@@ -210,10 +209,11 @@ Create your OAuth2 application in https://discord.com/developers/applications
 
 ## Backend Development
 
-As a frontend template, we doesn't provide an built-in Backend
-<br>
 Check [src/api/bot.ts](./src/api/bot.ts), it defined a built-in API for fetching data
-<br>
+
+### Official Example
+
+**Node.js (Typescript):** https://github.com/SonMooSans/discord-dashboard-backend-next
 
 ### Authorization
 
@@ -260,10 +260,6 @@ GET `/guilds/{guild}/channels`
 
 - Get Channels of the guild
 - Responds a list of [Guild Channel](https://discord.com/developers/docs/resources/channel#channel-object) _(Same as discord documentation)_
-
-### Official Example Backend
-
-**Node.js (Typescript):** https://github.com/SonMooSans/discord-dashboard-backend-next
 
 ## Any issues?
 
