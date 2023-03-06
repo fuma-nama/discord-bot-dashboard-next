@@ -132,6 +132,13 @@ We are using the [API Routes](https://nextjs.org/docs/api-routes/introduction) o
   - Store the access token in http-only cookies
   - Redirect back to home page
 
+### Token Expiration
+
+The Discord access token can be expired or unauthorized by the user <br>
+We will require the user to login again after getting `401` error from the Discord API
+
+The refresh token won't be used, but you are able to customize the Authorization Flow
+
 ## Backend Development
 
 Check [src/api/bot.ts](./src/api/bot.ts), it defined a built-in API for fetching data
