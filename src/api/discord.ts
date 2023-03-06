@@ -1,3 +1,4 @@
+import { logout } from '@/utils/auth/hooks';
 import { callReturn } from '@/utils/fetch/core';
 import { discordRequest } from '@/utils/fetch/requests';
 
@@ -89,6 +90,13 @@ export async function fetchUserInfo(accessToken: string) {
     discordRequest(accessToken, {
       request: {
         method: 'GET',
+      },
+      allowed: {
+        401: async () => {
+          await logout();
+
+          throw new Error('Not logged in');
+        },
       },
     })
   );
