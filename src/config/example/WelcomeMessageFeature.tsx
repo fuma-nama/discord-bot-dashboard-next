@@ -1,8 +1,6 @@
 import { SimpleGrid } from '@chakra-ui/layout';
-import { FormCardController } from '@/components/forms/Form';
 import { TextAreaForm } from '@/components/forms/TextAreaForm';
 import { FormRender, WelcomeMessageFeature } from '@/config/types';
-import { ChannelSelect } from './ChannelSelect';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -10,6 +8,7 @@ import { ColorPickerForm, SmallColorPickerForm } from '@/components/forms/ColorP
 import { DatePickerForm } from '@/components/forms/DatePicker';
 import { FilePickerForm } from '@/components/forms/FilePicker';
 import { SwitchForm } from '@/components/forms/SwitchField';
+import { ChannelSelectForm } from '@/components/forms/ChannelSelect';
 
 const schema = z.object({
   message: z.string().min(20),
@@ -42,13 +41,12 @@ export function useWelcomeMessageFeature(
   return {
     component: (
       <SimpleGrid columns={{ base: 1, lg: 2 }} gap={3}>
-        <FormCardController
+        <ChannelSelectForm
           control={{
             label: 'Channel',
             description: 'Where to send the welcome message',
           }}
           controller={{ control, name: 'channel' }}
-          render={({ field }) => <ChannelSelect {...field} />}
         />
         <TextAreaForm
           control={{

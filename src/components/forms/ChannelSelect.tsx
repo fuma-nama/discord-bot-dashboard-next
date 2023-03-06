@@ -9,6 +9,10 @@ import { Icon } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { SelectInstance, Props as SelectProps } from 'chakra-react-select';
 import { Override } from '@/utils/types';
+import { ControlledInput } from './types';
+import { FormCard } from './Form';
+import { useController } from 'react-hook-form';
+import { common } from '@/config/translations/common';
 
 /**
  * Render an options
@@ -89,7 +93,7 @@ export const ChannelSelect = forwardRef<SelectInstance<Option, false>, Props>(
       <SelectField<Option>
         isDisabled={isLoading}
         isLoading={isLoading}
-        placeholder="Select a channel"
+        placeholder={<common.T text="select channel" />}
         value={selected != null ? render(selected) : null}
         options={options}
         onChange={(e) => e != null && onChange(e.value)}
@@ -101,3 +105,17 @@ export const ChannelSelect = forwardRef<SelectInstance<Option, false>, Props>(
 );
 
 ChannelSelect.displayName = 'ChannelSelect';
+
+export const ChannelSelectForm: ControlledInput<Omit<Props, 'value' | 'onChange'>> = ({
+  control,
+  controller,
+  ...props
+}) => {
+  const { field, fieldState } = useController(controller);
+
+  return (
+    <FormCard {...control} error={fieldState.error?.message}>
+      <ChannelSelect {...field} {...props} />
+    </FormCard>
+  );
+};

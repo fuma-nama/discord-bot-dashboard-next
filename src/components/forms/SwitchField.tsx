@@ -1,13 +1,5 @@
 // Chakra imports
-import {
-  Flex,
-  FormErrorMessage,
-  FormLabel,
-  Switch,
-  SwitchProps,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Flex, FormErrorMessage, FormLabel, Switch, SwitchProps, Text } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { useController } from 'react-hook-form';
 import { Form } from './Form';

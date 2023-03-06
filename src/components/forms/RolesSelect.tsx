@@ -1,7 +1,6 @@
 import { Icon, Image } from '@chakra-ui/react';
 import { useGuildRolesQuery } from '@/api/hooks';
-import { SelectField } from '@/components/forms/SelectField';
-import { BsPeopleFill } from 'react-icons/bs';
+import { Option, SelectField } from '@/components/forms/SelectField';
 import { toRGB } from '@/utils/common';
 import { Role } from '@/api/bot';
 import { useRouter } from 'next/router';
@@ -9,12 +8,12 @@ import { Params } from '@/pages/guilds/[guild]/features/[feature]';
 import { forwardRef } from 'react';
 import { SelectInstance, Props as SelectProps } from 'chakra-react-select';
 import { Override } from '@/utils/types';
+import { ControlledInput } from './types';
+import { FormCard } from './Form';
+import { useController } from 'react-hook-form';
+import { common } from '@/config/translations/common';
 
-type Option = {
-  label: string;
-  value: string;
-  icon: JSX.Element;
-};
+import { BsPeopleFill } from 'react-icons/bs';
 
 type Props = Override<
   SelectProps<Option, false>,
@@ -24,6 +23,19 @@ type Props = Override<
   }
 >;
 
+function render(role: Role): Option {
+  return {
+    value: role.id,
+    label: role.name,
+    icon:
+      role.icon?.iconUrl != null ? (
+        <Image alt="icon" src={role.icon.iconUrl} bg={toRGB(role.color)} w="25px" h="25px" />
+      ) : (
+        <Icon as={BsPeopleFill} color={toRGB(role.color)} w="20px" h="20px" />
+      ),
+  };
+}
+
 export const RolesSelect = forwardRef<SelectInstance<Option, false>, Props>((props, ref) => {
   const { value, onChange, ...rest } = props;
   const { guild } = useRouter().query as Params;
@@ -31,26 +43,14 @@ export const RolesSelect = forwardRef<SelectInstance<Option, false>, Props>((pro
   const isLoading = rolesQuery.isLoading;
 
   const selected = value != null ? rolesQuery.data?.find((role) => role.id === value) : null;
-  const render = (role: Role) => {
-    return {
-      value: role.id,
-      label: role.name,
-      icon:
-        role.icon?.iconUrl != null ? (
-          <Image alt="icon" src={role.icon.iconUrl} bg={toRGB(role.color)} w="25px" h="25px" />
-        ) : (
-          <Icon as={BsPeopleFill} color={toRGB(role.color)} w="20px" h="20px" />
-        ),
-    };
-  };
 
   return (
     <SelectField<Option>
       isDisabled={isLoading}
       isLoading={isLoading}
-      placeholder="Select a role"
+      placeholder={<common.T text="select role" />}
       value={selected != null ? render(selected) : null}
-      onChange={(e) => e && onChange(e.value)}
+      onChange={(e) => e != null && onChange(e.value)}
       options={rolesQuery.data?.map(render)}
       ref={ref}
       {...rest}
@@ -59,3 +59,17 @@ export const RolesSelect = forwardRef<SelectInstance<Option, false>, Props>((pro
 });
 
 RolesSelect.displayName = 'RolesSelect';
+
+export const RolesSelectForm: ControlledInput<Omit<Props, 'value' | 'onChange'>> = ({
+  control,
+  controller,
+  ...props
+}) => {
+  const { fieldState, field } = useController(controller);
+
+  return (
+    <FormCard {...control} error={fieldState?.error?.message}>
+      <RolesSelect {...field} {...props} />
+    </FormCard>
+  );
+};

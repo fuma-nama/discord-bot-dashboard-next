@@ -1,14 +1,13 @@
 import { Flex, Heading, SimpleGrid, Text } from '@chakra-ui/layout';
-import { ChannelSelect } from '@/config/example/ChannelSelect';
-import { RolesSelect } from '@/config/example/RolesSelect';
+import { RolesSelectForm } from '@/components/forms/RolesSelect';
 import getGuildLayout from '@/components/layout/guild/get-guild-layout';
 import { NextPageWithLayout } from '@/pages/_app';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SwitchForm } from '@/components/forms/SwitchField';
-import { FormCard, FormCardController } from '@/components/forms/Form';
 import { InputForm } from '@/components/forms/InputForm';
+import { ChannelSelectForm } from '@/components/forms/ChannelSelect';
 
 const schema = z.object({
   beta: z.boolean(),
@@ -57,13 +56,12 @@ const GuildSettingsPage: NextPageWithLayout = () => {
           }}
           controller={{ control, name: 'beta' }}
         />
-        <FormCardController
+        <RolesSelectForm
           control={{
             label: 'Admin Role',
             description: 'Roles that able to configure the discord bot',
           }}
           controller={{ control, name: 'role' }}
-          render={({ field }) => <RolesSelect {...field} />}
         />
         <InputForm
           control={{
@@ -74,13 +72,12 @@ const GuildSettingsPage: NextPageWithLayout = () => {
           placeholder="/"
           {...register('prefix')}
         />
-        <FormCardController
+        <ChannelSelectForm
           control={{
             label: 'Logs',
             description: 'The channel to log bot states',
           }}
           controller={{ control, name: 'channel' }}
-          render={({ field }) => <ChannelSelect {...field} />}
         />
       </SimpleGrid>
     </Flex>
