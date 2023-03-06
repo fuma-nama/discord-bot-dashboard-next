@@ -113,7 +113,8 @@ We are using the [API Routes](https://nextjs.org/docs/api-routes/introduction) o
 2. Create your OAuth2 application in https://discord.com/developers/applications
 3. In `<Your Application>` -> OAuth2 -> Redirects
 
-   Add `<APP_URL>/api/auth/callback` url to the redirects <br>
+   Add `<APP_URL>/api/auth/callback` url to the redirects
+
    For Example: `http://localhost:3000/api/auth/callback` <br>
    **This is required for Authorization**
 
