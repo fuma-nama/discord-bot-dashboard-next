@@ -1,9 +1,8 @@
 import { CustomFeatures, CustomGuildInfo } from '@/config/types/custom-types';
 import { AccessToken } from '@/utils/auth/server';
-import { withBot, callDefault, callReturn } from './core';
+import { callDefault, callReturn } from '@/utils/fetch/core';
+import { botRequest } from '@/utils/fetch/requests';
 import { ChannelTypes } from './discord';
-
-export const bot = process.env.NEXT_PUBLIC_API_ENDPOINT ?? 'http://localhost:8080';
 
 export type Role = {
   id: string;
@@ -38,8 +37,10 @@ export async function fetchGuildInfo(
 ): Promise<CustomGuildInfo | null> {
   return await callReturn<CustomGuildInfo | null>(
     `/guilds/${guild}`,
-    withBot(session, {
-      method: 'GET',
+    botRequest(session, {
+      request: {
+        method: 'GET',
+      },
       allowed: {
         404: () => null,
       },
@@ -50,8 +51,10 @@ export async function fetchGuildInfo(
 export async function enableFeature(session: AccessToken, guild: string, feature: string) {
   return await callDefault(
     `/guilds/${guild}/features/${feature}`,
-    withBot(session, {
-      method: 'POST',
+    botRequest(session, {
+      request: {
+        method: 'POST',
+      },
     })
   );
 }
@@ -59,8 +62,10 @@ export async function enableFeature(session: AccessToken, guild: string, feature
 export async function disableFeature(session: AccessToken, guild: string, feature: string) {
   return await callDefault(
     `/guilds/${guild}/features/${feature}`,
-    withBot(session, {
-      method: 'DELETE',
+    botRequest(session, {
+      request: {
+        method: 'DELETE',
+      },
     })
   );
 }
@@ -72,8 +77,10 @@ export async function getFeature<K extends keyof CustomFeatures>(
 ): Promise<CustomFeatures[K]> {
   return await callReturn<CustomFeatures[K]>(
     `/guilds/${guild}/features/${feature}`,
-    withBot(session, {
-      method: 'GET',
+    botRequest(session, {
+      request: {
+        method: 'GET',
+      },
     })
   );
 }
@@ -84,11 +91,20 @@ export async function updateFeature<K extends keyof CustomFeatures>(
   feature: K,
   options: FormData | string
 ): Promise<CustomFeatures[K]> {
+  const isForm = options instanceof FormData;
+
   return await callReturn<CustomFeatures[K]>(
     `/guilds/${guild}/features/${feature}`,
-    withBot(session, {
-      method: 'PATCH',
-      body: options,
+    botRequest(session, {
+      request: {
+        method: 'PATCH',
+        headers: isForm
+          ? {
+              'Content-Type': 'application/json',
+            }
+          : {},
+        body: options,
+      },
     })
   );
 }
@@ -102,8 +118,10 @@ export async function updateFeature<K extends keyof CustomFeatures>(
 export async function fetchGuildRoles(session: AccessToken, guild: string) {
   return await callReturn<Role[]>(
     `/guilds/${guild}/roles`,
-    withBot(session, {
-      method: 'GET',
+    botRequest(session, {
+      request: {
+        method: 'GET',
+      },
     })
   );
 }
@@ -114,8 +132,10 @@ export async function fetchGuildRoles(session: AccessToken, guild: string) {
 export async function fetchGuildChannels(session: AccessToken, guild: string) {
   return await callReturn<GuildChannel[]>(
     `/guilds/${guild}/channels`,
-    withBot(session, {
-      method: 'GET',
+    botRequest(session, {
+      request: {
+        method: 'GET',
+      },
     })
   );
 }

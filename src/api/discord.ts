@@ -1,6 +1,5 @@
-import { callReturn, withDiscord } from './core';
-
-export const discord = 'https://discord.com/api/v9';
+import { callReturn } from '@/utils/fetch/core';
+import { discordRequest } from '@/utils/fetch/requests';
 
 export type UserInfo = {
   id: string;
@@ -87,8 +86,10 @@ export enum ChannelTypes {
 export async function fetchUserInfo(accessToken: string) {
   return await callReturn<UserInfo>(
     `/users/@me`,
-    withDiscord(accessToken, {
-      method: 'GET',
+    discordRequest(accessToken, {
+      request: {
+        method: 'GET',
+      },
     })
   );
 }
@@ -96,12 +97,15 @@ export async function fetchUserInfo(accessToken: string) {
 export async function getGuilds(accessToken: string) {
   return await callReturn<Guild[]>(
     `/users/@me/guilds`,
-    withDiscord(accessToken, { method: 'GET' })
+    discordRequest(accessToken, { request: { method: 'GET' } })
   );
 }
 
 export async function getGuild(accessToken: string, id: string) {
-  return await callReturn<Guild>(`/guilds/${id}`, withDiscord(accessToken, { method: 'GET' }));
+  return await callReturn<Guild>(
+    `/guilds/${id}`,
+    discordRequest(accessToken, { request: { method: 'GET' } })
+  );
 }
 
 export function iconUrl(guild: Guild) {

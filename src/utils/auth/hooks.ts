@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { client, Keys } from '@/stores';
 import { AccessToken } from './server';
-import { callReturn, callDefault } from '@/api/core';
+import { callReturn, callDefault } from '@/utils/fetch';
 
 /**
  * Get discord oauth2 access token if logged in, otherwise return null
