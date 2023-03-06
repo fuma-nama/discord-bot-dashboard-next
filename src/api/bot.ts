@@ -99,10 +99,10 @@ export async function updateFeature<K extends keyof CustomFeatures>(
       request: {
         method: 'PATCH',
         headers: isForm
-          ? {
+          ? {}
+          : {
               'Content-Type': 'application/json',
-            }
-          : {},
+            },
         body: options,
       },
     })
