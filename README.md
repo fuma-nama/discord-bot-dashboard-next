@@ -11,6 +11,7 @@ Using Typescript, Next.js 13, React 18 and Chakra ui 2.0
 - Flexiable and Customizable
 - Detailed Documentation
 
+**Video:** https://youtu.be/IdMPjT5PzVk <br/>
 **Live Demo:** https://demo-bot.vercel.app
 
 - Only 'Welcome message' Feature is Supported
