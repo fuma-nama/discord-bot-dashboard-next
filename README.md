@@ -1,6 +1,6 @@
 ![banner](./document/4B9E09C4-48F7-47B4-9622-93A43912BE63.png)
 
-# Modern Discord Bot Dashboard
+# Discord Bot Dashboard Template
 
 Using Typescript, Next.js 13, React 18 and Chakra ui 2.0
 
