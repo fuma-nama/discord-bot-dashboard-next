@@ -114,6 +114,11 @@ function TestChart() {
     <StyledChart
       options={{
         colors: ['#4318FF', '#39B8FF'],
+        chart: {
+          animations: {
+            enabled: false,
+          },
+        },
         xaxis: {
           categories: ['SEP', 'OCT', 'NOV', 'DEC', 'JAN', 'FEB'],
         },
