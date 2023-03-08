@@ -1,6 +1,5 @@
 import {
   Heading,
-  Link,
   Button,
   Card,
   CardHeader,
@@ -8,7 +7,6 @@ import {
   Flex,
   SimpleGrid,
   Spinner,
-  Box,
   Center,
 } from '@chakra-ui/react';
 import { config } from '@/config/common';
@@ -18,6 +16,7 @@ import { ExampleDashboardView } from '@/config/example/DashboardView';
 import { NextPageWithLayout } from '@/pages/_app';
 import AppLayout from '@/components/layout/app';
 import { iconUrl } from '@/api/discord';
+import Link from 'next/link';
 
 const HomePage: NextPageWithLayout = () => {
   const t = dashboard.useTranslations();
