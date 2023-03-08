@@ -1,6 +1,6 @@
 ![banner](./document/4B9E09C4-48F7-47B4-9622-93A43912BE63.png)
 
-# Modern Discord Bot Dashboard
+# Discord Bot Dashboard Template
 
 Using Typescript, Next.js 13, React 18 and Chakra ui 2.0
 
@@ -11,6 +11,7 @@ Using Typescript, Next.js 13, React 18 and Chakra ui 2.0
 - Flexiable and Customizable
 - Detailed Documentation
 
+**Video:** https://youtu.be/IdMPjT5PzVk <br/>
 **Live Demo:** https://demo-bot.vercel.app
 
 - Only 'Welcome message' Feature is Supported
@@ -131,6 +132,13 @@ We are using the [API Routes](https://nextjs.org/docs/api-routes/introduction) o
 - API Routes
   - Store the access token in http-only cookies
   - Redirect back to home page
+
+### Token Expiration
+
+The Discord access token can be expired or unauthorized by the user <br>
+We will require the user to login again after getting `401` error from the Discord API
+
+The refresh token won't be used, but you are able to customize the Authorization Flow
 
 ## Backend Development
 
