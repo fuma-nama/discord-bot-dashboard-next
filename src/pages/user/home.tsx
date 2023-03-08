@@ -8,6 +8,8 @@ import {
   Flex,
   SimpleGrid,
   Spinner,
+  Box,
+  Center,
 } from '@chakra-ui/react';
 import { config } from '@/config/common';
 import { dashboard } from '@/config/translations/dashboard';
@@ -54,7 +56,12 @@ export function GuildSelect() {
       </Button>
     );
 
-  if (guilds.status === 'loading') return <Spinner />;
+  if (guilds.status === 'loading')
+    return (
+      <Center minH="200px">
+        <Spinner />
+      </Center>
+    );
 
   return <></>;
 }
