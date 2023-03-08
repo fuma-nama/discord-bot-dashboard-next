@@ -6,7 +6,6 @@ import {
   Grid,
   Heading,
   HStack,
-  Link,
   Spacer,
   Text,
   Avatar,
@@ -24,7 +23,7 @@ import { config } from '@/config/common';
 import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi';
 import { StyledChart } from '@/components/chart/StyledChart';
 import { dashboard } from '@/config/translations/dashboard';
-
+import Link from 'next/link';
 import {
   BsMusicNoteBeamed,
   BsPlay,
@@ -37,13 +36,13 @@ import { IoPricetag } from 'react-icons/io5';
 import { FaRobot } from 'react-icons/fa';
 import { MdVoiceChat } from 'react-icons/md';
 import { ReactElement } from 'react';
+import { GuildSelect } from '@/pages/user/home';
 
 export function ExampleDashboardView() {
   const t = dashboard.useTranslations();
 
-  if (window == null) return <></>;
   return (
-    <Flex direction="column" gap={5}>
+    <Flex direction="column" gap={5} pb={10}>
       <HStack rounded="2xl" bg="brand" gap={2} p={5}>
         <Circle color="white" bg="blackAlpha.300" p={4} display={{ base: 'none', md: 'block' }}>
           <Icon as={FaRobot} w="60px" h="60px" />
@@ -59,9 +58,20 @@ export function ExampleDashboardView() {
           </Button>
         </Flex>
       </HStack>
+      <Guilds />
+      <Flex direction="column" p={3}>
+        <Box w="fit-content">
+          <Heading size="lg">{t.command.title}</Heading>
+          <Text color="TextSecondary">{t.command.description}</Text>
+          <Button mt={2} leftIcon={<IoPricetag />} variant="action">
+            {t.pricing}
+          </Button>
+        </Box>
+        <TestChart />
+      </Flex>
       <Flex direction="column" gap={2} mt={3}>
-        <Heading size="md">{t.music.title}</Heading>
-        <Text variant="secondary">{t.music.description}</Text>
+        <Heading size="lg">{t.music.title}</Heading>
+        <Text color="TextSecondary">{t.music.description}</Text>
         <MusicPlayer />
       </Flex>
       <Grid templateColumns={{ base: '1fr', lg: '0.5fr 1fr' }} gap={3}>
@@ -81,70 +91,51 @@ export function ExampleDashboardView() {
           <VoiceChannelItem />
         </Flex>
       </Grid>
-      <Flex direction="column" p={3}>
-        <Box w="fit-content">
-          <Heading size="lg">{t.command.title}</Heading>
-          <Text variant="secondary">{t.command.description}</Text>
-          <Button mt={2} leftIcon={<IoPricetag />}>
-            {t.pricing}
-          </Button>
-        </Box>
-        <TestChart />
-      </Flex>
     </Flex>
   );
 }
 
-function TestChart() {
-  const responsive: ApexResponsive = {
-    breakpoint: 500,
-    options: {
-      chart: {
-        width: '100%',
-        height: 'auto',
-      },
-    },
-  };
+function Guilds() {
+  const t = dashboard.useTranslations().servers;
 
   return (
-    <Grid templateColumns={{ base: '1fr', lg: '1fr 0.5fr' }}>
-      <StyledChart
-        options={{
-          colors: ['#4318FF', '#39B8FF'],
-          xaxis: {
-            categories: ['SEP', 'OCT', 'NOV', 'DEC', 'JAN', 'FEB'],
-          },
-          responsive: [responsive],
-        }}
-        series={[
-          {
-            name: 'Paid',
-            data: [50, 64, 48, 66, 49, 68],
-          },
-          {
-            name: 'Free Usage',
-            data: [30, 40, 24, 46, 20, 46],
-          },
-        ]}
-        height="300"
-        type="line"
-      />
-      <StyledChart
-        options={{
-          colors: ['#4318FF', '#39B8FF'],
-          labels: ['Paid', 'Free Usage'],
-          responsive: [responsive],
-        }}
-        series={[30, 1000]}
-        type="pie"
-        width="330"
-      />
-    </Grid>
+    <>
+      <Flex direction="column" gap={2} mt={3}>
+        <Heading size="lg">{t.title}</Heading>
+        <Text color="TextSecondary">{t.description}</Text>
+      </Flex>
+      <GuildSelect />
+    </>
+  );
+}
+
+function TestChart() {
+  return (
+    <StyledChart
+      options={{
+        colors: ['#4318FF', '#39B8FF'],
+        xaxis: {
+          categories: ['SEP', 'OCT', 'NOV', 'DEC', 'JAN', 'FEB'],
+        },
+      }}
+      series={[
+        {
+          name: 'Paid',
+          data: [50, 64, 48, 66, 49, 68],
+        },
+        {
+          name: 'Free Usage',
+          data: [30, 50, 13, 46, 26, 16],
+        },
+      ]}
+      height="300"
+      type="line"
+    />
   );
 }
 
 function MusicPlayer() {
-  const t = dashboard.useTranslations();
+  const t = dashboard.useTranslations().music;
 
   return (
     <>
@@ -157,10 +148,6 @@ function MusicPlayer() {
           w="200px"
           h="200px"
           display={{ base: 'none', md: 'block' }}
-          boxShadow="0px 5px 30px #ff5bff6e"
-          _dark={{
-            boxShadow: '0px 5px 30px #c03bc06e',
-          }}
         />
         <Flex
           direction="column"
@@ -171,9 +158,9 @@ function MusicPlayer() {
           flex={1}
           _light={{ boxShadow: '14px 17px 30px 4px rgb(112 144 176 / 13%)' }}
         >
-          <HStack color="TextSecondary" display={{ base: 'none', md: 'flex' }}>
+          <HStack color="brand" display={{ base: 'none', md: 'flex' }} w="fit">
             <BsPlayBtn />
-            <Text>{t.music['now playing']}</Text>
+            <Text>{t['now playing']}</Text>
           </HStack>
           <HStack>
             <Avatar name="Stay with me" size="sm" />

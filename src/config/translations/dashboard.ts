@@ -10,6 +10,10 @@ export const dashboard = createI18n(provider, {
       description: 'Try our discord bot with one-click',
       bn: 'Invite now',
     },
+    servers: {
+      title: 'Select Server',
+      description: 'Select the server to configure',
+    },
     music: {
       title: 'Music Player',
       description: 'Play Your Favoite songs in Voice channels',
@@ -31,6 +35,10 @@ export const dashboard = createI18n(provider, {
       title: '邀請我們的機器人',
       description: '一鍵試用我們的 Discord 機器人',
       bn: '現在邀請',
+    },
+    servers: {
+      title: '選擇服務器',
+      description: '自定義您的服務器',
     },
     music: {
       title: '音樂播放器',
