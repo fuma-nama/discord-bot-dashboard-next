@@ -1,4 +1,4 @@
-import { Button, Center, Icon, Text, VStack, Box, Heading, Image } from '@chakra-ui/react';
+import { Button, Center, Icon, Text, VStack, Box, Heading } from '@chakra-ui/react';
 import { MdOutlineError } from 'react-icons/md';
 
 export function ErrorPanel({ children, retry }: { children: string; retry: () => void }) {

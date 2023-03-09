@@ -11,7 +11,7 @@ import {
 import { config } from '@/config/common';
 import { dashboard } from '@/config/translations/dashboard';
 import { useGuilds } from '@/api/hooks';
-import { ExampleDashboardView } from '@/config/example/DashboardView';
+import HomeView from '@/config/example/HomeView';
 import { NextPageWithLayout } from '@/pages/_app';
 import AppLayout from '@/components/layout/app';
 import { iconUrl } from '@/api/discord';
@@ -21,7 +21,7 @@ const HomePage: NextPageWithLayout = () => {
   const t = dashboard.useTranslations();
 
   //used for example only, you should remove it
-  return <ExampleDashboardView />;
+  return <HomeView />;
 
   return <GuildSelect />;
 };
