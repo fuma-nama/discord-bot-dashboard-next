@@ -6,10 +6,10 @@ const $endColor = cssVar('skeleton-end-color');
 export const skeletonStyles = defineStyleConfig({
   baseStyle: defineStyle((props) => ({
     [$startColor.variable]: 'colors.navy.600',
-    [$endColor.variable]: 'colors.navy.400',
+    [$endColor.variable]: 'colors.navy.800',
     _light: {
       [$startColor.variable]: 'colors.gray.200',
-      [$endColor.variable]: 'colors.gray.400',
+      [$endColor.variable]: 'colors.gray.300',
     },
   })),
 });

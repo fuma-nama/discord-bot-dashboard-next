@@ -6,8 +6,7 @@ import {
   Avatar,
   Flex,
   SimpleGrid,
-  Spinner,
-  Center,
+  Skeleton,
 } from '@chakra-ui/react';
 import { config } from '@/config/common';
 import { dashboard } from '@/config/translations/dashboard';
@@ -57,9 +56,13 @@ export function GuildSelect() {
 
   if (guilds.status === 'loading')
     return (
-      <Center minH="200px">
-        <Spinner />
-      </Center>
+      <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} gap={3}>
+        <Skeleton minH="104px" rounded="2xl" />
+        <Skeleton minH="104px" rounded="2xl" />
+        <Skeleton minH="104px" rounded="2xl" />
+        <Skeleton minH="104px" rounded="2xl" />
+        <Skeleton minH="104px" rounded="2xl" />
+      </SimpleGrid>
     );
 
   return <></>;
