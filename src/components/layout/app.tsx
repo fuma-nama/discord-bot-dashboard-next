@@ -45,6 +45,7 @@ export default function AppLayout({
             flex={1}
             mt={{ base: '30px', [show.sidebar]: '50px' }}
             px={{ base: '10px', '3sm': '30px' }}
+            pb={{ base: '10px', '3sm': '30px' }}
           >
             {children}
           </Box>

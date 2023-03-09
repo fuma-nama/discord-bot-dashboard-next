@@ -42,7 +42,7 @@ export function ExampleDashboardView() {
   const t = dashboard.useTranslations();
 
   return (
-    <Flex direction="column" gap={5} pb={10}>
+    <Flex direction="column" gap={5}>
       <HStack rounded="2xl" bg="brand" gap={2} p={5}>
         <Circle color="white" bg="blackAlpha.300" p={4} display={{ base: 'none', md: 'block' }}>
           <Icon as={FaRobot} w="60px" h="60px" />
