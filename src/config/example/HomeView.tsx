@@ -6,14 +6,12 @@ import {
   Grid,
   Heading,
   HStack,
-  Spacer,
   Text,
   Avatar,
   Button,
   Card,
   CardBody,
   CardHeader,
-  Hide,
   Icon,
   IconButton,
   Image,
@@ -24,27 +22,25 @@ import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi';
 import { StyledChart } from '@/components/chart/StyledChart';
 import { dashboard } from '@/config/translations/dashboard';
 import Link from 'next/link';
-import {
-  BsMusicNoteBeamed,
-  BsPlay,
-  BsPlayBtn,
-  BsShareFill,
-  BsEyeFill as ViewIcon,
-} from 'react-icons/bs';
-import { AiFillDislike, AiFillLike } from 'react-icons/ai';
-import { IoPricetag } from 'react-icons/io5';
+import { BsMusicNoteBeamed, BsPlay, BsPlayBtn } from 'react-icons/bs';
+import { IoOpen, IoPricetag } from 'react-icons/io5';
 import { FaRobot } from 'react-icons/fa';
 import { MdVoiceChat } from 'react-icons/md';
-import { ReactElement } from 'react';
 import { GuildSelect } from '@/pages/user/home';
 
-export function ExampleDashboardView() {
+export default function HomeView() {
   const t = dashboard.useTranslations();
 
   return (
-    <Flex direction="column" gap={5} pb={10}>
+    <Flex direction="column" gap={5}>
       <HStack rounded="2xl" bg="brand" gap={2} p={5}>
-        <Circle color="white" bg="blackAlpha.300" p={4} display={{ base: 'none', md: 'block' }}>
+        <Circle
+          color="white"
+          bgGradient="linear(to right bottom, transparent, blackAlpha.600)"
+          p={4}
+          shadow="2xl"
+          display={{ base: 'none', md: 'block' }}
+        >
           <Icon as={FaRobot} w="60px" h="60px" />
         </Circle>
 
@@ -53,7 +49,20 @@ export function ExampleDashboardView() {
             {t.invite.title}
           </Text>
           <Text color="whiteAlpha.800">{t.invite.description}</Text>
-          <Button mt={3} as={Link} href={config.inviteUrl}>
+          <Button
+            mt={3}
+            as={Link}
+            href={config.inviteUrl}
+            color="white"
+            bg="whiteAlpha.200"
+            _hover={{
+              bg: 'whiteAlpha.300',
+            }}
+            _active={{
+              bg: 'whiteAlpha.400',
+            }}
+            leftIcon={<IoOpen />}
+          >
             {t.invite.bn}
           </Button>
         </Flex>
@@ -143,88 +152,65 @@ function MusicPlayer() {
   const t = dashboard.useTranslations().music;
 
   return (
-    <>
-      <Flex direction="row" gap={5}>
-        <Image
-          alt="image"
-          rounded="xl"
-          src="https://cdns-images.dzcdn.net/images/artist/61bcbf8296b1669499064406c534d39d/500x500.jpg"
-          bg="brand"
-          w="200px"
-          h="200px"
-          display={{ base: 'none', md: 'block' }}
-        />
-        <Flex
-          direction="column"
-          bg="CardBackground"
-          rounded="xl"
-          gap={3}
-          p={3}
-          flex={1}
-          _light={{ boxShadow: '14px 17px 30px 4px rgb(112 144 176 / 13%)' }}
-        >
-          <HStack color="brand" display={{ base: 'none', md: 'flex' }} w="fit">
-            <BsPlayBtn />
-            <Text>{t['now playing']}</Text>
-          </HStack>
-          <HStack>
-            <Avatar name="Stay with me" size="sm" />
-            <Text fontSize={{ base: 'lg', md: '2xl' }} fontWeight="bold">
-              ZUTOMAYO - Study Me
-            </Text>
-          </HStack>
+    <Flex direction="row" gap={3}>
+      <Image
+        alt="image"
+        rounded="xl"
+        src="https://cdns-images.dzcdn.net/images/artist/61bcbf8296b1669499064406c534d39d/500x500.jpg"
+        bg="brand"
+        w="200px"
+        h="200px"
+        display={{ base: 'none', md: 'block' }}
+      />
+      <Flex
+        direction="column"
+        bg="CardBackground"
+        rounded="xl"
+        gap={3}
+        p={3}
+        flex={1}
+        _light={{ boxShadow: '14px 17px 30px 4px rgb(112 144 176 / 13%)' }}
+      >
+        <HStack color="brand" display={{ base: 'none', md: 'flex' }} w="fit">
+          <BsPlayBtn />
+          <Text>{t['now playing']}</Text>
+        </HStack>
+        <HStack>
+          <Avatar name="Stay with me" size="sm" />
+          <Text fontSize={{ base: 'lg', md: '2xl' }} fontWeight="bold">
+            ZUTOMAYO - Study Me
+          </Text>
+        </HStack>
 
-          <HStack mt="auto" justify="space-between" fontWeight="bold">
-            <IconButton
-              fontSize="4xl"
-              icon={<Icon as={BiSkipPrevious} />}
-              aria-label="previous"
-              variant="action"
-            />
-            <IconButton
-              p={1}
-              h="fit-content"
-              fontSize="4xl"
-              icon={<Icon as={BsPlay} />}
-              aria-label="pause"
-              variant="action"
-              rounded="full"
-            />
-            <IconButton
-              fontSize="4xl"
-              icon={<Icon as={BiSkipNext} />}
-              aria-label="next"
-              variant="action"
-            />
-          </HStack>
-          <HStack px={3}>
-            <Text>1:28</Text>
-            <Progress w="full" value={50} />
-          </HStack>
-        </Flex>
+        <HStack mt="auto" justify="space-between" fontWeight="bold">
+          <IconButton
+            fontSize="4xl"
+            icon={<Icon as={BiSkipPrevious} />}
+            aria-label="previous"
+            variant="action"
+          />
+          <IconButton
+            p={1}
+            h="fit-content"
+            fontSize="4xl"
+            icon={<Icon as={BsPlay} />}
+            aria-label="pause"
+            variant="action"
+            rounded="full"
+          />
+          <IconButton
+            fontSize="4xl"
+            icon={<Icon as={BiSkipNext} />}
+            aria-label="next"
+            variant="action"
+          />
+        </HStack>
+        <HStack px={3}>
+          <Text>1:28</Text>
+          <Progress w="full" value={50} />
+        </HStack>
       </Flex>
-      <HStack mt={2}>
-        <PrimaryButton icon={<AiFillLike />}>1203</PrimaryButton>
-        <PrimaryButton icon={<AiFillDislike />}>297</PrimaryButton>
-        <PrimaryButton icon={<BsShareFill />}>103</PrimaryButton>
-        <Hide below="2sm">
-          <Spacer />
-          <PrimaryButton icon={<ViewIcon />}>4258</PrimaryButton>
-        </Hide>
-      </HStack>
-    </>
-  );
-}
-
-function PrimaryButton(props: { icon: ReactElement; children: string }) {
-  return (
-    <Button
-      leftIcon={props.icon}
-      _light={{ bg: 'white', color: 'brand.300' }}
-      _dark={{ bg: 'navy.800', color: 'brand.400' }}
-    >
-      {props.children}
-    </Button>
+    </Flex>
   );
 }
 

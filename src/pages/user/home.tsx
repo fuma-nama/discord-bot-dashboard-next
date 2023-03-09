@@ -6,13 +6,12 @@ import {
   Avatar,
   Flex,
   SimpleGrid,
-  Spinner,
-  Center,
+  Skeleton,
 } from '@chakra-ui/react';
 import { config } from '@/config/common';
 import { dashboard } from '@/config/translations/dashboard';
 import { useGuilds } from '@/api/hooks';
-import { ExampleDashboardView } from '@/config/example/DashboardView';
+import HomeView from '@/config/example/HomeView';
 import { NextPageWithLayout } from '@/pages/_app';
 import AppLayout from '@/components/layout/app';
 import { iconUrl } from '@/api/discord';
@@ -22,7 +21,7 @@ const HomePage: NextPageWithLayout = () => {
   const t = dashboard.useTranslations();
 
   //used for example only, you should remove it
-  return <ExampleDashboardView />;
+  return <HomeView />;
 
   return <GuildSelect />;
 };
@@ -57,9 +56,13 @@ export function GuildSelect() {
 
   if (guilds.status === 'loading')
     return (
-      <Center minH="200px">
-        <Spinner />
-      </Center>
+      <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} gap={3}>
+        <Skeleton minH="104px" rounded="2xl" />
+        <Skeleton minH="104px" rounded="2xl" />
+        <Skeleton minH="104px" rounded="2xl" />
+        <Skeleton minH="104px" rounded="2xl" />
+        <Skeleton minH="104px" rounded="2xl" />
+      </SimpleGrid>
     );
 
   return <></>;
