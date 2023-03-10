@@ -4,9 +4,11 @@ import { Center } from '@chakra-ui/react';
 import { auth } from '@/config/translations/auth';
 import { NextPageWithLayout } from '@/pages/_app';
 import AuthLayout from '@/components/layout/auth';
+import { useRouter } from 'next/router';
 
 const LoginPage: NextPageWithLayout = () => {
   const t = auth.useTranslations();
+  const locale = useRouter().locale;
 
   return (
     <Center w="full" h="full">
@@ -24,7 +26,7 @@ const LoginPage: NextPageWithLayout = () => {
           size="lg"
           width="300px"
           as="a"
-          href={`/api/auth/login`}
+          href={`/api/auth/login?locale=${locale}`}
         >
           {t.login_bn}
         </Button>

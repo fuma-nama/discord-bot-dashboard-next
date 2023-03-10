@@ -7,6 +7,8 @@ import {
   setServerSession,
 } from '@/utils/auth/server';
 import { APP_URL } from '@/utils/get-absolute-url';
+import { i18n } from 'next.config';
+import { z } from 'zod';
 
 async function exchangeToken(code: string): Promise<AccessToken> {
   const data = {
@@ -34,15 +36,29 @@ async function exchangeToken(code: string): Promise<AccessToken> {
   }
 }
 
+const querySchema = z.object({
+  code: z.string(),
+  state: z
+    .string()
+    .optional()
+    //Handle unsupported locales
+    .transform((v) => {
+      if (i18n == null || v == null) return undefined;
+
+      return i18n.locales.find((locale) => locale === v);
+    }),
+});
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { code } = req.query;
-  if (typeof code !== 'string' || code == null) {
-    await res.status(400).json('Invalid query param');
-    return;
+  const query = querySchema.safeParse(req.query);
+
+  if (!query.success) {
+    return res.status(400).json('Invalid query param');
   }
 
+  const { code, state } = query.data;
   const token = await exchangeToken(code);
 
   setServerSession(req, res, token);
-  res.redirect(`/user/home`);
+  res.redirect(state ? `/${state}/user/home` : `/user/home`);
 }
