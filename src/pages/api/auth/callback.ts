@@ -6,9 +6,9 @@ import {
   CLIENT_SECRET,
   setServerSession,
 } from '@/utils/auth/server';
-import { APP_URL } from '@/utils/get-absolute-url';
 import { i18n } from 'next.config';
 import { z } from 'zod';
+import { getAbsoluteUrl } from '@/utils/get-absolute-url';
 
 async function exchangeToken(code: string): Promise<AccessToken> {
   const data = {
@@ -16,7 +16,7 @@ async function exchangeToken(code: string): Promise<AccessToken> {
     client_secret: CLIENT_SECRET,
     grant_type: 'authorization_code',
     code: code,
-    redirect_uri: `${APP_URL}/api/auth/callback`,
+    redirect_uri: `${getAbsoluteUrl()}/api/auth/callback`,
   };
 
   const headers = {

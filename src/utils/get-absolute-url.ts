@@ -1,5 +1,3 @@
-export const APP_URL = getAbsoluteUrl();
-
 export function getAbsoluteUrl(): string {
   const defaultUrl = 'http://localhost:3000';
 
