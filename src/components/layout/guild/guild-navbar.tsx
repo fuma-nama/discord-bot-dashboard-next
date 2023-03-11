@@ -54,6 +54,7 @@ export function HorizontalCollapse({
     <motion.section
       animate={isOpen ? 'open' : 'collapsed'}
       exit="collapsed"
+      initial="collapsed"
       variants={{
         open: { opacity: 1, width: 'auto' },
         collapsed: { opacity: 0, width: 0 },
