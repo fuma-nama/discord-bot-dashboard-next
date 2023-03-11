@@ -3,10 +3,11 @@ import items from '@/config/sidebar-items';
 import { QueryStatus } from '@/components/panel/QueryPanel';
 import { useSelfUserQuery } from '@/api/hooks';
 import { LoadingPanel } from '@/components/panel/LoadingPanel';
-import { DefaultNavbar } from '@/components/layout/navbar/Navbar';
+import { Navbar } from '@/components/layout/navbar';
 import { Sidebar, SidebarResponsive } from './sidebar';
 import { show } from '@/theme';
 import { ReactNode } from 'react';
+import { DefaultNavbar } from './navbar/default';
 
 export default function AppLayout({
   navbar,
@@ -37,36 +38,30 @@ export default function AppLayout({
           maxWidth={{ base: '100%', xl: 'calc( 100% - 290px )' }}
           maxHeight="100%"
         >
-          <LayoutNavbar navbar={navbar} />
+          <Box
+            top={0}
+            mx="auto"
+            maxW="1200px"
+            zIndex="sticky"
+            pos="sticky"
+            w="full"
+            pt={{ [show.navbar]: '16px' }}
+            px={{ '3sm': '30px' }}
+          >
+            <Navbar>{navbar ?? <DefaultNavbar />}</Navbar>
+          </Box>
           <Box
             mx="auto"
             w="full"
             maxW="1200px"
             flex={1}
             my={{ base: '30px', [show.sidebar]: '50px' }}
-            px={{ base: '10px', '3sm': '30px' }}
+            px={{ base: '24px', '3sm': '30px' }}
           >
             {children}
           </Box>
         </Flex>
       </QueryStatus>
     </Flex>
-  );
-}
-
-function LayoutNavbar({ navbar }: { navbar: ReactNode }) {
-  return (
-    <Box
-      top={0}
-      mx="auto"
-      maxW="1200px"
-      zIndex="sticky"
-      pos="sticky"
-      w="full"
-      pt={{ [show.navbar]: '16px' }}
-      px={{ '3sm': '30px' }}
-    >
-      {navbar ?? <DefaultNavbar />}
-    </Box>
   );
 }
