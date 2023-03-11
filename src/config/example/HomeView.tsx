@@ -7,22 +7,17 @@ import {
   Heading,
   HStack,
   Text,
-  Avatar,
   Button,
   Card,
   CardBody,
   CardHeader,
   Icon,
-  IconButton,
-  Image,
-  Progress,
 } from '@chakra-ui/react';
 import { config } from '@/config/common';
-import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi';
 import { StyledChart } from '@/components/chart/StyledChart';
 import { dashboard } from '@/config/translations/dashboard';
 import Link from 'next/link';
-import { BsMusicNoteBeamed, BsPlay, BsPlayBtn } from 'react-icons/bs';
+import { BsMusicNoteBeamed } from 'react-icons/bs';
 import { IoOpen, IoPricetag } from 'react-icons/io5';
 import { FaRobot } from 'react-icons/fa';
 import { MdVoiceChat } from 'react-icons/md';
@@ -77,11 +72,6 @@ export default function HomeView() {
           </Button>
         </Box>
         <TestChart />
-      </Flex>
-      <Flex direction="column" gap={2} mt={3}>
-        <Heading size="lg">{t.music.title}</Heading>
-        <Text color="TextSecondary">{t.music.description}</Text>
-        <MusicPlayer />
       </Flex>
       <Grid templateColumns={{ base: '1fr', lg: '0.5fr 1fr' }} gap={3}>
         <Card rounded="3xl" variant="primary">
@@ -145,72 +135,6 @@ function TestChart() {
       height="300"
       type="line"
     />
-  );
-}
-
-function MusicPlayer() {
-  const t = dashboard.useTranslations().music;
-
-  return (
-    <Flex direction="row" gap={3}>
-      <Image
-        alt="image"
-        rounded="xl"
-        src="https://cdns-images.dzcdn.net/images/artist/61bcbf8296b1669499064406c534d39d/500x500.jpg"
-        bg="brand"
-        w="200px"
-        h="200px"
-        display={{ base: 'none', md: 'block' }}
-      />
-      <Flex
-        direction="column"
-        bg="CardBackground"
-        rounded="xl"
-        gap={3}
-        p={3}
-        flex={1}
-        _light={{ boxShadow: '14px 17px 30px 4px rgb(112 144 176 / 13%)' }}
-      >
-        <HStack color="brand" display={{ base: 'none', md: 'flex' }} w="fit">
-          <BsPlayBtn />
-          <Text>{t['now playing']}</Text>
-        </HStack>
-        <HStack>
-          <Avatar name="Stay with me" size="sm" />
-          <Text fontSize={{ base: 'lg', md: '2xl' }} fontWeight="bold">
-            ZUTOMAYO - Study Me
-          </Text>
-        </HStack>
-
-        <HStack mt="auto" justify="space-between" fontWeight="bold">
-          <IconButton
-            fontSize="4xl"
-            icon={<Icon as={BiSkipPrevious} />}
-            aria-label="previous"
-            variant="action"
-          />
-          <IconButton
-            p={1}
-            h="fit-content"
-            fontSize="4xl"
-            icon={<Icon as={BsPlay} />}
-            aria-label="pause"
-            variant="action"
-            rounded="full"
-          />
-          <IconButton
-            fontSize="4xl"
-            icon={<Icon as={BiSkipNext} />}
-            aria-label="next"
-            variant="action"
-          />
-        </HStack>
-        <HStack px={3}>
-          <Text>1:28</Text>
-          <Progress w="full" value={50} />
-        </HStack>
-      </Flex>
-    </Flex>
   );
 }
 

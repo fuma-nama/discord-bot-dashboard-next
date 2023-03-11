@@ -14,11 +14,6 @@ export const dashboard = createI18n(provider, {
       title: 'Select Server',
       description: 'Select the server to configure',
     },
-    music: {
-      title: 'Music Player',
-      description: 'Play Your Favoite songs in Voice channels',
-      'now playing': 'Now Playing',
-    },
     vc: {
       create: 'Create a voice channel',
       'created channels': 'Created Voice channels',
@@ -39,11 +34,6 @@ export const dashboard = createI18n(provider, {
     servers: {
       title: '選擇服務器',
       description: '自定義您的服務器',
-    },
-    music: {
-      title: '音樂播放器',
-      description: '在語音頻道中播放您最喜歡的歌曲',
-      'now playing': '正在播放',
     },
     vc: {
       create: '創建語音通道',
