@@ -1,4 +1,4 @@
-![banner](./document/4B9E09C4-48F7-47B4-9622-93A43912BE63.png)
+![banner](./document/preview-new.png)
 
 # Discord Bot Dashboard Template
 
