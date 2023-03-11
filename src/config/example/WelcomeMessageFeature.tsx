@@ -66,7 +66,10 @@ export function useWelcomeMessageFeature(
           controller={{ control, name: 'color' }}
         />
         <FilePickerForm
-          control={{ label: 'File', description: 'The file to upload' }}
+          control={{
+            label: 'File',
+            description: 'The file to upload',
+          }}
           options={{ accept: { 'image/*': [] }, multiple: false }}
           controller={{ control, name: 'file' }}
         />

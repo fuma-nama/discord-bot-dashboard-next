@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { CLIENT_ID } from '@/utils/auth/server';
-import { APP_URL } from '@/utils/get-absolute-url';
+import { getAbsoluteUrl } from '@/utils/get-absolute-url';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { locale } = req.query as {
@@ -11,7 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     'https://discord.com/api/oauth2/authorize?' +
     new URLSearchParams({
       client_id: CLIENT_ID,
-      redirect_uri: `${APP_URL}/api/auth/callback`,
+      redirect_uri: `${getAbsoluteUrl()}/api/auth/callback`,
       response_type: 'code',
       scope: 'identify guilds',
       state: locale ?? '',
