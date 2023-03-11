@@ -1,5 +1,5 @@
 import { Box, Center, Flex, Text, VStack } from '@chakra-ui/layout';
-import { Icon, Image } from '@chakra-ui/react';
+import { Icon, Image, Input } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { DropzoneOptions, useDropzone } from 'react-dropzone';
 import { FaFile } from 'react-icons/fa';
@@ -9,8 +9,6 @@ import { useController } from 'react-hook-form';
 import { ControlledInput } from './types';
 
 export type FilePickerFormProps = {
-  id?: string;
-  text?: string;
   options?: DropzoneOptions;
   placeholder?: string;
 };
@@ -18,7 +16,7 @@ export type FilePickerFormProps = {
 export const FilePickerForm: ControlledInput<FilePickerFormProps, File[] | undefined | null> = (
   props
 ) => {
-  const { control, controller, options, placeholder, ...rest } = props;
+  const { control, controller, options, placeholder } = props;
   const { field, fieldState } = useController(controller);
   const { value, onChange } = field;
 
@@ -41,7 +39,7 @@ export const FilePickerForm: ControlledInput<FilePickerFormProps, File[] | undef
         cursor="pointer"
       >
         <div {...getRootProps()}>
-          <input {...getInputProps({ ...field, ...rest, value: undefined })} />
+          <Input {...getInputProps({ ...field, value: undefined })} />
           {empty ? (
             <VStack textAlign="center">
               <Icon as={MdUpload} w="70px" h="70px" />
