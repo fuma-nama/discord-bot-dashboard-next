@@ -2,8 +2,6 @@ import { FaChevronLeft as ChevronLeftIcon } from 'react-icons/fa';
 import { Flex, Text } from '@chakra-ui/layout';
 import { Avatar, Icon, IconButton, SkeletonCircle } from '@chakra-ui/react';
 import { iconUrl } from '@/api/discord';
-import { NavbarBox } from '@/components/layout/navbar/Navbar';
-import { NavbarDefaultItems, NavbarLinksBox } from '@/components/layout/navbar/NavbarItems';
 import { useGuildPreview } from '@/api/hooks';
 import { motion } from 'framer-motion';
 import { ReactElement } from 'react';
@@ -16,41 +14,36 @@ export default function GuildNavbar({ back }: { back?: boolean }) {
   const { guild } = useGuildPreview(selected);
 
   return (
-    <NavbarBox>
-      <Flex w="full" direction="row" alignItems="center" as={Link} href={`/guilds/${selected}`}>
-        <HorizontalCollapse in={back ?? false}>
-          <IconButton
-            display={{ [show.sidebar]: 'none' }}
-            aria-label="back"
-            icon={<Icon verticalAlign="middle" as={ChevronLeftIcon} />}
-            mr={3}
-          />
-        </HorizontalCollapse>
-        {guild == null ? (
-          <SkeletonCircle mr={3} />
-        ) : (
-          <Avatar
-            name={guild?.name}
-            src={iconUrl(guild)}
-            display={{ base: 'none', [show.sidebar]: 'block' }}
-            mr={3}
-          />
-        )}
-        <Text
-          fontWeight="600"
-          textOverflow="ellipsis"
-          whiteSpace="nowrap"
-          w="0"
-          flex={1}
-          overflow="hidden"
-        >
-          {guild?.name}
-        </Text>
-      </Flex>
-      <NavbarLinksBox>
-        <NavbarDefaultItems />
-      </NavbarLinksBox>
-    </NavbarBox>
+    <Flex w="full" direction="row" alignItems="center" as={Link} href={`/guilds/${selected}`}>
+      <HorizontalCollapse in={back ?? false}>
+        <IconButton
+          display={{ [show.sidebar]: 'none' }}
+          aria-label="back"
+          icon={<Icon verticalAlign="middle" as={ChevronLeftIcon} />}
+          mr={3}
+        />
+      </HorizontalCollapse>
+      {guild == null ? (
+        <SkeletonCircle mr={3} />
+      ) : (
+        <Avatar
+          name={guild?.name}
+          src={iconUrl(guild)}
+          display={{ base: 'none', [show.sidebar]: 'block' }}
+          mr={3}
+        />
+      )}
+      <Text
+        fontWeight="600"
+        textOverflow="ellipsis"
+        whiteSpace="nowrap"
+        w="0"
+        flex={1}
+        overflow="hidden"
+      >
+        {guild?.name}
+      </Text>
+    </Flex>
   );
 }
 
