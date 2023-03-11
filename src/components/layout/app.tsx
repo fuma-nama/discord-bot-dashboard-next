@@ -43,9 +43,8 @@ export default function AppLayout({
             w="full"
             maxW="1200px"
             flex={1}
-            mt={{ base: '30px', [show.sidebar]: '50px' }}
+            my={{ base: '30px', [show.sidebar]: '50px' }}
             px={{ base: '10px', '3sm': '30px' }}
-            pb={{ base: '10px', '3sm': '30px' }}
           >
             {children}
           </Box>
@@ -60,12 +59,12 @@ function LayoutNavbar({ navbar }: { navbar: ReactNode }) {
     <Box
       top={0}
       mx="auto"
-      maxW="1230px"
+      maxW="1200px"
       zIndex="sticky"
       pos="sticky"
       w="full"
-      px={{ [show.navbar]: '30px' }}
       pt={{ [show.navbar]: '16px' }}
+      px={{ '3sm': '30px' }}
     >
       {navbar ?? <DefaultNavbar />}
     </Box>

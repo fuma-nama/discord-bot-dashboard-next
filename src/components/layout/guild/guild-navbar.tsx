@@ -1,5 +1,5 @@
 import { FaChevronLeft as ChevronLeftIcon } from 'react-icons/fa';
-import { HStack, Text } from '@chakra-ui/layout';
+import { Flex, Text } from '@chakra-ui/layout';
 import { Avatar, Icon, IconButton, SkeletonCircle } from '@chakra-ui/react';
 import { iconUrl } from '@/api/discord';
 import { NavbarBox } from '@/components/layout/navbar/Navbar';
@@ -17,25 +17,36 @@ export default function GuildNavbar({ back }: { back?: boolean }) {
 
   return (
     <NavbarBox>
-      <HStack as={Link} href={`/guilds/${selected}`} cursor="pointer">
+      <Flex w="full" direction="row" alignItems="center" as={Link} href={`/guilds/${selected}`}>
         <HorizontalCollapse in={back ?? false}>
           <IconButton
             display={{ [show.sidebar]: 'none' }}
             aria-label="back"
             icon={<Icon verticalAlign="middle" as={ChevronLeftIcon} />}
+            mr={3}
           />
         </HorizontalCollapse>
         {guild == null ? (
-          <SkeletonCircle />
+          <SkeletonCircle mr={3} />
         ) : (
           <Avatar
             name={guild?.name}
             src={iconUrl(guild)}
-            display={{ base: 'none', [show.navbar]: 'block' }}
+            display={{ base: 'none', [show.sidebar]: 'block' }}
+            mr={3}
           />
         )}
-        <Text fontWeight="600">{guild?.name}</Text>
-      </HStack>
+        <Text
+          fontWeight="600"
+          textOverflow="ellipsis"
+          whiteSpace="nowrap"
+          w="0"
+          flex={1}
+          overflow="hidden"
+        >
+          {guild?.name}
+        </Text>
+      </Flex>
       <NavbarLinksBox>
         <NavbarDefaultItems />
       </NavbarLinksBox>

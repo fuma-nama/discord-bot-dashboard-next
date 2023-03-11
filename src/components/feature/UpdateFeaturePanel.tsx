@@ -22,7 +22,9 @@ export function UpdateFeaturePanel<K extends keyof CustomFeatures>({
   return (
     <>
       <Flex direction="column" gap={5} w="full" h="full">
-        <Heading ml={4}>{config.name}</Heading>
+        <Heading ml={5} size="lg">
+          {config.name}
+        </Heading>
         {result.component}
       </Flex>
       <Savebar result={result} />

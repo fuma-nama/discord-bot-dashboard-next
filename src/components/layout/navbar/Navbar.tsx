@@ -101,7 +101,6 @@ export function DefaultNavbar({ children }: { children?: ReactNode }) {
 }
 
 export function NavbarBox({ bar, children }: { bar?: FlexProps; children: ReactNode }) {
-  const navbarBackdrop = 'blur(20px)';
   const navbarBg = useColorModeValue('rgba(244, 247, 254, 0.2)', 'rgba(8, 8, 28, 0.5)');
 
   return (
@@ -109,17 +108,10 @@ export function NavbarBox({ bar, children }: { bar?: FlexProps; children: ReactN
       direction="row"
       mx="auto"
       bg={navbarBg}
-      backdropFilter={navbarBackdrop}
+      backdropFilter="blur(20px)"
       borderRadius={{ [show.navbar]: '16px' }}
       lineHeight="25.6px"
-      pl={{
-        base: '15px',
-        [show.navbar]: '10px',
-      }}
-      pr={{
-        base: '5px',
-        [show.navbar]: '10px',
-      }}
+      px={{ base: '10px', [show.navbar]: 5 }}
       py={{ base: '3px', [show.navbar]: '8px' }}
       gap={2}
       justify="space-between"

@@ -31,7 +31,7 @@ export function Form(props: FormControlProps) {
       direction="column"
       bg="CardBackground"
       rounded="3xl"
-      p={4}
+      p={5}
       boxShadow="normal"
       {...props}
     >
