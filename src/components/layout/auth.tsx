@@ -1,7 +1,6 @@
 // Chakra imports
 import { Box, HStack, Icon, Spacer, Text } from '@chakra-ui/react';
 import { config } from '@/config/common';
-import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { ReactNode } from 'react';
 import { SelectField } from '../forms/SelectField';
 import { languages, names, useLang } from '@/config/translations/provider';
@@ -9,9 +8,9 @@ import { common } from '@/config/translations/common';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
-    <Box w="full" h="full" overflow="auto" py={40}>
+    <Box w="full" h="full" overflow="auto" py={40} px={{ base: 5, lg: 10 }}>
       {children}
-      <HStack pos="fixed" top={0} w="full" bg="globalBg" px={{ base: 5, lg: 10 }} py={2}>
+      <HStack pos="fixed" top={0} left={0} w="full" bg="globalBg" px={{ base: 5, lg: 10 }} py={2}>
         {config.icon != null && <Icon color="TextPrimary" as={config.icon} w={10} h={10} />}
         <Text fontWeight="600" fontSize="lg">
           {config.name}
@@ -20,7 +19,6 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         <Box w="150px">
           <LanguageSelect />
         </Box>
-        <ThemeSwitch />
       </HStack>
     </Box>
   );
