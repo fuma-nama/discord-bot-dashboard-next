@@ -1,7 +1,6 @@
-import { dark } from './../colors';
 import { cardAnatomy } from '@chakra-ui/anatomy';
 import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system';
-import { light } from '@/theme/colors';
+import { light, dark } from '@/theme/colors';
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(
   cardAnatomy.keys

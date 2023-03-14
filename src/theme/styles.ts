@@ -1,5 +1,4 @@
 import { mode } from '@chakra-ui/theme-tools';
-import { dark, light } from './colors';
 
 export const globalStyles = (props: any) => ({
   '::-webkit-scrollbar': {

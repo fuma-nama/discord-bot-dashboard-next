@@ -34,6 +34,7 @@ export const SmallColorPickerForm: ControlledInput<
           <InputGroup>
             <InputLeftAddon bg={value} rounded="xl" h="full" />
             <Input
+              autoComplete="off"
               variant="main"
               placeholder={value ?? 'Select a color'}
               {...field}
@@ -81,6 +82,7 @@ export const ColorPickerForm: ControlledInput<ColorPickerFormProps, ColorPickerP
           <Input
             placeholder={value ?? 'Select a color'}
             variant="main"
+            autoComplete="off"
             {...field}
             value={field.value ?? ''}
           />
