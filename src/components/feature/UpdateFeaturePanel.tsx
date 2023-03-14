@@ -76,13 +76,16 @@ function Savebar({ result: { canSave, reset, onSubmit } }: { result: FormRender<
       <ButtonGroup isDisabled={mutation.isLoading} size={{ base: 'sm', [breakpoint]: 'md' }}>
         <Button
           variant="action"
+          rounded="full"
           leftIcon={<IoSave />}
           isLoading={mutation.isLoading}
           onClick={onSave}
         >
           {t.bn.save}
         </Button>
-        <Button onClick={reset}>{t.bn.discard}</Button>
+        <Button rounded="full" onClick={reset}>
+          {t.bn.discard}
+        </Button>
       </ButtonGroup>
     </HStack>
   );

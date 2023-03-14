@@ -66,7 +66,7 @@ export default function HomeView() {
         <Heading size="lg">{t.command.title}</Heading>
         <Text color="TextSecondary">{t.command.description}</Text>
         <HStack mt={2}>
-          <Button leftIcon={<IoPricetag />} variant="action" rounded="xl">
+          <Button leftIcon={<IoPricetag />} variant="action">
             {t.pricing}
           </Button>
           <Button px={6} rounded="xl" variant="secondary">

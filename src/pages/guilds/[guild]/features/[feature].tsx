@@ -48,7 +48,6 @@ function NotEnabled() {
         isLoading={enable.isLoading}
         onClick={() => enable.mutate({ enabled: true })}
         variant="action"
-        rounded="xl"
         px={6}
       >
         {t.bn.enable}

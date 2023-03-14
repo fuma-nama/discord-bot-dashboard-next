@@ -33,7 +33,6 @@ const LoginPage: NextPageWithLayout = () => {
         width="350px"
         maxW="full"
         as="a"
-        rounded="xl"
         href={`/api/auth/login?locale=${locale}`}
       >
         {t.login_bn}

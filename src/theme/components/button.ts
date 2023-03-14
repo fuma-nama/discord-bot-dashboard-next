@@ -28,6 +28,7 @@ export const buttonStyles = defineStyleConfig({
         'linear-gradient(to right bottom, var(--chakra-colors-brand-400), var(--chakra-colors-brand-500))'
       )(props),
       color: 'white',
+      rounded: 'xl',
       boxShadow: mode(
         '1px 2px 5px var(--chakra-colors-brand-400)',
         '1px 2px 15px var(--chakra-colors-brand-400)'
