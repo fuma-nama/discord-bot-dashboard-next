@@ -1,6 +1,7 @@
 import { mode } from '@chakra-ui/theme-tools';
 import { sliderAnatomy as parts } from '@chakra-ui/anatomy';
 import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system';
+
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(parts.keys);
 
 export const sliderStyles = defineMultiStyleConfig({
