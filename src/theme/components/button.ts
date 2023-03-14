@@ -1,3 +1,4 @@
+import { defineStyle } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 
 export const buttonStyles = {
@@ -21,12 +22,6 @@ export const buttonStyles = {
           _hover: { bg: 'red.400' },
           _active: { bg: 'red.300' },
         }),
-        outline: (props: any) => ({
-          borderRadius: '16px',
-          color: mode('brand.500', 'gray.200')(props),
-          border: '2px',
-          borderColor: mode('brand.500', 'gray.200')(props),
-        }),
         brand: (props: any) => ({
           bg: mode('brand.500', 'brand.400')(props),
           color: 'white',
@@ -38,19 +33,6 @@ export const buttonStyles = {
           },
           _hover: {
             bg: mode('brand.600', 'brand.400')(props),
-          },
-        }),
-        light: (props: any) => ({
-          bg: mode('secondaryGray.300', 'whiteAlpha.100')(props),
-          color: mode('secondaryGray.900', 'white')(props),
-          _focus: {
-            bg: mode('secondaryGray.300', 'whiteAlpha.100')(props),
-          },
-          _active: {
-            bg: mode('secondaryGray.300', 'whiteAlpha.100')(props),
-          },
-          _hover: {
-            bg: mode('secondaryGray.400', 'whiteAlpha.200')(props),
           },
         }),
         action: (props: any) => ({
@@ -65,6 +47,21 @@ export const buttonStyles = {
             '1px 2px 5px var(--chakra-colors-brand-400)',
             '1px 2px 15px var(--chakra-colors-brand-400)'
           )(props),
+        }),
+        secondary: defineStyle({
+          _light: {
+            bg: 'white',
+            shadow: 'normal',
+          },
+          _dark: {
+            bg: 'whiteAlpha.200',
+            _hover: {
+              bg: 'whiteAlpha.300',
+            },
+            _active: {
+              bg: 'whiteAlpha.300',
+            },
+          },
         }),
       },
     },
