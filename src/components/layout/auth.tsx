@@ -10,7 +10,15 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <Box w="full" h="full" overflow="auto" py={40} px={{ base: 5, lg: 10 }}>
       {children}
-      <HStack pos="fixed" top={0} left={0} w="full" bg="globalBg" px={{ base: 5, lg: 10 }} py={2}>
+      <HStack
+        pos="fixed"
+        top={0}
+        left={0}
+        w="full"
+        bg="MainBackground"
+        px={{ base: 5, lg: 10 }}
+        py={2}
+      >
         {config.icon != null && <Icon color="TextPrimary" as={config.icon} w={10} h={10} />}
         <Text fontWeight="600" fontSize="lg">
           {config.name}

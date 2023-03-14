@@ -6,7 +6,12 @@ import Link from 'next/link';
 export function SidebarItem({ item, active }: { item: SidebarItemInfo; active: boolean }) {
   return (
     <HStack as={Link} bg="CardBackground" py={2} px={3} rounded="lg" href={item.path}>
-      <Box color={active ? 'white' : 'brand'} bg={active ? 'brand' : 'globalBg'} p={1} rounded="lg">
+      <Box
+        color={active ? 'white' : 'Brand'}
+        bg={active ? 'Brand' : 'MainBackground'}
+        p={1}
+        rounded="lg"
+      >
         <Box w="20px" h="20px">
           {item.icon}
         </Box>

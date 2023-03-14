@@ -27,7 +27,7 @@ export default function HomeView() {
 
   return (
     <Flex direction="column" gap={5}>
-      <HStack rounded="2xl" bg="brand" gap={2} p={5}>
+      <HStack rounded="2xl" bg="Brand" gap={2} p={5}>
         <Circle
           color="white"
           bgGradient="linear(to right bottom, transparent, blackAlpha.600)"
@@ -78,7 +78,7 @@ export default function HomeView() {
       <Grid templateColumns={{ base: '1fr', lg: '0.5fr 1fr' }} gap={3}>
         <Card rounded="3xl" variant="primary">
           <CardBody as={Center} p={4} flexDirection="column" gap={3}>
-            <Circle p={4} bg="globalBg">
+            <Circle p={4} bg="MainBackground">
               <Icon as={BsMusicNoteBeamed} w="80px" h="80px" />
             </Circle>
             <Text fontWeight="600">{t.vc.create}</Text>
@@ -157,7 +157,7 @@ function VoiceChannelItem() {
   return (
     <Card rounded="2xl" variant="primary">
       <CardHeader as={HStack}>
-        <Icon as={MdVoiceChat} w="30px" h="30px" color="brand" />
+        <Icon as={MdVoiceChat} w="30px" h="30px" color="Brand" />
         <Text>My Channel</Text>
       </CardHeader>
       <CardBody>

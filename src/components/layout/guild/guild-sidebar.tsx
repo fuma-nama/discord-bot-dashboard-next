@@ -99,7 +99,7 @@ function CardItem({ active, href, ...props }: { href: string; active: boolean } 
       rounded="xl"
       p={2}
       color={active ? 'TextPrimary' : 'TextSecondary'}
-      bg={active ? 'globalBg' : undefined}
+      bg={active ? 'MainBackground' : undefined}
       _dark={{
         bg: active ? 'whiteAlpha.100' : undefined,
       }}

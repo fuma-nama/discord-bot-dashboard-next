@@ -50,13 +50,13 @@ export function LoadingPanel({ size, ...props }: Props & CenterProps) {
             w="150px"
             h="150px"
             thickness="4px"
-            color="brand"
+            color="Brand"
           />
 
-          <Icon color="brand" as={BsCloudRain} w="100px" h="100px" />
+          <Icon color="Brand" as={BsCloudRain} w="100px" h="100px" />
         </Box>
 
-        <Text color="brand" fontWeight="bold">
+        <Text color="Brand" fontWeight="bold">
           {t.loading}
         </Text>
       </VStack>

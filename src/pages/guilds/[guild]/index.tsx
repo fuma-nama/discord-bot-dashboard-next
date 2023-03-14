@@ -66,7 +66,7 @@ function NotJoined({ guild }: { guild: string }) {
         {t.error['not found description']}
       </Text>
       <Link href={`${config.inviteUrl}&guild_id=${guild}`} target="_blank">
-        <Button variant="brand" leftIcon={<FaRobot />}>
+        <Button variant="action" leftIcon={<FaRobot />} rounded="xl" px={6}>
           {t.bn.invite}
         </Button>
       </Link>

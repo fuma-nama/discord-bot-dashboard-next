@@ -13,7 +13,7 @@ export function GuildItem({
 }) {
   return (
     <Card
-      bg={active ? 'brand' : 'globalBg'}
+      bg={active ? 'Brand' : 'MainBackground'}
       color={active ? 'white' : undefined}
       cursor="pointer"
       as={Link}

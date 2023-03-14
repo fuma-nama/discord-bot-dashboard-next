@@ -30,9 +30,9 @@ export const FilePickerForm: ControlledInput<FilePickerFormProps, File[] | undef
   return (
     <FormCard {...control} error={fieldState.error?.message}>
       <Box
-        bg="inputBackground"
+        bg="InputBackground"
         border="1px dashed"
-        borderColor="inputBorder"
+        borderColor="InputBorder"
         borderRadius="16px"
         w="100%"
         p={5}
