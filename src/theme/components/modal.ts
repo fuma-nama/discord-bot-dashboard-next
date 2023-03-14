@@ -1,6 +1,5 @@
 import { modalAnatomy as parts } from '@chakra-ui/anatomy';
 import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system';
-import { mode } from '@chakra-ui/theme-tools';
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(parts.keys);
 
@@ -25,21 +24,6 @@ const baseStyle = definePartsStyle({
   },
 });
 
-export const modalStyles = {
-  components: {
-    Modal: defineMultiStyleConfig({
-      baseStyle,
-    }),
-    Popover: {
-      baseStyle: (props: any) => ({
-        content: {
-          bg: mode('secondaryGray.300', 'navy.900')(props),
-          rounded: 'xl',
-          _focus: {
-            boxShadow: 'none',
-          },
-        },
-      }),
-    },
-  },
-};
+export const modalStyles = defineMultiStyleConfig({
+  baseStyle,
+});
