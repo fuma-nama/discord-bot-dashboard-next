@@ -1,5 +1,4 @@
 import {
-  Box,
   Center,
   Circle,
   Flex,
@@ -63,16 +62,19 @@ export default function HomeView() {
         </Flex>
       </HStack>
       <Guilds />
-      <Flex direction="column" p={3}>
-        <Box w="fit-content">
-          <Heading size="lg">{t.command.title}</Heading>
-          <Text color="TextSecondary">{t.command.description}</Text>
-          <Button mt={2} leftIcon={<IoPricetag />} variant="action">
+      <Flex direction="column" gap={2}>
+        <Heading size="lg">{t.command.title}</Heading>
+        <Text color="TextSecondary">{t.command.description}</Text>
+        <HStack mt={2}>
+          <Button leftIcon={<IoPricetag />} variant="action" rounded="xl">
             {t.pricing}
           </Button>
-        </Box>
-        <TestChart />
+          <Button px={6} rounded="xl" variant="secondary">
+            Learn More
+          </Button>
+        </HStack>
       </Flex>
+      <TestChart />
       <Grid templateColumns={{ base: '1fr', lg: '0.5fr 1fr' }} gap={3}>
         <Card rounded="3xl" variant="primary">
           <CardBody as={Center} p={4} flexDirection="column" gap={3}>
@@ -121,6 +123,19 @@ function TestChart() {
         xaxis: {
           categories: ['SEP', 'OCT', 'NOV', 'DEC', 'JAN', 'FEB'],
         },
+        legend: {
+          position: 'right',
+        },
+        responsive: [
+          {
+            breakpoint: 650,
+            options: {
+              legend: {
+                position: 'bottom',
+              },
+            },
+          },
+        ],
       }}
       series={[
         {
