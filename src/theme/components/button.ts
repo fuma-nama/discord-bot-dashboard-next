@@ -20,19 +20,6 @@ export const buttonStyles = defineStyleConfig({
       _hover: { bg: 'red.400' },
       _active: { bg: 'red.300' },
     }),
-    brand: defineStyle((props) => ({
-      bg: mode('brand.500', 'brand.400')(props),
-      color: 'white',
-      _focus: {
-        bg: mode('brand.500', 'brand.400')(props),
-      },
-      _active: {
-        bg: mode('brand.500', 'brand.400')(props),
-      },
-      _hover: {
-        bg: mode('brand.600', 'brand.400')(props),
-      },
-    })),
     action: defineStyle((props) => ({
       fontWeight: '600',
       borderRadius: '50px',
@@ -41,6 +28,7 @@ export const buttonStyles = defineStyleConfig({
         'linear-gradient(to right bottom, var(--chakra-colors-brand-400), var(--chakra-colors-brand-500))'
       )(props),
       color: 'white',
+      rounded: 'xl',
       boxShadow: mode(
         '1px 2px 5px var(--chakra-colors-brand-400)',
         '1px 2px 15px var(--chakra-colors-brand-400)'

@@ -23,7 +23,7 @@ export function FeatureItem({
       <CardBody as={Flex} direction="row" gap={3}>
         <Center
           p={5}
-          bg={enabled ? 'brand' : 'globalBg'}
+          bg={enabled ? 'Brand' : 'MainBackground'}
           color={enabled ? 'white' : undefined}
           rounded="xl"
           w="60px"

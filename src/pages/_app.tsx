@@ -1,6 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
-import { theme } from '@/theme';
+import { theme } from '@/theme/config';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { client } from '@/api/hooks';
 import { NextPage } from 'next';

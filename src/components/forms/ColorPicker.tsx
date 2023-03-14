@@ -69,8 +69,8 @@ export const ColorPickerForm: ControlledInput<ColorPickerFormProps, ColorPickerP
             minH="150px"
             rounded="xl"
             border="1px solid"
-            borderColor="inputBorder"
-            bgColor={value == null ? 'inputBackground' : convertHexToRGBA(value)}
+            borderColor="InputBorder"
+            bgColor={value == null ? 'InputBackground' : convertHexToRGBA(value)}
             flex={1}
           >
             {value == null && (

@@ -5,7 +5,7 @@ import { useSelfUserQuery } from '@/api/hooks';
 import { LoadingPanel } from '@/components/panel/LoadingPanel';
 import { Navbar } from '@/components/layout/navbar';
 import { Sidebar, SidebarResponsive } from './sidebar';
-import { show } from '@/theme';
+import { sidebarBreakpoint, navbarBreakpoint } from '@/theme/breakpoints';
 import { ReactNode } from 'react';
 import { DefaultNavbar } from './navbar/default';
 
@@ -45,7 +45,7 @@ export default function AppLayout({
             zIndex="sticky"
             pos="sticky"
             w="full"
-            pt={{ [show.navbar]: '16px' }}
+            pt={{ [navbarBreakpoint]: '16px' }}
             px={{ '3sm': '30px' }}
           >
             <Navbar>{navbar ?? <DefaultNavbar />}</Navbar>
@@ -55,7 +55,7 @@ export default function AppLayout({
             w="full"
             maxW="1200px"
             flex={1}
-            my={{ base: '30px', [show.sidebar]: '50px' }}
+            my={{ base: '30px', [sidebarBreakpoint]: '50px' }}
             px={{ base: '24px', '3sm': '30px' }}
           >
             {children}

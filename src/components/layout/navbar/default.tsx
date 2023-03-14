@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import { useActiveSidebarItem } from '@/utils/router';
 import { IoHome } from 'react-icons/io5';
 import { FaChevronRight as ChevronRightIcon } from 'react-icons/fa';
-import { show } from '@/theme';
+import { navbarBreakpoint } from '@/theme/breakpoints';
 import { common } from '@/config/translations/common';
 import Link from 'next/link';
 
@@ -30,11 +30,11 @@ export function DefaultNavbar() {
       direction="column"
       gap={{
         base: 2,
-        [show.navbar]: 3,
+        [navbarBreakpoint]: 3,
       }}
       mt={{
         base: '8px',
-        [show.navbar]: '0',
+        [navbarBreakpoint]: '0',
       }}
     >
       <Breadcrumb

@@ -5,7 +5,7 @@ import { HSeparator } from '@/components/layout/Separator';
 import { getFeatures } from '@/config/utils';
 import { IoSettings } from 'react-icons/io5';
 import { useGuildPreview } from '@/api/hooks';
-import { show } from '@/theme';
+import { sidebarBreakpoint } from '@/theme/breakpoints';
 import { guild as view } from '@/config/translations/guild';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -23,7 +23,7 @@ export function InGuildSidebar() {
     <Flex direction="column" gap={2} p={3}>
       <HStack as={Link} cursor="pointer" mb={2} href={`/guilds/${guildId}`}>
         <IconButton
-          display={{ base: 'none', [show.sidebar]: 'block' }}
+          display={{ base: 'none', [sidebarBreakpoint]: 'block' }}
           icon={<Icon verticalAlign="middle" as={ChevronLeftIcon} />}
           aria-label="back"
         />
@@ -99,7 +99,7 @@ function CardItem({ active, href, ...props }: { href: string; active: boolean } 
       rounded="xl"
       p={2}
       color={active ? 'TextPrimary' : 'TextSecondary'}
-      bg={active ? 'globalBg' : undefined}
+      bg={active ? 'MainBackground' : undefined}
       _dark={{
         bg: active ? 'whiteAlpha.100' : undefined,
       }}

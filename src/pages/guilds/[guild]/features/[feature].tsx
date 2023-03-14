@@ -47,7 +47,8 @@ function NotEnabled() {
         mt={3}
         isLoading={enable.isLoading}
         onClick={() => enable.mutate({ enabled: true })}
-        variant="brand"
+        variant="action"
+        px={6}
       >
         {t.bn.enable}
       </Button>

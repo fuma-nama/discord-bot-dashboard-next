@@ -15,7 +15,7 @@ export function Banner() {
       p={{ base: 5, lg: 8 }}
       rounded="2xl"
       color="white"
-      bgColor="brand"
+      bgColor="Brand"
       bgImg={{ base: null, '3sm': '/Banner1.png' } as any}
       bgSize="cover"
       gap={3}

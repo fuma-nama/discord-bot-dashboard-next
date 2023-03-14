@@ -9,7 +9,7 @@ import {
   SelectInstance,
 } from 'chakra-react-select';
 import { forwardRef, ReactNode } from 'react';
-import { dark, light } from '@/theme';
+import { dark, light } from '@/theme/colors';
 import { useColorModeValue } from '@chakra-ui/react';
 
 const customComponents = {
