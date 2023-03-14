@@ -1,5 +1,5 @@
 import { Flex, useColorModeValue } from '@chakra-ui/react';
-import { show } from '@/theme';
+import { navbarBreakpoint } from '@/theme/breakpoints';
 import { ReactNode } from 'react';
 
 import { UserMenu } from '@/components/menu/UserMenu';
@@ -15,10 +15,10 @@ export function Navbar({ links, children }: { links?: ReactNode; children: React
       mx="auto"
       bg={navbarBg}
       backdropFilter="blur(20px)"
-      borderRadius={{ [show.navbar]: '16px' }}
+      borderRadius={{ [navbarBreakpoint]: '16px' }}
       lineHeight="25.6px"
-      px={{ base: '24px', [show.navbar]: 5 }}
-      py={{ base: '3px', [show.navbar]: '8px' }}
+      px={{ base: '24px', [navbarBreakpoint]: 5 }}
+      py={{ base: '3px', [navbarBreakpoint]: '8px' }}
       gap={2}
       justify="space-between"
       alignItems="stretch"

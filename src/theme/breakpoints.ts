@@ -9,7 +9,5 @@ export const breakpoints = {
   '3xl': '1920px',
 };
 
-export const show = {
-  sidebar: 'xl',
-  navbar: '3sm',
-};
+export const navbarBreakpoint = '3sm';
+export const sidebarBreakpoint = 'xl';

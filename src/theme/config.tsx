@@ -14,7 +14,7 @@ import { skeletonStyles } from './components/skeleton';
 import { tabsStyles } from './components/tabs';
 import { cardStyles } from './components/card';
 import { textStyles } from './components/text';
-import { globalStyles } from './styles';
+import { globalStyles } from './global';
 import { colors, dark, light } from './colors';
 import { selectStyles } from './components/select';
 import { popoverStyles } from './components/popover';

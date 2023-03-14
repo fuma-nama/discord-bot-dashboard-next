@@ -5,7 +5,7 @@ import { iconUrl } from '@/api/discord';
 import { useGuildPreview } from '@/api/hooks';
 import { motion } from 'framer-motion';
 import { ReactElement } from 'react';
-import { show } from '@/theme';
+import { sidebarBreakpoint } from '@/theme/breakpoints';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -17,7 +17,7 @@ export default function GuildNavbar({ back }: { back?: boolean }) {
     <Flex w="full" direction="row" alignItems="center" as={Link} href={`/guilds/${selected}`}>
       <HorizontalCollapse in={back ?? false}>
         <IconButton
-          display={{ [show.sidebar]: 'none' }}
+          display={{ [sidebarBreakpoint]: 'none' }}
           aria-label="back"
           icon={<Icon verticalAlign="middle" as={ChevronLeftIcon} />}
           mr={3}
@@ -29,7 +29,7 @@ export default function GuildNavbar({ back }: { back?: boolean }) {
         <Avatar
           name={guild?.name}
           src={iconUrl(guild)}
-          display={{ base: 'none', [show.sidebar]: 'block' }}
+          display={{ base: 'none', [sidebarBreakpoint]: 'block' }}
           mr={3}
         />
       )}

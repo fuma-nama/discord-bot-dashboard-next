@@ -13,7 +13,7 @@ import { BottomCard, SidebarContent } from './SidebarContent';
 import { AnimatePresence, motion } from 'framer-motion';
 import { SidebarItemInfo } from '@/utils/router';
 import { usePageStore } from '@/stores';
-import { show } from '@/theme';
+import { sidebarBreakpoint } from '@/theme/breakpoints';
 import { ReactNode } from 'react';
 
 export function Sidebar({ sidebar, items }: { sidebar?: ReactNode; items: SidebarItemInfo[] }) {
@@ -22,7 +22,7 @@ export function Sidebar({ sidebar, items }: { sidebar?: ReactNode; items: Sideba
   const sidebarMargins = '0px';
 
   return (
-    <Box display={{ base: 'none', [show.sidebar]: 'block' }} minH="100%">
+    <Box display={{ base: 'none', [sidebarBreakpoint]: 'block' }} minH="100%">
       <Box
         bg={sidebarBg}
         w="300px"
