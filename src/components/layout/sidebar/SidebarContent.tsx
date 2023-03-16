@@ -44,8 +44,8 @@ export function SidebarContent({ items }: { items: SidebarItemInfo[] }) {
   // SIDEBAR
   return (
     <>
-      <VStack align="center" pt="3rem" pb="1rem" w="full">
-        <Heading size="lg" fontWeight="bold" m={0}>
+      <VStack align="center" py="2rem" m={3} bg="Brand" rounded="xl">
+        <Heading size="lg" fontWeight={600} color="white">
           {config.name}
         </Heading>
       </VStack>
