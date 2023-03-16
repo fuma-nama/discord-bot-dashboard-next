@@ -1,8 +1,6 @@
 import {
-  Box,
   Drawer,
   DrawerBody,
-  useColorModeValue,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
@@ -17,36 +15,31 @@ import { sidebarBreakpoint } from '@/theme/breakpoints';
 import { ReactNode } from 'react';
 
 export function Sidebar({ sidebar, items }: { sidebar?: ReactNode; items: SidebarItemInfo[] }) {
-  const shadow = useColorModeValue('14px 17px 40px 4px rgba(112, 144, 176, 0.08)', 'unset');
-
   return (
-    <Box display={{ base: 'none', [sidebarBreakpoint]: 'block' }} minH="100%">
-      <Box
-        bg="CardBackground"
-        w="300px"
-        h="100vh"
-        m={0}
-        minH="100%"
-        overflowX="hidden"
-        boxShadow={shadow}
-      >
-        <Flex direction="column" height="100%" overflowX="hidden" overflowY="auto">
-          <AnimatePresence exitBeforeEnter initial={false}>
-            <motion.div
-              key={sidebar == null ? 'default' : 'new'}
-              initial={{ x: '100px', opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: '-100px', opacity: 0 }}
-              transition={{ duration: 0.2, ease: 'easeInOut' }}
-            >
-              {sidebar ?? <SidebarContent items={items} />}
-            </motion.div>
-          </AnimatePresence>
-          <Spacer />
-          <BottomCard />
-        </Flex>
-      </Box>
-    </Box>
+    <Flex
+      direction="column"
+      display={{ base: 'none', [sidebarBreakpoint]: 'flex' }}
+      flexShrink={0}
+      bg="CardBackground"
+      w="300px"
+      h="100%"
+      overflowX="hidden"
+      overflowY="auto"
+    >
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <motion.div
+          key={sidebar == null ? 'default' : 'new'}
+          initial={{ x: '100px', opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: '-100px', opacity: 0 }}
+          transition={{ duration: 0.2, ease: 'easeInOut' }}
+        >
+          {sidebar ?? <SidebarContent items={items} />}
+        </motion.div>
+      </AnimatePresence>
+      <Spacer />
+      <BottomCard />
+    </Flex>
   );
 }
 
