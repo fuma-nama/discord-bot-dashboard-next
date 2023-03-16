@@ -20,9 +20,9 @@ import { config } from '@/config/common';
 import { FiSettings as SettingsIcon } from 'react-icons/fi';
 import { avatarUrl } from '@/api/discord';
 import { GuildItem } from './GuildItem';
-import { SidebarItem } from './SidebarItem';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { SidebarItem } from '../SidebarItem';
 
 export function SidebarContent({ items }: { items: SidebarItemInfo[] }) {
   const [filter, setFilter] = useState('');
@@ -44,15 +44,14 @@ export function SidebarContent({ items }: { items: SidebarItemInfo[] }) {
   // SIDEBAR
   return (
     <>
-      <Flex alignItems="center" flexDirection="column" bg="brand.500" _dark={{ bg: 'brand.400' }}>
-        <VStack align="center" my="32px" color="white">
-          <Heading m={0}>{config.name}</Heading>
-        </VStack>
-      </Flex>
+      <VStack align="center" pt="3rem" pb="1rem" w="full">
+        <Heading size="lg" fontWeight="bold" m={0}>
+          {config.name}
+        </Heading>
+      </VStack>
+
       <Stack direction="column" mt="18px" mb="auto">
-        <Flex direction="column" px="10px" gap={1}>
-          <Items items={items} />
-        </Flex>
+        <Items items={items} />
         <Box px="10px">
           <SearchBar
             w="full"
@@ -99,12 +98,18 @@ function Items({ items }: { items: SidebarItemInfo[] }) {
   const active = useActiveSidebarItem();
 
   return (
-    <>
+    <Flex direction="column" px="10px" gap={0}>
       {items
         .filter((item) => !item.hidden)
         .map((route: SidebarItemInfo, index: number) => (
-          <SidebarItem key={index} item={route} active={active === route} />
+          <SidebarItem
+            key={index}
+            href={route.path}
+            name={route.name}
+            icon={route.icon}
+            active={active === route}
+          />
         ))}
-    </>
+    </Flex>
   );
 }
