@@ -18,16 +18,14 @@ import { ReactNode } from 'react';
 
 export function Sidebar({ sidebar, items }: { sidebar?: ReactNode; items: SidebarItemInfo[] }) {
   const shadow = useColorModeValue('14px 17px 40px 4px rgba(112, 144, 176, 0.08)', 'unset');
-  const sidebarBg = useColorModeValue('white', 'navy.800');
-  const sidebarMargins = '0px';
 
   return (
     <Box display={{ base: 'none', [sidebarBreakpoint]: 'block' }} minH="100%">
       <Box
-        bg={sidebarBg}
+        bg="CardBackground"
         w="300px"
         h="100vh"
-        m={sidebarMargins}
+        m={0}
         minH="100%"
         overflowX="hidden"
         boxShadow={shadow}
@@ -59,18 +57,12 @@ export function SidebarResponsive({
   sidebar?: ReactNode;
   items: SidebarItemInfo[];
 }) {
-  const sidebarBackgroundColor = useColorModeValue('white', 'navy.800');
-
   const [isOpen, setOpen] = usePageStore((s) => [s.sidebarIsOpen, s.setSidebarIsOpen]);
 
   return (
-    <Drawer
-      isOpen={isOpen}
-      onClose={() => setOpen(false)}
-      placement={document.documentElement.dir === 'rtl' ? 'right' : 'left'}
-    >
+    <Drawer isOpen={isOpen} onClose={() => setOpen(false)}>
       <DrawerOverlay />
-      <DrawerContent w="285px" maxW="285px" bg={sidebarBackgroundColor}>
+      <DrawerContent w="285px" maxW="285px" bg="CardBackground">
         <DrawerCloseButton
           zIndex="3"
           onClick={() => setOpen(false)}
