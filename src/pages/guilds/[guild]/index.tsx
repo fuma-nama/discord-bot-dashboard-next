@@ -20,7 +20,7 @@ const GuildPage: NextPageWithLayout = () => {
   const query = useGuildInfoQuery(guild);
 
   return (
-    <QueryStatus query={query} loading={<LoadingPanel size="sm" />} error={t.error.load}>
+    <QueryStatus query={query} loading={<LoadingPanel />} error={t.error.load}>
       {query.data != null ? (
         <GuildPanel guild={guild} info={query.data} />
       ) : (

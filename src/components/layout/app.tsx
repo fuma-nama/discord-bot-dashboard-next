@@ -24,11 +24,7 @@ export default function AppLayout({
     <Flex direction="row" h="full">
       <Sidebar items={items} sidebar={sidebar} />
       <SidebarResponsive items={items} sidebar={sidebar} />
-      <QueryStatus
-        query={query}
-        loading={<LoadingPanel size="sm" />}
-        error="Failed to load user info"
-      >
+      <QueryStatus query={query} loading={<LoadingPanel />} error="Failed to load user info">
         <Flex
           pos="relative"
           direction="column"
