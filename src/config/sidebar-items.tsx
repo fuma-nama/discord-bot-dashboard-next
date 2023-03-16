@@ -7,12 +7,12 @@ const items: SidebarItemInfo[] = [
   {
     name: <common.T text="dashboard" />,
     path: '/user/home',
-    icon: <Icon as={MdDashboard} width="20px" height="20px" color="inherit" />,
+    icon: <Icon as={MdDashboard} />,
   },
   {
     name: <common.T text="profile" />,
     path: '/user/profile',
-    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+    icon: <Icon as={MdPerson} />,
   },
 ];
 

@@ -96,7 +96,15 @@ As a template, you need to customize a few things in order to get it work
    Those variables in [.env.example](./.env.example) are required
    <br>
    You can define environment variables by creating a `.env` file
-7. **Done!**
+7. **Setup Backend Server**
+   <br>
+   In order to let the dashboard connected with your discord bot, you will need a backend server
+   <br>
+   You can implement it in any programming languages
+
+   Read [here](#backend-development) for a guide to develop your own server
+
+8. **Done!**
    <br>
    Start the app by `pnpm run dev` _(depends on your package manager)_
    <br>
@@ -143,6 +151,12 @@ The refresh token won't be used, but you are able to customize the Authorization
 ## Backend Development
 
 Check [src/api/bot.ts](./src/api/bot.ts), it defined a built-in API for fetching data
+
+You can use `express.js` (Node.js), `Rocket` (Rust) or any libraries/languages to develop your own server
+<br>
+Usually the server runs along with your discord bot (in the same program)
+<br>
+Moreover, you can use redis instead of connecting to the bot server directly
 
 ### Official Example
 
