@@ -19,7 +19,7 @@ import { useMemo, useState } from 'react';
 import { config } from '@/config/common';
 import { FiSettings as SettingsIcon } from 'react-icons/fi';
 import { avatarUrl } from '@/api/discord';
-import { GuildItem } from './GuildItem';
+import { GuildItem, GuildItemsSkeleton } from './GuildItem';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { SidebarItem } from '../SidebarItem';
@@ -41,7 +41,6 @@ export function SidebarContent({ items }: { items: SidebarItemInfo[] }) {
     [guilds.data, filter]
   );
 
-  // SIDEBAR
   return (
     <>
       <VStack align="center" py="2rem" m={3} bg="Brand" rounded="xl">
@@ -50,7 +49,7 @@ export function SidebarContent({ items }: { items: SidebarItemInfo[] }) {
         </Heading>
       </VStack>
 
-      <Stack direction="column" mt="18px" mb="auto">
+      <Stack direction="column" mb="auto">
         <Items items={items} />
         <Box px="10px">
           <SearchBar
@@ -62,14 +61,18 @@ export function SidebarContent({ items }: { items: SidebarItemInfo[] }) {
           />
         </Box>
         <Flex direction="column" px="10px" gap={3}>
-          {filteredGuilds?.map((guild) => (
-            <GuildItem
-              key={guild.id}
-              guild={guild}
-              active={selectedGroup === guild.id}
-              href={`/guilds/${guild.id}`}
-            />
-          ))}
+          {filteredGuilds == null ? (
+            <GuildItemsSkeleton />
+          ) : (
+            filteredGuilds?.map((guild) => (
+              <GuildItem
+                key={guild.id}
+                guild={guild}
+                active={selectedGroup === guild.id}
+                href={`/guilds/${guild.id}`}
+              />
+            ))
+          )}
         </Flex>
       </Stack>
     </>

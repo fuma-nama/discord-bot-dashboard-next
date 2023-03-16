@@ -1,4 +1,4 @@
-import { Avatar, Card, CardBody, Flex, Text } from '@chakra-ui/react';
+import { Avatar, Card, CardBody, Flex, Skeleton, Text } from '@chakra-ui/react';
 import { Guild, iconUrl } from '@/api/discord';
 import Link from 'next/link';
 
@@ -18,11 +18,24 @@ export function GuildItem({
       cursor="pointer"
       as={Link}
       href={href}
+      rounded="xl"
     >
       <CardBody as={Flex} direction="column" gap={3}>
         <Avatar name={guild.name} src={iconUrl(guild)} />
         <Text fontWeight="600">{guild.name}</Text>
       </CardBody>
     </Card>
+  );
+}
+
+export function GuildItemsSkeleton() {
+  return (
+    <>
+      <Skeleton h="124px" rounded="xl" />
+      <Skeleton h="124px" rounded="xl" />
+      <Skeleton h="124px" rounded="xl" />
+      <Skeleton h="124px" rounded="xl" />
+      <Skeleton h="124px" rounded="xl" />
+    </>
   );
 }
