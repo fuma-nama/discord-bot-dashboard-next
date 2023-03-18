@@ -1,68 +1,76 @@
 import { Box, Center, Flex, Text, VStack } from '@chakra-ui/layout';
 import { Icon, Image, useFormControl } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { DropzoneOptions, useDropzone } from 'react-dropzone';
+import { ComponentProps } from 'react';
+import Dropzone, { DropzoneOptions } from 'react-dropzone';
 import { FaFile } from 'react-icons/fa';
 import { MdUpload } from 'react-icons/md';
 import { FormCard } from './Form';
 import { useController } from 'react-hook-form';
 import { ControlledInput } from './types';
+import { useFileUrl } from '@/utils/use-file-url';
 
 export type FilePickerFormProps = {
   options?: DropzoneOptions;
   placeholder?: string;
 };
 
-export const FilePickerForm: ControlledInput<FilePickerFormProps, File[] | undefined | null> = (
-  props
-) => {
-  const { control, controller, options, placeholder } = props;
+export const FilePickerForm: ControlledInput<FilePickerFormProps, File[] | undefined | null> = ({
+  control,
+  controller,
+  options,
+  placeholder,
+}) => {
   const {
-    field: { value, onChange, ...field },
+    field: { value, onChange, ref, ...field },
     fieldState,
   } = useController(controller);
-  const { getRootProps, getInputProps } = useDropzone({
-    ...options,
-    onDrop: (files) => onChange(files),
-  });
 
   const empty = value == null || value.length === 0;
-  const inputProps = useFormControl<HTMLInputElement>(getInputProps(field));
 
   return (
     <FormCard {...control} error={fieldState.error?.message}>
-      <Box
-        bg="InputBackground"
-        border="1px dashed"
-        borderColor="InputBorder"
-        borderRadius="16px"
-        w="100%"
-        p={5}
-        cursor="pointer"
-        {...getRootProps()}
-      >
-        <input {...inputProps} />
-        {empty ? (
-          <VStack textAlign="center">
-            <Icon as={MdUpload} w="70px" h="70px" />
-            <Text fontSize="lg" fontWeight="700" mb="12px">
-              Upload Files
-            </Text>
-            <Text fontSize="sm" fontWeight="500" color="secondaryGray.500">
-              {placeholder}
-            </Text>
-          </VStack>
-        ) : (
-          <Flex direction="column" gap={2}>
-            {(value as File[])?.map((file, i) => (
-              <FilePreview key={i} file={file} />
-            ))}
-          </Flex>
+      <Dropzone ref={ref} {...options} onDrop={onChange}>
+        {({ getInputProps, getRootProps }) => (
+          <Box
+            bg="InputBackground"
+            border="1px dashed"
+            borderColor="InputBorder"
+            borderRadius="16px"
+            w="100%"
+            p={5}
+            cursor="pointer"
+            {...getRootProps()}
+          >
+            <Input input={getInputProps(field)} />
+            {empty ? (
+              <VStack textAlign="center">
+                <Icon as={MdUpload} w="70px" h="70px" />
+                <Text fontSize="lg" fontWeight="700" mb="12px">
+                  Upload Files
+                </Text>
+                <Text fontSize="sm" fontWeight="500" color="secondaryGray.500">
+                  {placeholder}
+                </Text>
+              </VStack>
+            ) : (
+              <Flex direction="column" gap={2}>
+                {(value as File[])?.map((file, i) => (
+                  <FilePreview key={i} file={file} />
+                ))}
+              </Flex>
+            )}
+          </Box>
         )}
-      </Box>
+      </Dropzone>
     </FormCard>
   );
 };
+
+function Input({ input }: { input: ComponentProps<'input'> }) {
+  const inputProps = useFormControl<HTMLInputElement>(input);
+
+  return <input {...inputProps} />;
+}
 
 function FilePreview({ file }: { file: File }) {
   const url = useFileUrl(file);
@@ -77,35 +85,13 @@ function FilePreview({ file }: { file: File }) {
         </Center>
       )}
       <VStack align="start" flex={1} spacing="3px">
-        <Text fontSize="xl" fontWeight="600">
+        <Text fontSize="md" fontWeight="600" color="TextPrimary">
           {file.name}
         </Text>
-        <Text color="secondaryGray.500">{file.size} bytes</Text>
+        <Text fontSize="sm" color="TextSecondary">
+          {file.size} bytes
+        </Text>
       </VStack>
     </Flex>
   );
-}
-
-function useFileUrl(file: Blob) {
-  const [url, setUrl] = useState<string>();
-
-  useEffect(() => {
-    if (file != null) {
-      const fileReader = new FileReader();
-      fileReader.onload = (e) => {
-        const result = e.target?.result;
-
-        if (result != null && typeof result === 'string') {
-          setUrl(result);
-        }
-      };
-
-      fileReader.readAsDataURL(file);
-      return () => {
-        fileReader.abort();
-      };
-    }
-  }, [file]);
-
-  return url;
 }
