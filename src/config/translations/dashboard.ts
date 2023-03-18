@@ -3,8 +3,8 @@ import { createI18n } from '@/utils/i18n';
 
 export const dashboard = createI18n(provider, {
   en: {
-    welcome: 'Wellcome back, ',
     pricing: 'Pricing',
+    learn_more: 'Learn More',
     invite: {
       title: 'Invite our Bot',
       description: 'Try our discord bot with one-click',
@@ -24,8 +24,8 @@ export const dashboard = createI18n(provider, {
     },
   },
   cn: {
-    welcome: '歡迎回來, ',
     pricing: '價錢',
+    learn_more: '了解更多',
     invite: {
       title: '邀請我們的機器人',
       description: '一鍵試用我們的 Discord 機器人',
