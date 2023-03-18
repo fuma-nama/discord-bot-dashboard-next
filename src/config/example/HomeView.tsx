@@ -70,7 +70,7 @@ export default function HomeView() {
             {t.pricing}
           </Button>
           <Button px={6} rounded="xl" variant="secondary">
-            Learn More
+            {t.learn_more}
           </Button>
         </HStack>
       </Flex>

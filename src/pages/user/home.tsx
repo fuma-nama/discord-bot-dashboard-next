@@ -9,7 +9,6 @@ import {
   Skeleton,
 } from '@chakra-ui/react';
 import { config } from '@/config/common';
-import { dashboard } from '@/config/translations/dashboard';
 import { useGuilds } from '@/api/hooks';
 import HomeView from '@/config/example/HomeView';
 import { NextPageWithLayout } from '@/pages/_app';
@@ -18,8 +17,6 @@ import { iconUrl } from '@/api/discord';
 import Link from 'next/link';
 
 const HomePage: NextPageWithLayout = () => {
-  const t = dashboard.useTranslations();
-
   //used for example only, you should remove it
   return <HomeView />;
 
