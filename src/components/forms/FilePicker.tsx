@@ -17,8 +17,10 @@ export const FilePickerForm: ControlledInput<FilePickerFormProps, File[] | undef
   props
 ) => {
   const { control, controller, options, placeholder } = props;
-  const { field, fieldState } = useController(controller);
-  const { value, onChange } = field;
+  const {
+    field: { value, onChange, ...field },
+    fieldState,
+  } = useController(controller);
 
   const { getRootProps, getInputProps } = useDropzone({
     ...options,
@@ -39,7 +41,7 @@ export const FilePickerForm: ControlledInput<FilePickerFormProps, File[] | undef
         cursor="pointer"
       >
         <div {...getRootProps()}>
-          <Input {...getInputProps({ ...field, value: undefined })} />
+          <Input {...getInputProps({ ...field })} />
           {empty ? (
             <VStack textAlign="center">
               <Icon as={MdUpload} w="70px" h="70px" />
