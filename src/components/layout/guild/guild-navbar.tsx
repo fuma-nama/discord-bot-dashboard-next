@@ -1,5 +1,5 @@
 import { FaChevronLeft as ChevronLeftIcon } from 'react-icons/fa';
-import { Flex, Text } from '@chakra-ui/layout';
+import { Box, Flex, Text } from '@chakra-ui/layout';
 import { Avatar, Icon, IconButton, SkeletonCircle } from '@chakra-ui/react';
 import { iconUrl } from '@/api/discord';
 import { useGuildPreview } from '@/api/hooks';
@@ -14,14 +14,17 @@ export default function GuildNavbar({ back }: { back?: boolean }) {
   const { guild } = useGuildPreview(selected);
 
   return (
-    <Flex w="full" direction="row" alignItems="center" as={Link} href={`/guilds/${selected}`}>
+    <Flex w="full" direction="row" alignItems="center">
       <HorizontalCollapse in={back ?? false}>
-        <IconButton
-          display={{ [sidebarBreakpoint]: 'none' }}
-          aria-label="back"
-          icon={<Icon verticalAlign="middle" as={ChevronLeftIcon} />}
-          mr={3}
-        />
+        <Box
+          as={Link}
+          href={`/guilds/${selected}`}
+          display={{ base: 'flex', [sidebarBreakpoint]: 'none' }}
+          pr={3}
+          py={3}
+        >
+          <Icon aria-label="back" as={ChevronLeftIcon} my="auto" fontSize="lg" />
+        </Box>
       </HorizontalCollapse>
       {guild == null ? (
         <SkeletonCircle mr={3} />
@@ -47,13 +50,7 @@ export default function GuildNavbar({ back }: { back?: boolean }) {
   );
 }
 
-export function HorizontalCollapse({
-  in: isOpen,
-  children,
-}: {
-  in: boolean;
-  children: ReactElement;
-}) {
+function HorizontalCollapse({ in: isOpen, children }: { in: boolean; children: ReactElement }) {
   return (
     <motion.section
       animate={isOpen ? 'open' : 'collapsed'}

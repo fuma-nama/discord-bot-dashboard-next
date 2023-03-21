@@ -24,7 +24,7 @@ export const SwitchFieldForm: ControlledInput<SwitchFormProps, boolean> = ({
           <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight={{ base: '600', lg: 'bold' }}>
             {control.label}
           </Text>
-          <Text variant="secondary">{control.description}</Text>
+          <Text color="TextSecondary">{control.description}</Text>
         </FormLabel>
         <Switch variant="main" size="md" isChecked={value} {...field} {...props} />
       </Flex>

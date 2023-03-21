@@ -13,11 +13,7 @@ export default function getGuildLayout({
 }) {
   return (
     <AppLayout navbar={<GuildNavbar back={back} />} sidebar={back ? <InGuildSidebar /> : undefined}>
-      <Center w="full" h="full">
-        <Box w="full" maxW={{ base: 'none', xl: '1200px' }} h="full">
-          {children}
-        </Box>
-      </Center>
+      {children}
     </AppLayout>
   );
 }

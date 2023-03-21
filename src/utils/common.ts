@@ -1,3 +1,20 @@
+import { CustomFeatures } from '../config/types';
+import { features } from '../config/features';
+import { FeatureConfig } from '../config/types';
+
+export type IdFeature<K extends keyof CustomFeatures = keyof CustomFeatures> = FeatureConfig<K> & {
+  id: K;
+};
+
+export function getFeatures(): IdFeature<any>[] {
+  return Object.entries(features).map(([k, v]) => {
+    return {
+      id: k,
+      ...v,
+    };
+  });
+}
+
 export function toRGB(num: number) {
   num >>>= 0;
   let b = num & 0xff,

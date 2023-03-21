@@ -42,6 +42,7 @@ export const SmallColorPickerForm: ControlledInput<
             />
           </InputGroup>
         </PopoverTrigger>
+
         <PopoverContent>
           <PopoverBody>
             <ColorPicker value={value} onChange={field.onChange} {...props} />

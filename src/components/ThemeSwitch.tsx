@@ -14,6 +14,7 @@ export function ThemeSwitch({ secondary }: { secondary?: boolean }) {
       h="18px"
       w="max-content"
       onClick={toggleColorMode}
+      aria-label="Toggle color mode"
     >
       <Icon
         me="10px"

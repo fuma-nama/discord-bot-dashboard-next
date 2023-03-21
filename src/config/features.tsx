@@ -44,10 +44,10 @@ export const features: FeaturesConfig = {
     name: <T text="music" />,
     description: <T text="music description" />,
     icon: <Icon as={BsMusicNoteBeamed} />,
-    useRender: (data) => {
+    useRender() {
       return {
-        serialize: () => '{}',
         component: <></>,
+        onSubmit: () => {},
       };
     },
   },
@@ -61,10 +61,10 @@ export const features: FeaturesConfig = {
     name: <T text="gaming" />,
     description: <T text="gaming description" />,
     icon: <Icon as={FaGamepad} />,
-    useRender(data) {
+    useRender() {
       return {
-        serialize: () => '{}',
         component: <></>,
+        onSubmit: () => {},
       };
     },
   },
@@ -72,10 +72,10 @@ export const features: FeaturesConfig = {
     name: <T text="reaction role" />,
     description: <T text="reaction role description" />,
     icon: <Icon as={MdAddReaction} />,
-    useRender(data) {
+    useRender() {
       return {
-        serialize: () => '{}',
         component: <></>,
+        onSubmit: () => {},
       };
     },
   },
@@ -83,10 +83,10 @@ export const features: FeaturesConfig = {
     name: <T text="memes" />,
     description: <T text="memes description" />,
     icon: <Icon as={IoHappy} />,
-    useRender(data) {
+    useRender() {
       return {
-        serialize: () => '{}',
         component: <></>,
+        onSubmit: () => {},
       };
     },
   },

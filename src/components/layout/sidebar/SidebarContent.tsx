@@ -22,9 +22,10 @@ import { avatarUrl } from '@/api/discord';
 import { GuildItem, GuildItemsSkeleton } from './GuildItem';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { SidebarItem } from '../SidebarItem';
+import { SidebarItem } from './SidebarItem';
+import items from '@/config/sidebar-items';
 
-export function SidebarContent({ items }: { items: SidebarItemInfo[] }) {
+export function SidebarContent() {
   const [filter, setFilter] = useState('');
   const guilds = useGuilds();
   const { guild: selectedGroup } = useRouter().query as {
@@ -50,7 +51,7 @@ export function SidebarContent({ items }: { items: SidebarItemInfo[] }) {
       </VStack>
 
       <Stack direction="column" mb="auto">
-        <Items items={items} />
+        <Items />
         <Box px="10px">
           <SearchBar
             w="full"
@@ -97,7 +98,7 @@ export function BottomCard() {
   );
 }
 
-function Items({ items }: { items: SidebarItemInfo[] }) {
+function Items() {
   const active = useActiveSidebarItem();
 
   return (

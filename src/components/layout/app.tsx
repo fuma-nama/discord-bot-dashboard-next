@@ -1,5 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react';
-import items from '@/config/sidebar-items';
+import { Box, Flex, Show } from '@chakra-ui/react';
 import { QueryStatus } from '@/components/panel/QueryPanel';
 import { useSelfUserQuery } from '@/api/hooks';
 import { LoadingPanel } from '@/components/panel/LoadingPanel';
@@ -22,8 +21,10 @@ export default function AppLayout({
 
   return (
     <Flex direction="row" h="full">
-      <Sidebar items={items} sidebar={sidebar} />
-      <SidebarResponsive items={items} sidebar={sidebar} />
+      <Sidebar sidebar={sidebar} />
+      <Show below={sidebarBreakpoint}>
+        <SidebarResponsive sidebar={sidebar} />
+      </Show>
       <QueryStatus query={query} loading={<LoadingPanel />} error="Failed to load user info">
         <Flex
           pos="relative"

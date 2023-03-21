@@ -9,12 +9,11 @@ import {
 } from '@chakra-ui/react';
 import { BottomCard, SidebarContent } from './SidebarContent';
 import { AnimatePresence, motion } from 'framer-motion';
-import { SidebarItemInfo } from '@/utils/router';
 import { usePageStore } from '@/stores';
 import { sidebarBreakpoint } from '@/theme/breakpoints';
 import { ReactNode } from 'react';
 
-export function Sidebar({ sidebar, items }: { sidebar?: ReactNode; items: SidebarItemInfo[] }) {
+export function Sidebar({ sidebar }: { sidebar?: ReactNode }) {
   return (
     <Flex
       direction="column"
@@ -34,7 +33,7 @@ export function Sidebar({ sidebar, items }: { sidebar?: ReactNode; items: Sideba
           exit={{ x: '-100px', opacity: 0 }}
           transition={{ duration: 0.2, ease: 'easeInOut' }}
         >
-          {sidebar ?? <SidebarContent items={items} />}
+          {sidebar ?? <SidebarContent />}
         </motion.div>
       </AnimatePresence>
       <Spacer />
@@ -43,13 +42,7 @@ export function Sidebar({ sidebar, items }: { sidebar?: ReactNode; items: Sideba
   );
 }
 
-export function SidebarResponsive({
-  sidebar,
-  items,
-}: {
-  sidebar?: ReactNode;
-  items: SidebarItemInfo[];
-}) {
+export function SidebarResponsive({ sidebar }: { sidebar?: ReactNode }) {
   const [isOpen, setOpen] = usePageStore((s) => [s.sidebarIsOpen, s.setSidebarIsOpen]);
 
   return (
@@ -64,7 +57,7 @@ export function SidebarResponsive({
         />
         <DrawerBody maxW="285px" px="0rem" pb="0">
           <Flex direction="column" height="100%" overflow="auto">
-            {sidebar ?? <SidebarContent items={items} />}
+            {sidebar ?? <SidebarContent />}
             <Spacer />
             <BottomCard />
           </Flex>
