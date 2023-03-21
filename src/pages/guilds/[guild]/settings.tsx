@@ -84,6 +84,5 @@ const GuildSettingsPage: NextPageWithLayout = () => {
   );
 };
 
-GuildSettingsPage.auth = true;
 GuildSettingsPage.getLayout = (c) => getGuildLayout({ children: c, back: true });
 export default GuildSettingsPage;

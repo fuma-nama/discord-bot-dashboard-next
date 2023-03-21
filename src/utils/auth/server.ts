@@ -1,5 +1,9 @@
-import { deleteCookie, getCookie, setCookie } from 'cookies-next';
+import { deleteCookie, setCookie } from 'cookies-next';
+import type { IncomingMessage } from 'http';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequestCookies } from 'next/dist/server/api-utils';
+import { NextRequest } from 'next/server';
+import { z } from 'zod';
 
 export const API_ENDPOINT = 'https://discord.com/api/v10';
 export const CLIENT_ID = process.env.BOT_CLIENT_ID ?? '';
@@ -7,19 +11,30 @@ export const CLIENT_SECRET = process.env.BOT_CLIENT_SECRET ?? '';
 
 const TokenCookie = 'ts-token';
 
-export type AccessToken = {
-  access_token: string;
-  token_type: 'Bearer';
-  expires_in: number;
-  refresh_token: string;
-  scope: string;
-};
+const tokenSchema = z.object({
+  access_token: z.string(),
+  token_type: z.literal('Bearer'),
+  expires_in: z.number(),
+  refresh_token: z.string(),
+  scope: z.string(),
+});
 
-export function getServerSession(req: NextApiRequest, res: NextApiResponse) {
-  const raw = getCookie(TokenCookie, { req, res, httpOnly: true }) as string;
-  if (raw == null) return null;
+export type AccessToken = z.infer<typeof tokenSchema>;
 
-  return JSON.parse(raw) as AccessToken;
+export function middleware_hasServerSession(req: NextRequest) {
+  const raw = req.cookies.get(TokenCookie)?.value;
+
+  return raw != null && tokenSchema.safeParse(JSON.parse(raw)).success;
+}
+
+export function getServerSession(
+  req: IncomingMessage & {
+    cookies: NextApiRequestCookies;
+  }
+) {
+  const raw = req.cookies[TokenCookie];
+
+  return tokenSchema.safeParse(raw == null ? raw : JSON.parse(raw));
 }
 
 export function setServerSession(req: NextApiRequest, res: NextApiResponse, data: AccessToken) {
@@ -27,11 +42,11 @@ export function setServerSession(req: NextApiRequest, res: NextApiResponse, data
 }
 
 export async function removeSession(req: NextApiRequest, res: NextApiResponse) {
-  const session = getServerSession(req, res);
+  const session = getServerSession(req);
 
-  if (session != null) {
+  if (session.success) {
     deleteCookie(TokenCookie, { req, res, httpOnly: true });
-    await revokeToken(session.access_token);
+    await revokeToken(session.data.access_token);
   }
 }
 

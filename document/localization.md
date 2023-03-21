@@ -2,26 +2,11 @@
 
 We provide a built-in localizaion utils for you which is light-weight and type-safe
 
-## Create i18n provider
+## Add new language
 
-> provider.ts
+We're using the built-in [Internationalized Routing](https://nextjs.org/docs/advanced-features/i18n-routing) from Next.js in order to setup i18n
 
-```typescript
-import { initLanguages, initI18n } from '@/utils/i18n';
-import { useSettingsStore } from '@/stores';
-
-// Supported languages
-export const { languages, names } = initLanguages<'en' | 'cn'>({
-  en: 'English',
-  cn: '中文',
-});
-
-// Create provider and export it
-// We need to define how to get the current language
-export const provider = initI18n({
-  useLang: () => {...},
-});
-```
+Please read their guide to more details
 
 ## Define Translations
 

@@ -65,6 +65,5 @@ export function GuildSelect() {
   return <></>;
 }
 
-HomePage.auth = true;
 HomePage.getLayout = (c) => <AppLayout>{c}</AppLayout>;
 export default HomePage;

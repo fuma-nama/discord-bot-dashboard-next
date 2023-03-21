@@ -68,6 +68,5 @@ function NotFound() {
   );
 }
 
-FeaturePage.auth = true;
 FeaturePage.getLayout = (c) => getGuildLayout({ children: c, back: true });
 export default FeaturePage;
