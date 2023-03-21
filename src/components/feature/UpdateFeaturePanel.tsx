@@ -2,51 +2,52 @@ import { RiErrorWarningFill as WarningIcon } from 'react-icons/ri';
 import { Flex, Heading, HStack, Spacer, Text } from '@chakra-ui/layout';
 import { ButtonGroup, Button, Icon } from '@chakra-ui/react';
 import { SlideFade } from '@chakra-ui/react';
-import { FeatureConfig, FormRender, CustomFeatures } from '@/config/types';
+import { FeatureConfig, UseFormRenderResult, CustomFeatures } from '@/config/types';
 import { IoSave } from 'react-icons/io5';
 import { useUpdateFeatureMutation } from '@/api/hooks';
 import { Params } from '@/pages/guilds/[guild]/features/[feature]';
 import { feature as view } from '@/config/translations/feature';
 import { useRouter } from 'next/router';
 
-export function UpdateFeaturePanel<K extends keyof CustomFeatures>({
+export function UpdateFeaturePanel({
   feature,
   config,
 }: {
-  id: K;
-  feature: CustomFeatures[K];
-  config: FeatureConfig<K>;
+  feature: CustomFeatures[keyof CustomFeatures];
+  config: FeatureConfig<keyof CustomFeatures>;
 }) {
-  const result = config.useRender(feature);
+  const { guild, feature: featureId } = useRouter().query as Params;
+  const mutation = useUpdateFeatureMutation();
+  const result = config.useRender(feature, (data) => {
+    return mutation.mutateAsync({
+      guild,
+      feature: featureId,
+      options: data,
+    });
+  });
 
   return (
-    <>
+    <form>
       <Flex direction="column" gap={5} w="full" h="full">
         <Heading ml={5} size="lg">
           {config.name}
         </Heading>
         {result.component}
       </Flex>
-      <Savebar result={result} />
-    </>
+      <Savebar isLoading={mutation.isLoading} result={result} />
+    </form>
   );
 }
 
-function Savebar({ result: { canSave, reset, onSubmit } }: { result: FormRender<any> }) {
-  const { guild, feature } = useRouter().query as Params;
-  const mutation = useUpdateFeatureMutation();
+function Savebar({
+  result: { canSave, onSubmit, reset },
+  isLoading,
+}: {
+  result: UseFormRenderResult;
+  isLoading: boolean;
+}) {
   const t = view.useTranslations();
-
   const breakpoint = '3sm';
-  const onSave = () => {
-    onSubmit?.(async (data) => {
-      return await mutation.mutateAsync({
-        guild,
-        feature,
-        options: data,
-      });
-    });
-  };
 
   return (
     <HStack
@@ -73,13 +74,14 @@ function Savebar({ result: { canSave, reset, onSubmit } }: { result: FormRender<
         {t.unsaved}
       </Text>
       <Spacer />
-      <ButtonGroup isDisabled={mutation.isLoading} size={{ base: 'sm', [breakpoint]: 'md' }}>
+      <ButtonGroup isDisabled={isLoading} size={{ base: 'sm', [breakpoint]: 'md' }}>
         <Button
+          type="submit"
           variant="action"
           rounded="full"
           leftIcon={<IoSave />}
-          isLoading={mutation.isLoading}
-          onClick={onSave}
+          isLoading={isLoading}
+          onClick={onSubmit}
         >
           {t.bn.save}
         </Button>

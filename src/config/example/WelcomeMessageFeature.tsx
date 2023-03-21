@@ -1,6 +1,6 @@
 import { SimpleGrid } from '@chakra-ui/layout';
 import { TextAreaForm } from '@/components/forms/TextAreaForm';
-import { FormRender, WelcomeMessageFeature } from '@/config/types';
+import { UseFormRender, WelcomeMessageFeature } from '@/config/types';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -21,9 +21,7 @@ const schema = z.object({
 
 type Input = z.infer<typeof schema>;
 
-export function useWelcomeMessageFeature(
-  data: WelcomeMessageFeature
-): FormRender<WelcomeMessageFeature> {
+export const useWelcomeMessageFeature: UseFormRender<WelcomeMessageFeature> = (data, onSubmit) => {
   const { register, reset, handleSubmit, formState, control } = useForm<Input>({
     resolver: zodResolver(schema),
     shouldUnregister: false,
@@ -96,19 +94,17 @@ export function useWelcomeMessageFeature(
         />
       </SimpleGrid>
     ),
-    onSubmit: (onSubmit) => {
-      handleSubmit(async (e) => {
-        const data = await onSubmit(
-          JSON.stringify({
-            message: e.message,
-            channel: e.channel,
-          })
-        );
+    onSubmit: handleSubmit(async (e) => {
+      const data = await onSubmit(
+        JSON.stringify({
+          message: e.message,
+          channel: e.channel,
+        })
+      );
 
-        reset(data);
-      })();
-    },
+      reset(data);
+    }),
     canSave: formState.isDirty,
     reset: () => reset(control._defaultValues),
   };
-}
+};

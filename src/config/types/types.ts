@@ -54,7 +54,7 @@ export interface FeatureConfig<K extends keyof CustomFeatures> {
   /**
    * Render content in Feature view
    */
-  useRender: (data: CustomFeatures[K]) => FormRender<CustomFeatures[K]>;
+  useRender: UseFormRender<CustomFeatures[K]>;
   /**
    * Render skeleton before featrue is loaded
    */
@@ -63,18 +63,16 @@ export interface FeatureConfig<K extends keyof CustomFeatures> {
 
 type SubmitFn<T> = (data: FormData | string) => Promise<T>;
 
-export type FormRender<T = unknown> = {
+export type UseFormRenderResult = {
   /**
    * Save bar will be disappeared if `canSave` is false
    */
   canSave?: boolean;
 
   /**
-   * called before submit
-   *
-   * If returns true, prevent submit
+   * called on submit
    */
-  onSubmit?: (onSubmit: SubmitFn<T>) => void;
+  onSubmit: () => void;
 
   /**
    * Reset current value
@@ -83,3 +81,5 @@ export type FormRender<T = unknown> = {
 
   component: ReactElement;
 };
+
+export type UseFormRender<T = unknown> = (data: T, onSubmit: SubmitFn<T>) => UseFormRenderResult;
