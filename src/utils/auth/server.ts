@@ -1,9 +1,10 @@
 import { deleteCookie, setCookie } from 'cookies-next';
-import type { IncomingMessage } from 'http';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextApiRequestCookies } from 'next/dist/server/api-utils';
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
+import type { OptionsType } from 'cookies-next/lib/types';
+import type { IncomingMessage } from 'http';
 
 export const API_ENDPOINT = 'https://discord.com/api/v10';
 export const CLIENT_ID = process.env.BOT_CLIENT_ID ?? '';
@@ -18,6 +19,11 @@ const tokenSchema = z.object({
   refresh_token: z.string(),
   scope: z.string(),
 });
+
+const options: OptionsType = {
+  httpOnly: true,
+  maxAge: 60 * 60 * 24 * 30,
+};
 
 export type AccessToken = z.infer<typeof tokenSchema>;
 
@@ -38,14 +44,14 @@ export function getServerSession(
 }
 
 export function setServerSession(req: NextApiRequest, res: NextApiResponse, data: AccessToken) {
-  setCookie(TokenCookie, data, { req, res, httpOnly: true });
+  setCookie(TokenCookie, data, { req, res, ...options });
 }
 
 export async function removeSession(req: NextApiRequest, res: NextApiResponse) {
   const session = getServerSession(req);
 
   if (session.success) {
-    deleteCookie(TokenCookie, { req, res, httpOnly: true });
+    deleteCookie(TokenCookie, { req, res, ...options });
     await revokeToken(session.data.access_token);
   }
 }
