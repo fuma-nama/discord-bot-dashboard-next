@@ -34,6 +34,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 
 function LanguageSelect() {
   const { lang, setLang } = useLang();
+  const t = common.useTranslations();
 
   return (
     <SelectField
@@ -47,7 +48,7 @@ function LanguageSelect() {
         label: name,
         value: key,
       }))}
-      placeholder={<common.T text="select lang" />}
+      placeholder={t['select lang']}
     />
   );
 }

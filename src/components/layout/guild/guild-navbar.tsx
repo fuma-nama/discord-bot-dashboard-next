@@ -50,13 +50,7 @@ export default function GuildNavbar({ back }: { back?: boolean }) {
   );
 }
 
-export function HorizontalCollapse({
-  in: isOpen,
-  children,
-}: {
-  in: boolean;
-  children: ReactElement;
-}) {
+function HorizontalCollapse({ in: isOpen, children }: { in: boolean; children: ReactElement }) {
   return (
     <motion.section
       animate={isOpen ? 'open' : 'collapsed'}

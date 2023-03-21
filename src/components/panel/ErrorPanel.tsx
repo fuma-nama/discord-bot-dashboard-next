@@ -1,4 +1,4 @@
-import { Button, Center, Icon, Text, VStack, Box, Heading } from '@chakra-ui/react';
+import { Button, Center, Icon, Text, VStack } from '@chakra-ui/react';
 import { MdOutlineError } from 'react-icons/md';
 
 export function ErrorPanel({ children, retry }: { children: string; retry: () => void }) {
@@ -15,22 +15,6 @@ export function ErrorPanel({ children, retry }: { children: string; retry: () =>
           Try Again
         </Button>
       </VStack>
-    </Center>
-  );
-}
-
-export function SmallErrorPanel(props: { error?: any; retry: () => void }) {
-  return (
-    <Center w="full" h="full" flexDirection="column" overflow="hidden" gap={5}>
-      <Box pos="relative">
-        <Heading fontSize={{ base: '50px', md: '130px' }} letterSpacing={8}>
-          Error
-        </Heading>
-      </Box>
-      <Text>{props.error}</Text>
-      <Button variant="action" onClick={props.retry}>
-        Retry
-      </Button>
     </Center>
   );
 }

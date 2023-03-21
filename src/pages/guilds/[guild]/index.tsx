@@ -7,7 +7,7 @@ import { BsMailbox } from 'react-icons/bs';
 import { FaRobot } from 'react-icons/fa';
 import { useGuildInfoQuery } from '@/api/hooks';
 import { useRouter } from 'next/router';
-import { getFeatures } from '@/config/utils';
+import { getFeatures } from '@/utils/common';
 import { Banner } from '@/components/GuildBanner';
 import { FeatureItem } from '@/components/feature/FeatureItem';
 import type { CustomGuildInfo } from '@/config/types/custom-types';
