@@ -28,8 +28,8 @@ const FeaturePage: NextPageWithLayout = () => {
 
   if (featureConfig == null) return <NotFound />;
   if (query.isError) return <NotEnabled />;
-  if (query.isLoading) return <>{skeleton}</> ?? <LoadingPanel />;
-  return <UpdateFeaturePanel id={feature} feature={query.data} config={featureConfig} />;
+  if (query.isLoading) return skeleton != null ? <>{skeleton}</> : <LoadingPanel />;
+  return <UpdateFeaturePanel feature={query.data} config={featureConfig} />;
 };
 
 function NotEnabled() {
