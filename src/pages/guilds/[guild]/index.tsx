@@ -74,6 +74,5 @@ function NotJoined({ guild }: { guild: string }) {
   );
 }
 
-GuildPage.auth = true;
 GuildPage.getLayout = (c) => getGuildLayout({ children: c });
 export default GuildPage;

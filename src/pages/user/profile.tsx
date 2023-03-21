@@ -117,7 +117,6 @@ function Content() {
   return <></>;
 }
 
-ProfilePage.auth = true;
 ProfilePage.getLayout = (p) => <AppLayout>{p}</AppLayout>;
 
 export default ProfilePage;
