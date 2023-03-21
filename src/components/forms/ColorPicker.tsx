@@ -30,9 +30,9 @@ export const SmallColorPickerForm: ControlledInput<
   return (
     <FormCard {...control} error={fieldState.error?.message}>
       <Popover>
-        <PopoverTrigger>
-          <InputGroup>
-            <InputLeftAddon bg={value} rounded="xl" h="full" />
+        <InputGroup>
+          <InputLeftAddon bg={value} rounded="xl" h="full" />
+          <PopoverTrigger>
             <Input
               autoComplete="off"
               variant="main"
@@ -40,8 +40,8 @@ export const SmallColorPickerForm: ControlledInput<
               {...field}
               value={field.value ?? ''}
             />
-          </InputGroup>
-        </PopoverTrigger>
+          </PopoverTrigger>
+        </InputGroup>
         <PopoverContent>
           <PopoverBody>
             <ColorPicker value={value} onChange={field.onChange} {...props} />
