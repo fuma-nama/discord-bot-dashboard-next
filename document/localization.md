@@ -1,8 +1,8 @@
 # Localization
 
-We provide a built-in localizaion utils for you which is light-weight and type-safe
+We provide a built-in localization utils for you which is light-weight and type-safe
 
-## Add new language
+## Add a New language
 
 We're using the built-in [Internationalized Routing](https://nextjs.org/docs/advanced-features/i18n-routing) from Next.js in order to setup i18n
 
