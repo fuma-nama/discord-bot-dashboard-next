@@ -1,6 +1,6 @@
 {
-  "name": "omagize",
-  "version": "0.0.0",
+  "name": "dashboard",
+  "version": "1.2.0",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
