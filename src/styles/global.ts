@@ -17,6 +17,7 @@ export const globalStyles = (props: any) => ({
     color: 'TextPrimary',
     bg: 'MainBackground',
     fontFamily: 'DM Sans',
+    letterSpacing: '-0.3px',
   },
   input: {
     color: 'gray.700',
