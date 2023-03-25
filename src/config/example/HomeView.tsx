@@ -39,9 +39,9 @@ export default function HomeView() {
         </Circle>
 
         <Flex direction="column" align="start" gap={1}>
-          <Text color="white" fontSize="2xl" fontWeight="bold">
+          <Heading color="white" fontSize="2xl" fontWeight="bold">
             {t.invite.title}
-          </Text>
+          </Heading>
           <Text color="whiteAlpha.800">{t.invite.description}</Text>
           <Button
             mt={3}
@@ -61,11 +61,17 @@ export default function HomeView() {
           </Button>
         </Flex>
       </HStack>
-      <Guilds />
-      <Flex direction="column" gap={2}>
-        <Heading size="lg">{t.command.title}</Heading>
+
+      <Flex direction="column" gap={1} mt={3}>
+        <Heading size="md">{t.servers.title}</Heading>
+        <Text color="TextSecondary">{t.servers.description}</Text>
+      </Flex>
+      <GuildSelect />
+
+      <Flex direction="column" gap={1}>
+        <Heading size="md">{t.command.title}</Heading>
         <Text color="TextSecondary">{t.command.description}</Text>
-        <HStack mt={2}>
+        <HStack mt={3}>
           <Button leftIcon={<IoPricetag />} variant="action">
             {t.pricing}
           </Button>
@@ -85,7 +91,7 @@ export default function HomeView() {
           </CardBody>
         </Card>
         <Flex direction="column" gap={3}>
-          <Text fontSize="xl" fontWeight="600">
+          <Text fontSize="lg" fontWeight="600">
             {t.vc['created channels']}
           </Text>
           <VoiceChannelItem />
@@ -93,20 +99,6 @@ export default function HomeView() {
         </Flex>
       </Grid>
     </Flex>
-  );
-}
-
-function Guilds() {
-  const t = dashboard.useTranslations().servers;
-
-  return (
-    <>
-      <Flex direction="column" gap={2} mt={3}>
-        <Heading size="lg">{t.title}</Heading>
-        <Text color="TextSecondary">{t.description}</Text>
-      </Flex>
-      <GuildSelect />
-    </>
   );
 }
 
