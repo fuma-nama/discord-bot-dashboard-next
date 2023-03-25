@@ -65,10 +65,6 @@ export const colors = {
   gray: {
     100: '#FAFCFE',
   },
-  shadow: {
-    normal: 'rgba(112, 144, 176, 0.18)',
-    darker: 'rgba(112, 144, 176, 0.3)',
-  },
 };
 
 export const light = {
@@ -76,8 +72,6 @@ export const light = {
   brand: 'brand.500',
   textColorPrimary: 'secondaryGray.900',
   textColorSecondary: 'gray.500',
-  textColorDetails: 'navy.700',
-  borderColor: 'white !important',
   cardBg: 'white',
   shadow: '14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
 };
@@ -87,8 +81,6 @@ export const dark = {
   brand: 'brand.400',
   textColorPrimary: 'white',
   textColorSecondary: 'gray.400',
-  textColorDetails: 'secondaryGray.600',
-  borderColor: '#111C44 !important',
   cardBg: 'navy.800',
   shadow: '14px 17px 40px 4px rgba(2, 4, 6, 0.06)',
 };

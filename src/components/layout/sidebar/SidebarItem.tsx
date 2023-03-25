@@ -24,7 +24,7 @@ export function SidebarItem({
         border="2px solid"
         borderColor="blackAlpha.200"
         boxShadow={`0px 0px 15px ${
-          active ? 'var(--chakra-colors-brandAlpha)' : 'var(--chakra-colors-shadow-darker)'
+          active ? 'var(--chakra-colors-brandAlpha)' : 'rgba(112, 144, 176, 0.3)'
         }`}
         _dark={{
           bg: active ? 'brand.400' : 'transparent',
