@@ -1,5 +1,13 @@
 // Chakra imports
-import { Flex, FormErrorMessage, FormLabel, Switch, SwitchProps, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  FormErrorMessage,
+  FormLabel,
+  Switch,
+  SwitchProps,
+  Text,
+} from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { useController } from 'react-hook-form';
 import { Form } from './Form';
@@ -20,12 +28,17 @@ export const SwitchFieldForm: ControlledInput<SwitchFormProps, boolean> = ({
   return (
     <Form isInvalid={fieldState.invalid} isRequired={control.required} {...control.baseControl}>
       <Flex justify="space-between" align="center" borderRadius="16px" gap={3}>
-        <FormLabel htmlFor={props.id} _hover={{ cursor: 'pointer' }} flexDirection="column">
-          <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight={{ base: '600', lg: 'bold' }}>
+        <Box>
+          <FormLabel
+            htmlFor={props.id}
+            fontSize={{ base: 'lg', lg: 'xl' }}
+            fontWeight={{ base: '600', lg: 'bold' }}
+            mb={0}
+          >
             {control.label}
-          </Text>
+          </FormLabel>
           <Text color="TextSecondary">{control.description}</Text>
-        </FormLabel>
+        </Box>
         <Switch variant="main" size="md" isChecked={value} {...field} {...props} />
       </Flex>
       <FormErrorMessage>{fieldState.error?.message}</FormErrorMessage>
@@ -43,15 +56,13 @@ export function SwitchField(
   const { id, label, desc, ...rest } = props;
 
   return (
-    <Flex justify="space-between" align="center" borderRadius="16px" gap={3}>
-      <FormLabel htmlFor={id} _hover={{ cursor: 'pointer' }} flexDirection="column">
-        <Text color="TextPrimary" fontSize="md" fontWeight="600">
+    <Flex justify="space-between" align="center" borderRadius="16px" gap={5}>
+      <Box>
+        <FormLabel htmlFor={id} fontSize="md" fontWeight="600" mb={0}>
           {label}
-        </Text>
-        <Text color="secondaryGray.600" fontSize="md">
-          {desc}
-        </Text>
-      </FormLabel>
+        </FormLabel>
+        <Text color="secondaryGray.600">{desc}</Text>
+      </Box>
       <Switch id={id} variant="main" size="md" {...rest} />
     </Flex>
   );

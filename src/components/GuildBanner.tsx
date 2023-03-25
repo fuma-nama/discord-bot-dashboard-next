@@ -12,8 +12,8 @@ export function Banner() {
   return (
     <Flex
       direction="column"
-      px={{ base: 7, lg: 8 }}
-      py={{ base: 6, lg: 7 }}
+      px={{ base: 5, lg: 8 }}
+      py={{ base: 5, lg: 7 }}
       rounded="2xl"
       bgColor="Brand"
       bgImg={{ '3sm': '/Banner1.png' }}

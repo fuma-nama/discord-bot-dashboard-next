@@ -81,10 +81,12 @@ const ProfilePage: NextPageWithLayout = () => {
             onChange={(e) => setDevMode(e.target.checked)}
           />
           <FormControl>
-            <FormLabel flexDirection="column" fontSize="md">
-              <Text fontWeight="600">{t.language}</Text>
+            <Box mb={2}>
+              <FormLabel fontSize="md" fontWeight="600" m={0}>
+                {t.language}
+              </FormLabel>
               <Text color="secondaryGray.600">{t['language description']}</Text>
-            </FormLabel>
+            </Box>
             <SelectField
               value={{
                 label: names[lang],

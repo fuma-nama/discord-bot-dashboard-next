@@ -27,7 +27,7 @@ export default function HomeView() {
 
   return (
     <Flex direction="column" gap={5}>
-      <HStack rounded="2xl" bg="Brand" gap={2} p={5}>
+      <Flex direction="row" alignItems="center" rounded="2xl" bg="Brand" gap={4} p={5}>
         <Circle
           color="white"
           bgGradient="linear(to right bottom, transparent, blackAlpha.600)"
@@ -60,7 +60,7 @@ export default function HomeView() {
             {t.invite.bn}
           </Button>
         </Flex>
-      </HStack>
+      </Flex>
 
       <Flex direction="column" gap={1} mt={3}>
         <Heading size="md">{t.servers.title}</Heading>

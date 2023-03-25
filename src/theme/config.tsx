@@ -22,6 +22,10 @@ export const theme = extendTheme({
   styles: {
     global: globalStyles,
   },
+  fonts: {
+    heading: `Inter, -apple-system, sans-serif`,
+    body: `Inter, -apple-system, sans-serif`,
+  },
   components: {
     Button: buttonStyles,
     Switch: switchStyles,
