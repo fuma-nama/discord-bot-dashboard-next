@@ -34,7 +34,6 @@ export const useWelcomeMessageFeature: UseFormRender<WelcomeMessageFeature> = (d
       danger: false,
     },
   });
-  const errors = formState.errors;
 
   return {
     component: (
@@ -50,7 +49,7 @@ export const useWelcomeMessageFeature: UseFormRender<WelcomeMessageFeature> = (d
           control={{
             label: 'Message',
             description: 'The message to send',
-            error: errors.message?.message,
+            error: formState.errors.message?.message,
           }}
           placeholder="Type some text here..."
           {...register('message')}

@@ -1,5 +1,5 @@
 import { RiErrorWarningFill as WarningIcon } from 'react-icons/ri';
-import { Flex, Heading, HStack, Spacer, Text } from '@chakra-ui/layout';
+import { Flex, Heading, HStack, Spacer, Stack, Text } from '@chakra-ui/layout';
 import { ButtonGroup, Button, Icon } from '@chakra-ui/react';
 import { SlideFade } from '@chakra-ui/react';
 import { FeatureConfig, UseFormRenderResult, CustomFeatures } from '@/config/types';
@@ -50,7 +50,7 @@ function Savebar({
   const breakpoint = '3sm';
 
   return (
-    <HStack
+    <Flex
       as={SlideFade}
       in={canSave}
       bg="CardBackground"
@@ -61,9 +61,13 @@ function Savebar({
       w="full"
       p={{ base: 1, [breakpoint]: '15px' }}
       shadow="normal"
-      mt={2}
+      alignItems="center"
+      flexDirection={{ base: 'column', [breakpoint]: 'row' }}
+      gap={{ base: 1, [breakpoint]: 2 }}
+      mt={4}
     >
       <Icon
+        display={{ base: 'none', [breakpoint]: 'block' }}
         as={WarningIcon}
         _light={{ color: 'orange.400' }}
         _dark={{ color: 'orange.300' }}
@@ -89,6 +93,6 @@ function Savebar({
           {t.bn.discard}
         </Button>
       </ButtonGroup>
-    </HStack>
+    </Flex>
   );
 }

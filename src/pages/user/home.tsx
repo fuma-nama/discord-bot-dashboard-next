@@ -7,6 +7,7 @@ import {
   Flex,
   SimpleGrid,
   Skeleton,
+  Text,
 } from '@chakra-ui/react';
 import { config } from '@/config/common';
 import { useGuilds } from '@/api/hooks';
@@ -35,9 +36,7 @@ export function GuildSelect() {
             <Card key={guild.id} variant="primary" as={Link} href={`/guilds/${guild.id}`}>
               <CardHeader as={Flex} flexDirection="row" gap={3} pb={4}>
                 <Avatar src={iconUrl(guild)} name={guild.name} size="md" />
-                <Heading size="md" fontWeight="600">
-                  {guild.name}
-                </Heading>
+                <Text size="md">{guild.name}</Text>
               </CardHeader>
             </Card>
           ))}

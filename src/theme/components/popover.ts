@@ -8,9 +8,7 @@ export const popoverStyles = defineMultiStyleConfig({
     content: {
       bg: 'secondaryGray.300',
       rounded: 'xl',
-      _focus: {
-        boxShadow: 'none',
-      },
+      boxShadow: 'normal',
       _dark: {
         bg: 'navy.900',
       },

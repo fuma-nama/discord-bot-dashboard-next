@@ -1,5 +1,5 @@
 import { FiSettings as SettingsIcon } from 'react-icons/fi';
-import { Flex, Text } from '@chakra-ui/layout';
+import { Flex, Heading, Text } from '@chakra-ui/layout';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { guild as view } from '@/config/translations/guild';
 import { useRouter } from 'next/router';
@@ -12,16 +12,17 @@ export function Banner() {
   return (
     <Flex
       direction="column"
-      px={{ base: 7, lg: 8 }}
-      py={{ base: 6, lg: 7 }}
+      px={{ base: 5, lg: 8 }}
+      py={{ base: 5, lg: 7 }}
       rounded="2xl"
       bgColor="Brand"
       bgImg={{ '3sm': '/Banner1.png' }}
       bgSize="cover"
+      gap={1}
     >
-      <Text color="white" fontSize={{ base: '2xl', lg: '4xl' }} fontWeight="bold">
+      <Heading color="white" fontSize={{ base: '2xl' }} fontWeight="bold">
         {t.banner.title}
-      </Text>
+      </Heading>
       <Text color="whiteAlpha.800">{t.banner.description}</Text>
       <ButtonGroup mt={3}>
         <Button
