@@ -74,7 +74,7 @@ function Savebar({
         w="30px"
         h="30px"
       />
-      <Text fontSize={{ base: 'md', [breakpoint]: 'lg' }} fontWeight="500">
+      <Text fontSize={{ base: 'md', [breakpoint]: 'lg' }} fontWeight="600">
         {t.unsaved}
       </Text>
       <Spacer />
