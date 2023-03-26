@@ -36,7 +36,7 @@ function GuildPanel({ guild: id, info }: { guild: string; info: CustomGuildInfo 
   return (
     <Flex direction="column" gap={5}>
       <Banner />
-      <Flex direction="column" gap={4}>
+      <Flex direction="column" gap={5} mt={3}>
         <Heading size="md">{t.features}</Heading>
         <SimpleGrid minChildWidth="328px" gap={3}>
           {getFeatures().map((feature) => (

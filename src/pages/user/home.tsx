@@ -36,7 +36,9 @@ export function GuildSelect() {
             <Card key={guild.id} variant="primary" as={Link} href={`/guilds/${guild.id}`}>
               <CardHeader as={Flex} flexDirection="row" gap={3} pb={4}>
                 <Avatar src={iconUrl(guild)} name={guild.name} size="md" />
-                <Text size="md">{guild.name}</Text>
+                <Text size="md" fontWeight="medium">
+                  {guild.name}
+                </Text>
               </CardHeader>
             </Card>
           ))}

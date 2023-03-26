@@ -23,7 +23,7 @@ export const cardStyles = defineMultiStyleConfig({
     },
     header: {
       fontSize: 'xl',
-      fontWeight: '600',
+      fontWeight: 'medium',
       p: 0,
     },
     body: {
