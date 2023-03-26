@@ -29,12 +29,7 @@ export const SwitchFieldForm: ControlledInput<SwitchFormProps, boolean> = ({
     <Form isInvalid={fieldState.invalid} isRequired={control.required} {...control.baseControl}>
       <Flex justify="space-between" align="center" borderRadius="16px" gap={3}>
         <Box>
-          <FormLabel
-            htmlFor={props.id}
-            fontSize={{ base: 'lg', lg: 'xl' }}
-            fontWeight={{ base: '600', lg: 'bold' }}
-            mb={0}
-          >
+          <FormLabel fontSize="lg" fontWeight="medium" mb={0}>
             {control.label}
           </FormLabel>
           <Text color="TextSecondary">{control.description}</Text>
@@ -56,12 +51,12 @@ export function SwitchField(
   const { id, label, desc, ...rest } = props;
 
   return (
-    <Flex justify="space-between" align="center" borderRadius="16px" gap={5}>
+    <Flex justify="space-between" align="center" borderRadius="16px" gap={6}>
       <Box>
-        <FormLabel htmlFor={id} fontSize="md" fontWeight="600" mb={0}>
+        <FormLabel htmlFor={id} fontSize="md" fontWeight="medium" mb={0}>
           {label}
         </FormLabel>
-        <Text color="secondaryGray.600">{desc}</Text>
+        <Text color="TextSecondary">{desc}</Text>
       </Box>
       <Switch id={id} variant="main" size="md" {...rest} />
     </Flex>

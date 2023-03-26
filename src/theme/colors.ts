@@ -1,7 +1,7 @@
 export const colors = {
   brand: {
     100: '#E9E3FF',
-    200: '#422AFB',
+    200: '#9e86ff',
     300: '#422AFB',
     400: '#7551FF',
     500: '#422AFB',
@@ -10,18 +10,10 @@ export const colors = {
     800: '#190793',
     900: '#11047A',
   },
-  brandScheme: {
-    100: '#E9E3FF',
-    200: '#7551FF',
-    300: '#7551FF',
-    400: '#7551FF',
-    500: '#422AFB',
-    600: '#3311DB',
-    700: '#02044A',
-    800: '#190793',
-    900: '#02044A',
+  brandAlpha: {
+    500: '#7451ff9c',
+    100: '#7451ff2d',
   },
-  brandAlpha: '#7451ff9c',
   secondaryGray: {
     100: '#E0E5F2',
     200: '#E1E9F8',
@@ -34,7 +26,6 @@ export const colors = {
     900: '#1B2559',
   },
   red: {
-    100: '#FEEFEE',
     500: '#EE5D50',
     600: '#E31A1A',
   },

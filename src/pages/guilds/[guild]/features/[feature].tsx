@@ -35,7 +35,7 @@ const FeaturePage: NextPageWithLayout = () => {
 function NotEnabled() {
   const t = view.useTranslations();
   const { guild, feature } = useRouter().query as Params;
-  const enable = useEnableFeatureMutation(guild, feature);
+  const enable = useEnableFeatureMutation();
 
   return (
     <Center flexDirection="column" h="full" gap={1}>
@@ -46,7 +46,7 @@ function NotEnabled() {
       <Button
         mt={3}
         isLoading={enable.isLoading}
-        onClick={() => enable.mutate({ enabled: true })}
+        onClick={() => enable.mutate({ enabled: true, guild, feature })}
         variant="action"
         px={6}
       >

@@ -43,14 +43,13 @@ export const FilePickerForm: ControlledInput<FilePickerFormProps, File[] | undef
           >
             <Input input={getInputProps(field)} />
             {empty ? (
-              <VStack textAlign="center">
+              <VStack
+                color="secondaryGray.700"
+                textAlign="center"
+                _dark={{ color: 'secondaryGray.600' }}
+              >
                 <Icon as={MdUpload} w="70px" h="70px" />
-                <Text fontSize="lg" fontWeight="700" mb="12px">
-                  Upload Files
-                </Text>
-                <Text fontSize="sm" fontWeight="500" color="secondaryGray.500">
-                  {placeholder}
-                </Text>
+                <Text fontWeight="500">{placeholder ?? 'Upload Files'}</Text>
               </VStack>
             ) : (
               <Flex direction="column" gap={2}>

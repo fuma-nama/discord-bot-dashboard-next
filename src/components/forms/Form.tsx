@@ -55,11 +55,7 @@ export function FormCard({
 }: FormCardProps) {
   return (
     <Form isRequired={required} isInvalid={error != null} {...baseControl}>
-      <FormLabel
-        fontSize={{ base: 'lg', lg: 'xl' }}
-        fontWeight={{ base: '600', lg: 'bold' }}
-        mb={0}
-      >
+      <FormLabel fontSize="lg" fontWeight="medium" mb={0}>
         {label}
       </FormLabel>
       <Text color="TextSecondary">{description}</Text>

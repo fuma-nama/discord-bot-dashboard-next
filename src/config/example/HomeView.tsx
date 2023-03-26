@@ -84,10 +84,10 @@ export default function HomeView() {
       <Grid templateColumns={{ base: '1fr', lg: '0.5fr 1fr' }} gap={3}>
         <Card rounded="3xl" variant="primary">
           <CardBody as={Center} p={4} flexDirection="column" gap={3}>
-            <Circle p={4} bg="MainBackground">
+            <Circle p={4} bg="brandAlpha.100" color="brand.500" _dark={{ color: 'brand.200' }}>
               <Icon as={BsMusicNoteBeamed} w="80px" h="80px" />
             </Circle>
-            <Text fontWeight="600">{t.vc.create}</Text>
+            <Text fontWeight="medium">{t.vc.create}</Text>
           </CardBody>
         </Card>
         <Flex direction="column" gap={3}>
@@ -152,7 +152,7 @@ function VoiceChannelItem() {
         <Icon as={MdVoiceChat} w="30px" h="30px" color="Brand" />
         <Text>My Channel</Text>
       </CardHeader>
-      <CardBody>
+      <CardBody mt={3}>
         <Text color="TextSecondary">89 Members</Text>
       </CardBody>
     </Card>

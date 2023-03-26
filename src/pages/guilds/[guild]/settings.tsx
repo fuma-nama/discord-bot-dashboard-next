@@ -1,4 +1,4 @@
-import { Flex, Heading, SimpleGrid, Text } from '@chakra-ui/layout';
+import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/layout';
 import { RoleSelectForm } from '@/components/forms/RoleSelect';
 import getGuildLayout from '@/components/layout/guild/get-guild-layout';
 import { NextPageWithLayout } from '@/pages/_app';
@@ -35,19 +35,20 @@ const GuildSettingsPage: NextPageWithLayout = () => {
 
   return (
     <Flex direction="column">
-      <Heading>Guild Settings</Heading>
-      <Text
-        fontSize="lg"
-        fontWeight="500"
-        as="code"
-        _light={{ color: 'cyan.500' }}
-        _dark={{ color: 'cyan.400' }}
-        cursor="pointer"
-        onClick={handleSubmit(() => console.log('submit'))}
-      >
-        {JSON.stringify(watch())}
-      </Text>
-
+      <Box ml={5}>
+        <Heading fontSize={{ base: '2xl' }}>Guild Settings</Heading>
+        <Text
+          fontSize="lg"
+          fontWeight="500"
+          as="code"
+          _light={{ color: 'cyan.500' }}
+          _dark={{ color: 'cyan.400' }}
+          cursor="pointer"
+          onClick={handleSubmit(() => console.log('submit'))}
+        >
+          {JSON.stringify(watch())}
+        </Text>
+      </Box>
       <SimpleGrid mt={5} columns={{ base: 1, md: 2 }} gap={3}>
         <SwitchFieldForm
           control={{

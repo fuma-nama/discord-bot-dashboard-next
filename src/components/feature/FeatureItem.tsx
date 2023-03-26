@@ -1,5 +1,5 @@
-import { Center, Flex, Text } from '@chakra-ui/layout';
-import { Button, ButtonGroup, Card, CardBody, CardFooter, Switch } from '@chakra-ui/react';
+import { Box, Center, Flex, Text } from '@chakra-ui/layout';
+import { Button, ButtonGroup, Card, CardBody, CardFooter } from '@chakra-ui/react';
 import { IdFeature } from '@/utils/common';
 import { IoOpen, IoOptions } from 'react-icons/io5';
 import { useEnableFeatureMutation } from '@/api/hooks';
@@ -16,37 +16,33 @@ export function FeatureItem({
   enabled: boolean;
 }) {
   const t = view.useTranslations();
-  const mutation = useEnableFeatureMutation(guild, feature.id);
+  const mutation = useEnableFeatureMutation();
 
   return (
     <Card variant="primary">
-      <CardBody as={Flex} direction="row" gap={3}>
+      <CardBody as={Flex} direction="column" gap={3}>
         <Center
           p={5}
-          bg={enabled ? 'Brand' : 'MainBackground'}
-          color={enabled ? 'white' : undefined}
+          bg={enabled ? 'Brand' : 'brandAlpha.100'}
+          color={enabled ? 'white' : 'brand.500'}
           rounded="xl"
-          w="60px"
-          h="60px"
+          w="50px"
+          h="50px"
+          fontSize="2xl"
+          _dark={{
+            color: enabled ? 'white' : 'brand.200',
+          }}
         >
           {feature.icon}
         </Center>
-        <Flex direction="column" flex={1}>
-          <Text fontSize="xl" fontWeight="600">
+        <Box>
+          <Text fontSize="xl" fontWeight="medium">
             {feature.name}
           </Text>
           <Text color="TextSecondary">{feature.description}</Text>
-        </Flex>
-        <>
-          <Switch
-            disabled={mutation.isLoading}
-            h="fit-content"
-            isChecked={enabled}
-            onChange={(e) => mutation.mutate({ enabled: e.target.checked })}
-          />
-        </>
+        </Box>
       </CardBody>
-      <CardFooter as={ButtonGroup}>
+      <CardFooter as={ButtonGroup} mt={3}>
         <Button
           disabled={mutation.isLoading}
           {...(enabled
@@ -59,7 +55,7 @@ export function FeatureItem({
               }
             : {
                 leftIcon: <IoOpen />,
-                onClick: () => mutation.mutate({ enabled: true }),
+                onClick: () => mutation.mutate({ enabled: true, guild, feature: feature.id }),
                 children: t.bn['enable feature'],
               })}
         />
