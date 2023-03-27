@@ -38,7 +38,7 @@ function GuildPanel({ guild: id, info }: { guild: string; info: CustomGuildInfo 
       <Banner />
       <Flex direction="column" gap={5} mt={3}>
         <Heading size="md">{t.features}</Heading>
-        <SimpleGrid minChildWidth="328px" gap={3}>
+        <SimpleGrid columns={{ base: 1, md: 2, '2xl': 3 }} gap={3}>
           {getFeatures().map((feature) => (
             <FeatureItem
               key={feature.id}

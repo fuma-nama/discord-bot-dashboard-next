@@ -35,8 +35,10 @@ const GuildSettingsPage: NextPageWithLayout = () => {
 
   return (
     <Flex direction="column">
-      <Box ml={5}>
-        <Heading fontSize={{ base: '2xl' }}>Guild Settings</Heading>
+      <Box ml={{ '3sm': 5 }}>
+        <Heading fontSize="2xl" fontWeight="600">
+          Guild Settings
+        </Heading>
         <Text
           fontSize="lg"
           fontWeight="500"

@@ -43,7 +43,7 @@ export function UpdateFeaturePanel({
           </Box>
           <ButtonGroup mt={3}>
             <Button variant="danger" isLoading={enableMutation.isLoading} onClick={onDisable}>
-              Disable
+              <view.T text={(e) => e.bn.disable} />
             </Button>
           </ButtonGroup>
         </Flex>

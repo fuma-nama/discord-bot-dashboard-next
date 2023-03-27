@@ -20,30 +20,38 @@ export function FeatureItem({
 
   return (
     <Card variant="primary">
-      <CardBody as={Flex} direction="column" gap={3}>
+      <CardBody as={Flex} direction="row" gap={3}>
         <Center
-          p={5}
           bg={enabled ? 'Brand' : 'brandAlpha.100'}
           color={enabled ? 'white' : 'brand.500'}
           rounded="xl"
           w="50px"
           h="50px"
-          fontSize="2xl"
+          fontSize="3xl"
           _dark={{
             color: enabled ? 'white' : 'brand.200',
           }}
         >
           {feature.icon}
         </Center>
-        <Box>
-          <Text fontSize="xl" fontWeight="medium">
+        <Box flex={1}>
+          <Text fontSize={{ base: '16px', md: 'lg' }} fontWeight="600">
             {feature.name}
           </Text>
-          <Text color="TextSecondary">{feature.description}</Text>
+          <Text fontSize={{ base: 'sm', md: 'md' }} color="TextSecondary">
+            {feature.description}
+          </Text>
         </Box>
       </CardBody>
       <CardFooter as={ButtonGroup} mt={3}>
         <Button
+          size={{ base: 'sm', md: 'md' }}
+          _light={{
+            px: '15px',
+          }}
+          _dark={{
+            px: '15px',
+          }}
           disabled={mutation.isLoading}
           {...(enabled
             ? {

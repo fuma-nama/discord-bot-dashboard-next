@@ -23,8 +23,8 @@ export const theme = extendTheme({
     global: globalStyles,
   },
   fonts: {
-    heading: `Inter, -apple-system, sans-serif`,
-    body: `Inter, -apple-system, sans-serif`,
+    heading: `Inter var,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif`,
+    body: `Inter var,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif`,
   },
   components: {
     Button: buttonStyles,
