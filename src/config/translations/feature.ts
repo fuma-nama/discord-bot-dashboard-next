@@ -12,6 +12,7 @@ export const feature = createI18n(provider, {
     },
     bn: {
       enable: 'Enable Feature',
+      disable: 'Disable',
       save: 'Save',
       discard: 'Discard',
     },
@@ -26,6 +27,7 @@ export const feature = createI18n(provider, {
     },
     bn: {
       enable: '啟用功能',
+      disable: '關閉功能',
       save: '保存更改',
       discard: '放棄',
     },
