@@ -50,4 +50,9 @@ export const buttonStyles = defineStyleConfig({
       },
     }),
   },
+  sizes: {
+    sm: {
+      px: '15px',
+    },
+  },
 });

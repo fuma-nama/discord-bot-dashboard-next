@@ -149,7 +149,7 @@ function VoiceChannelItem() {
   return (
     <Card rounded="2xl" variant="primary">
       <CardHeader as={HStack}>
-        <Icon as={MdVoiceChat} w="30px" h="30px" color="Brand" />
+        <Icon as={MdVoiceChat} color="Brand" fontSize={{ base: '2xl', md: '3xl' }} />
         <Text>My Channel</Text>
       </CardHeader>
       <CardBody mt={3}>

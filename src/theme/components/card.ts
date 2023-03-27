@@ -27,6 +27,7 @@ export const cardStyles = defineMultiStyleConfig({
       p: 0,
     },
     body: {
+      fontSize: { base: 'sm', md: 'md' },
       p: 0,
     },
     footer: {

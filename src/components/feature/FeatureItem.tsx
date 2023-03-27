@@ -46,12 +46,6 @@ export function FeatureItem({
       <CardFooter as={ButtonGroup} mt={3}>
         <Button
           size={{ base: 'sm', md: 'md' }}
-          _light={{
-            px: '15px',
-          }}
-          _dark={{
-            px: '15px',
-          }}
           disabled={mutation.isLoading}
           {...(enabled
             ? {
