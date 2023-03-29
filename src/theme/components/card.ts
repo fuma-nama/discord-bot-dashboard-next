@@ -22,11 +22,12 @@ export const cardStyles = defineMultiStyleConfig({
       p: 'var(--card-padding)',
     },
     header: {
-      fontSize: 'xl',
-      fontWeight: '600',
+      fontSize: { base: '16px', md: 'lg' },
+      fontWeight: 'medium',
       p: 0,
     },
     body: {
+      fontSize: { base: 'sm', md: 'md' },
       p: 0,
     },
     footer: {

@@ -1,4 +1,4 @@
-import { Center, Flex, Heading, Link, SimpleGrid, Text, Button, Icon } from '@chakra-ui/react';
+import { Center, Flex, Heading, SimpleGrid, Text, Button, Icon } from '@chakra-ui/react';
 import { LoadingPanel } from '@/components/panel/LoadingPanel';
 import { QueryStatus } from '@/components/panel/QueryPanel';
 import { config } from '@/config/common';
@@ -36,9 +36,9 @@ function GuildPanel({ guild: id, info }: { guild: string; info: CustomGuildInfo 
   return (
     <Flex direction="column" gap={5}>
       <Banner />
-      <Flex direction="column" gap={4}>
+      <Flex direction="column" gap={5} mt={3}>
         <Heading size="md">{t.features}</Heading>
-        <SimpleGrid minChildWidth="328px" gap={3}>
+        <SimpleGrid columns={{ base: 1, md: 2, '2xl': 3 }} gap={3}>
           {getFeatures().map((feature) => (
             <FeatureItem
               key={feature.id}
@@ -65,11 +65,16 @@ function NotJoined({ guild }: { guild: string }) {
       <Text textAlign="center" color="TextSecondary">
         {t.error['not found description']}
       </Text>
-      <Link href={`${config.inviteUrl}&guild_id=${guild}`} target="_blank">
-        <Button variant="action" leftIcon={<FaRobot />} px={6}>
-          {t.bn.invite}
-        </Button>
-      </Link>
+      <Button
+        variant="action"
+        leftIcon={<FaRobot />}
+        px={6}
+        as="a"
+        href={`${config.inviteUrl}&guild_id=${guild}`}
+        target="_blank"
+      >
+        {t.bn.invite}
+      </Button>
     </Center>
   );
 }
