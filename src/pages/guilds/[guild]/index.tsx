@@ -1,4 +1,4 @@
-import { Center, Flex, Heading, Link, SimpleGrid, Text, Button, Icon } from '@chakra-ui/react';
+import { Center, Flex, Heading, SimpleGrid, Text, Button, Icon } from '@chakra-ui/react';
 import { LoadingPanel } from '@/components/panel/LoadingPanel';
 import { QueryStatus } from '@/components/panel/QueryPanel';
 import { config } from '@/config/common';
@@ -65,11 +65,16 @@ function NotJoined({ guild }: { guild: string }) {
       <Text textAlign="center" color="TextSecondary">
         {t.error['not found description']}
       </Text>
-      <Link href={`${config.inviteUrl}&guild_id=${guild}`} target="_blank">
-        <Button variant="action" leftIcon={<FaRobot />} px={6}>
-          {t.bn.invite}
-        </Button>
-      </Link>
+      <Button
+        variant="action"
+        leftIcon={<FaRobot />}
+        px={6}
+        as="a"
+        href={`${config.inviteUrl}&guild_id=${guild}`}
+        target="_blank"
+      >
+        {t.bn.invite}
+      </Button>
     </Center>
   );
 }
