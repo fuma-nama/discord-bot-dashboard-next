@@ -36,8 +36,8 @@ const ProfilePage: NextPageWithLayout = () => {
   const [devMode, setDevMode] = useSettingsStore((s) => [s.devMode, s.setDevMode]);
 
   return (
-    <Grid templateColumns={{ base: '1fr', md: 'minmax(0, 800px) auto' }} gap={{ base: 3, lg: 6 }}>
-      <Flex direction="column" maxW="800px">
+    <Grid templateColumns={{ base: '1fr', lg: 'minmax(0, 800px) auto' }} gap={{ base: 3, lg: 6 }}>
+      <Flex direction="column">
         {user.banner != null ? (
           <Image
             alt="banner"
@@ -64,8 +64,10 @@ const ProfilePage: NextPageWithLayout = () => {
         </VStack>
       </Flex>
       <Card w="full" rounded="3xl" h="fit-content" variant="primary">
-        <CardHeader fontSize="2xl">{t.settings}</CardHeader>
-        <CardBody as={Flex} direction="column" gap={3} mt={3}>
+        <CardHeader fontSize="2xl" fontWeight="600">
+          {t.settings}
+        </CardHeader>
+        <CardBody as={Flex} direction="column" gap={6} mt={3}>
           <SwitchField
             id="dark-mode"
             label={t['dark mode']}
@@ -82,10 +84,10 @@ const ProfilePage: NextPageWithLayout = () => {
           />
           <FormControl>
             <Box mb={2}>
-              <FormLabel fontSize="md" fontWeight="600" m={0}>
+              <FormLabel fontSize="md" fontWeight="medium" m={0}>
                 {t.language}
               </FormLabel>
-              <Text color="secondaryGray.600">{t['language description']}</Text>
+              <Text color="TextSecondary">{t['language description']}</Text>
             </Box>
             <SelectField
               value={{
@@ -99,7 +101,7 @@ const ProfilePage: NextPageWithLayout = () => {
               }))}
             />
           </FormControl>
-          <Spacer mt="100px" />
+          <Spacer />
           <Button
             leftIcon={<IoLogOut />}
             variant="danger"

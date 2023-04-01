@@ -34,9 +34,9 @@ export function GuildSelect() {
           ?.filter((guild) => config.guild.filter(guild))
           .map((guild) => (
             <Card key={guild.id} variant="primary" as={Link} href={`/guilds/${guild.id}`}>
-              <CardHeader as={Flex} flexDirection="row" gap={3} pb={4}>
+              <CardHeader as={Flex} flexDirection="row" gap={3}>
                 <Avatar src={iconUrl(guild)} name={guild.name} size="md" />
-                <Text size="md">{guild.name}</Text>
+                <Text>{guild.name}</Text>
               </CardHeader>
             </Card>
           ))}
@@ -53,11 +53,11 @@ export function GuildSelect() {
   if (guilds.status === 'loading')
     return (
       <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} gap={3}>
-        <Skeleton minH="104px" rounded="2xl" />
-        <Skeleton minH="104px" rounded="2xl" />
-        <Skeleton minH="104px" rounded="2xl" />
-        <Skeleton minH="104px" rounded="2xl" />
-        <Skeleton minH="104px" rounded="2xl" />
+        <Skeleton minH="88px" rounded="2xl" />
+        <Skeleton minH="88px" rounded="2xl" />
+        <Skeleton minH="88px" rounded="2xl" />
+        <Skeleton minH="88px" rounded="2xl" />
+        <Skeleton minH="88px" rounded="2xl" />
       </SimpleGrid>
     );
 

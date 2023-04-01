@@ -86,20 +86,19 @@ export function useFeatureQuery<K extends keyof CustomFeatures>(guild: string, f
   });
 }
 
-export type EnableFeatureOptions = { enabled: boolean };
-export function useEnableFeatureMutation(guild: string, feature: string) {
+export type EnableFeatureOptions = { guild: string; feature: string; enabled: boolean };
+export function useEnableFeatureMutation() {
   const { session } = useSession();
 
   return useMutation(
-    Mutations.updateFeature(guild, feature),
-    ({ enabled }: EnableFeatureOptions) => {
+    async ({ enabled, guild, feature }: EnableFeatureOptions) => {
       if (enabled) return enableFeature(session!!, guild, feature);
       return disableFeature(session!!, guild, feature);
     },
     {
-      async onSuccess(_, { enabled }) {
+      async onSuccess(_, { guild, feature, enabled }) {
         await client.invalidateQueries(Keys.features(guild, feature));
-        await client.setQueryData<GuildInfo | null>(Keys.guild_info(guild), (prev) => {
+        client.setQueryData<GuildInfo | null>(Keys.guild_info(guild), (prev) => {
           if (prev == null) return null;
 
           if (enabled) {

@@ -1,10 +1,10 @@
 import { RiErrorWarningFill as WarningIcon } from 'react-icons/ri';
-import { Flex, Heading, HStack, Spacer, Stack, Text } from '@chakra-ui/layout';
+import { Box, Flex, Heading, Spacer, Text } from '@chakra-ui/layout';
 import { ButtonGroup, Button, Icon } from '@chakra-ui/react';
 import { SlideFade } from '@chakra-ui/react';
 import { FeatureConfig, UseFormRenderResult, CustomFeatures } from '@/config/types';
 import { IoSave } from 'react-icons/io5';
-import { useUpdateFeatureMutation } from '@/api/hooks';
+import { useEnableFeatureMutation, useUpdateFeatureMutation } from '@/api/hooks';
 import { Params } from '@/pages/guilds/[guild]/features/[feature]';
 import { feature as view } from '@/config/translations/feature';
 import { useRouter } from 'next/router';
@@ -18,6 +18,7 @@ export function UpdateFeaturePanel({
 }) {
   const { guild, feature: featureId } = useRouter().query as Params;
   const mutation = useUpdateFeatureMutation();
+  const enableMutation = useEnableFeatureMutation();
   const result = config.useRender(feature, (data) => {
     return mutation.mutateAsync({
       guild,
@@ -26,12 +27,27 @@ export function UpdateFeaturePanel({
     });
   });
 
+  const onDisable = () => {
+    enableMutation.mutate({ enabled: false, guild, feature: featureId });
+  };
+
   return (
     <form>
       <Flex direction="column" gap={5} w="full" h="full">
-        <Heading ml={5} size="lg">
-          {config.name}
-        </Heading>
+        <Flex direction={{ base: 'column', md: 'row' }} mx={{ '3sm': 5 }} justify="space-between">
+          <Box>
+            <Heading fontSize="2xl" fontWeight="600">
+              {config.name}
+            </Heading>
+            <Text color="TextSecondary">{config.description}</Text>
+          </Box>
+          <ButtonGroup mt={3}>
+            <Button variant="danger" isLoading={enableMutation.isLoading} onClick={onDisable}>
+              <view.T text={(e) => e.bn.disable} />
+            </Button>
+          </ButtonGroup>
+        </Flex>
+
         {result.component}
       </Flex>
       <Savebar isLoading={mutation.isLoading} result={result} />
