@@ -14,16 +14,6 @@ import {
   UseControllerProps,
 } from 'react-hook-form';
 
-export type FormProps = {
-  required?: boolean;
-  baseControl?: FormControlProps;
-  /**
-   * Show an error message if not null
-   */
-  error?: string;
-  children: ReactNode;
-};
-
 export function Form(props: FormControlProps) {
   return (
     <FormControl
@@ -40,9 +30,17 @@ export function Form(props: FormControlProps) {
   );
 }
 
-export type FormCardProps = FormProps & {
+export type FormCardProps = {
+  required?: boolean;
+  baseControl?: FormControlProps;
+  /**
+   * Show an error message if not null
+   */
+  error?: string;
   label?: string | ReactNode;
   description?: string | ReactNode;
+
+  children: ReactNode;
 };
 
 export function FormCard({
@@ -55,10 +53,12 @@ export function FormCard({
 }: FormCardProps) {
   return (
     <Form isRequired={required} isInvalid={error != null} {...baseControl}>
-      <FormLabel fontSize="lg" fontWeight="medium" mb={0}>
+      <FormLabel fontSize={{ base: '16px', md: 'lg' }} fontWeight="medium" mb={0}>
         {label}
       </FormLabel>
-      <Text color="TextSecondary">{description}</Text>
+      <Text fontSize={{ base: 'sm', md: 'md' }} color="TextSecondary">
+        {description}
+      </Text>
       <Spacer mt={2} />
       {children}
       <FormErrorMessage>{error}</FormErrorMessage>
