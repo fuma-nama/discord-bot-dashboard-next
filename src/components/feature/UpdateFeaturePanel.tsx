@@ -32,26 +32,24 @@ export function UpdateFeaturePanel({
   };
 
   return (
-    <form>
-      <Flex direction="column" gap={5} w="full" h="full">
-        <Flex direction={{ base: 'column', md: 'row' }} mx={{ '3sm': 5 }} justify="space-between">
-          <Box>
-            <Heading fontSize="2xl" fontWeight="600">
-              {config.name}
-            </Heading>
-            <Text color="TextSecondary">{config.description}</Text>
-          </Box>
-          <ButtonGroup mt={3}>
-            <Button variant="danger" isLoading={enableMutation.isLoading} onClick={onDisable}>
-              <view.T text={(e) => e.bn.disable} />
-            </Button>
-          </ButtonGroup>
-        </Flex>
-
-        {result.component}
+    <Flex as="form" direction="column" gap={5} w="full" h="full">
+      <Flex direction={{ base: 'column', md: 'row' }} mx={{ '3sm': 5 }} justify="space-between">
+        <Box>
+          <Heading fontSize="2xl" fontWeight="600">
+            {config.name}
+          </Heading>
+          <Text color="TextSecondary">{config.description}</Text>
+        </Box>
+        <ButtonGroup mt={3}>
+          <Button variant="danger" isLoading={enableMutation.isLoading} onClick={onDisable}>
+            <view.T text={(e) => e.bn.disable} />
+          </Button>
+        </ButtonGroup>
       </Flex>
+
+      {result.component}
       <Savebar isLoading={mutation.isLoading} result={result} />
-    </form>
+    </Flex>
   );
 }
 
@@ -80,7 +78,7 @@ function Savebar({
       alignItems="center"
       flexDirection={{ base: 'column', [breakpoint]: 'row' }}
       gap={{ base: 1, [breakpoint]: 2 }}
-      mt={4}
+      mt="auto"
     >
       <Icon
         display={{ base: 'none', [breakpoint]: 'block' }}
