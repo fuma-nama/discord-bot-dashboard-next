@@ -7,6 +7,7 @@ import { FeaturesConfig } from './types';
 import { provider } from '@/config/translations/provider';
 import { createI18n } from '@/utils/i18n';
 import { useWelcomeMessageFeature } from './example/WelcomeMessageFeature';
+import { useMemeFeature } from './example/MemeFeature';
 
 /**
  * Support i18n (Localization)
@@ -83,11 +84,6 @@ export const features: FeaturesConfig = {
     name: <T text="memes" />,
     description: <T text="memes description" />,
     icon: <Icon as={IoHappy} />,
-    useRender() {
-      return {
-        component: <></>,
-        onSubmit: () => {},
-      };
-    },
+    useRender: useMemeFeature,
   },
 };
