@@ -39,7 +39,7 @@ As a template, you need to customize a few things in order to get it work
 
 1. **Clone the repo**
    <br>
-   `git clone https://github.com/SonMooSans/discord-bot-dashboard-next.git`
+   `git clone https://github.com/fuma_nama/discord-bot-dashboard-next.git`
 2. **Install dependencies**
    <br>
    We always prefer [`PNpm`](https://pnpm.io)
@@ -160,7 +160,7 @@ Moreover, you can use redis instead of connecting to the bot server directly
 
 ### Official Example
 
-[Node.js (Typescript)](https://github.com/SonMooSans/discord-dashboard-backend-next)
+[Node.js (Typescript)](https://github.com/fuma_nama/discord-dashboard-backend-next)
 
 ### Authorization
 
