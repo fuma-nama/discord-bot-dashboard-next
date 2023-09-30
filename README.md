@@ -160,7 +160,7 @@ Moreover, you can use redis instead of connecting to the bot server directly
 
 ### Official Example
 
-[Node.js (Typescript)](https://github.com/fuma_nama/discord-dashboard-backend-next)
+[Node.js (Typescript)](https://github.com/fuma-nama/discord-dashboard-backend-next)
 
 ### Authorization
 
