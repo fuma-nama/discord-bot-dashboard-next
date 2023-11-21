@@ -93,8 +93,8 @@ dependencies:
     specifier: ^3.20.6
     version: 3.20.6
   zustand:
-    specifier: ^4.1.4
-    version: 4.1.4(react@18.2.0)
+    specifier: ^4.4.6
+    version: 4.4.6(@types/react@18.0.26)(react@18.2.0)
 
 devDependencies:
   '@babel/core':
@@ -4656,18 +4656,22 @@ packages:
     resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
     dev: false
 
-  /zustand@4.1.4(react@18.2.0):
-    resolution: {integrity: sha512-k2jVOlWo8p4R83mQ+/uyB8ILPO2PCJOf+QVjcL+1PbMCk1w5OoPYpAIxy9zd93FSfmJqoH6lGdwzzjwqJIRU5A==}
+  /zustand@4.4.6(@types/react@18.0.26)(react@18.2.0):
+    resolution: {integrity: sha512-Rb16eW55gqL4W2XZpJh0fnrATxYEG3Apl2gfHTyDSE965x/zxslTikpNch0JgNjJA9zK6gEFW8Fl6d1rTZaqgg==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
+      '@types/react': '>=16.8'
       immer: '>=9.0'
       react: '>=16.8'
     peerDependenciesMeta:
+      '@types/react':
+        optional: true
       immer:
         optional: true
       react:
         optional: true
     dependencies:
+      '@types/react': 18.0.26
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
