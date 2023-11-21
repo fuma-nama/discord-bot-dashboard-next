@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { createStore } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export type PageStore = {
@@ -11,7 +11,7 @@ export type PersistStore = {
   setDevMode: (v: boolean) => void;
 };
 
-export const usePageStore = create<PageStore>((set) => ({
+export const usePageStore = createStore<PageStore>((set) => ({
   sidebarIsOpen: false,
   setSidebarIsOpen: (v) => set({ sidebarIsOpen: v }),
 }));
@@ -19,7 +19,7 @@ export const usePageStore = create<PageStore>((set) => ({
 /**
  * persist settings
  */
-export const useSettingsStore = create(
+export const useSettingsStore = createStore(
   persist<PersistStore>(
     (set) => ({
       devMode: false,
