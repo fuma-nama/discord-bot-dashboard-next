@@ -1,3 +1,7 @@
+> About to be deprecated
+>
+> Please consider other alternatives. You may continuely use it but no support will be provided.
+
 ![banner](./document/preview-new.png)
 
 # Discord Bot Dashboard Template
